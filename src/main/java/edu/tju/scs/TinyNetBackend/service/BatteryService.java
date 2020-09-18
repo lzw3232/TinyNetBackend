@@ -104,6 +104,7 @@ public class BatteryService {
         if(!check(id,username)){
             return new ErrorReport(31,"id no exist",response);
         }
+        lzw3232;
         batteryMapper.deleteByPrimaryKey(id);
         return new ErrorReport(0,"success",response);
     }
