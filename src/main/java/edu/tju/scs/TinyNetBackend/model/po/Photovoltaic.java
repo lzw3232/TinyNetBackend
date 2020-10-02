@@ -7,8 +7,6 @@ public class Photovoltaic {
 
     private Double edrl;
 
-    private Double tyntgl;
-
     private Double jeys;
 
     private Double gfzltynxsl;
@@ -28,12 +26,6 @@ public class Photovoltaic {
     private Double stcwd;
 
     private String factory;
-
-    private Double dmfsl;
-
-    private Double fwj;
-
-    private Double qxj;
 
     private Double type;
 
@@ -93,14 +85,6 @@ public class Photovoltaic {
 
     public void setEdrl(Double edrl) {
         this.edrl = edrl;
-    }
-
-    public Double getTyntgl() {
-        return tyntgl;
-    }
-
-    public void setTyntgl(Double tyntgl) {
-        this.tyntgl = tyntgl;
     }
 
     public Double getJeys() {
@@ -181,30 +165,6 @@ public class Photovoltaic {
 
     public void setFactory(String factory) {
         this.factory = factory == null ? null : factory.trim();
-    }
-
-    public Double getDmfsl() {
-        return dmfsl;
-    }
-
-    public void setDmfsl(Double dmfsl) {
-        this.dmfsl = dmfsl;
-    }
-
-    public Double getFwj() {
-        return fwj;
-    }
-
-    public void setFwj(Double fwj) {
-        this.fwj = fwj;
-    }
-
-    public Double getQxj() {
-        return qxj;
-    }
-
-    public void setQxj(Double qxj) {
-        this.qxj = qxj;
     }
 
     public Double getType() {
@@ -356,12 +316,8 @@ public class Photovoltaic {
         String ret="";
         ret+=Double.toString(jeys)+'\n';
         ret+=Double.toString(gffdxl)+'\n';
-        ret+=Double.toString(qxj)+'\n';
-        ret+=Double.toString(fwj)+'\n';
-        ret+=Double.toString(dmfsl)+'\n';
         ret+=Double.toString(wdxs)+'\n';
         ret+=Double.toString(gfbbzwd)+'\n';
-        ret+=Double.toString(tyntgl)+'\n';
         ret+=Double.toString(gfzltynxsl)+'\n';
         ret+=Double.toString(stcwd)+'\n';
         ret+=Double.toString(noctwd)+'\n';
@@ -394,5 +350,4 @@ public class Photovoltaic {
         ret+=Double.toString(yxwhcb4)+'\n';
         return ret;
     }
-
 }

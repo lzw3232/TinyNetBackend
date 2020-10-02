@@ -63,5 +63,14 @@ public class BatteryController {
         return result;
     }
 
+    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+    @RequestMapping(value = "/lzw",method = RequestMethod.GET)
+    @ResponseBody
+    public ErrorReport lzw(@RequestBody(required=false) JSONObject data){
+        ErrorReport result =  batteryService.lzw();
+        return result;
+    }
+
+
 
 }

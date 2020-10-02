@@ -20,25 +20,31 @@ public class AuthController {
     @Autowired
     protected LoginService loginService;
 
-    @RequestMapping(value = "/",method = RequestMethod.POST)
-    @ResponseBody
-    public ErrorReport index(HttpServletRequest request){
-
-        String msg;
-        String name = loginService.isLogin(request);
-        if(name!=null) {
-            msg = "hello " + name;
-        } else {
-            msg = "not log in";
-        }
-
-        return new ErrorReport(100, "index page: " + msg);
-    }
+//    @RequestMapping(value = "/",method = RequestMethod.POST)
+//    @ResponseBody
+//    public ErrorReport index(HttpServletRequest request){
+//
+//        String msg;
+//        String name = loginService.isLogin(request);
+//        if(name!=null) {
+//            msg = "hello " + name;
+//        } else {
+//            msg = "not log in";
+//        }
+//
+//        return new ErrorReport(100, "index page: " + msg);
+//    }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport doLogin(@RequestBody(required=false) JSONObject data){
         return loginService.login(data.getString("username"),data.getString("password"));
+    }
+
+    @RequestMapping(value = "/auth",method = RequestMethod.POST)
+    @ResponseBody
+    public ErrorReport check(@RequestBody(required=false) JSONObject data){
+        return loginService.check(data.getString("token"));
     }
 
 //    @RequestMapping(value = "/logout",method = RequestMethod.POST)

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.tju.scs.TinyNetBackend.mapper.Residual_heatMapper" >
+  <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Residual_heat" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="eff" property="eff" jdbcType="DOUBLE" />
+    <result column="ratedPower" property="ratedPower" jdbcType="DOUBLE" />
+    <result column="lifetime" property="lifetime" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="number1" property="number1" jdbcType="INTEGER" />
+    <result column="number2" property="number2" jdbcType="INTEGER" />
+    <result column="number3" property="number3" jdbcType="INTEGER" />
+    <result column="number4" property="number4" jdbcType="INTEGER" />
+    <result column="fBuildCost1" property="fBuildCost1" jdbcType="DOUBLE" />
+    <result column="fBuildCost2" property="fBuildCost2" jdbcType="DOUBLE" />
+    <result column="fBuildCost3" property="fBuildCost3" jdbcType="DOUBLE" />
+    <result column="fBuildCost4" property="fBuildCost4" jdbcType="DOUBLE" />
+    <result column="rBulidCost1" property="rBulidCost1" jdbcType="DOUBLE" />
+    <result column="rBulidCost2" property="rBulidCost2" jdbcType="DOUBLE" />
+    <result column="rBulidCost3" property="rBulidCost3" jdbcType="DOUBLE" />
+    <result column="rBulidCost4" property="rBulidCost4" jdbcType="DOUBLE" />
+    <result column="operCost1" property="operCost1" jdbcType="DOUBLE" />
+    <result column="operCost2" property="operCost2" jdbcType="DOUBLE" />
+    <result column="operCost3" property="operCost3" jdbcType="DOUBLE" />
+    <result column="operCost4" property="operCost4" jdbcType="DOUBLE" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, eff, ratedPower, lifetime, manufacturer, number1, number2, number3, number4, 
+    fBuildCost1, fBuildCost2, fBuildCost3, fBuildCost4, rBulidCost1, rBulidCost2, rBulidCost3, 
+    rBulidCost4, operCost1, operCost2, operCost3, operCost4, owner
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from residual_heat
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from residual_heat
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from residual_heat
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from residual_heat
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from residual_heat
+    where name REGEXP #{val}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from residual_heat
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Residual_heat" >
+    insert into residual_heat (id, name, eff, 
+      ratedPower, lifetime, manufacturer, 
+      number1, number2, number3, 
+      number4, fBuildCost1, fBuildCost2, 
+      fBuildCost3, fBuildCost4, rBulidCost1, 
+      rBulidCost2, rBulidCost3, rBulidCost4, 
+      operCost1, operCost2, operCost3, 
+      operCost4, owner)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{eff,jdbcType=DOUBLE}, 
+      #{ratedPower,jdbcType=DOUBLE}, #{lifetime,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{number1,jdbcType=INTEGER}, #{number2,jdbcType=INTEGER}, #{number3,jdbcType=INTEGER}, 
+      #{number4,jdbcType=INTEGER}, #{fBuildCost1,jdbcType=DOUBLE}, #{fBuildCost2,jdbcType=DOUBLE}, 
+      #{fBuildCost3,jdbcType=DOUBLE}, #{fBuildCost4,jdbcType=DOUBLE}, #{rBulidCost1,jdbcType=DOUBLE}, 
+      #{rBulidCost2,jdbcType=DOUBLE}, #{rBulidCost3,jdbcType=DOUBLE}, #{rBulidCost4,jdbcType=DOUBLE}, 
+      #{operCost1,jdbcType=DOUBLE}, #{operCost2,jdbcType=DOUBLE}, #{operCost3,jdbcType=DOUBLE}, 
+      #{operCost4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Residual_heat" >
+    insert into residual_heat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="eff != null" >
+        eff,
+      </if>
+      <if test="ratedPower != null" >
+        ratedPower,
+      </if>
+      <if test="lifetime != null" >
+        lifetime,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="number1 != null" >
+        number1,
+      </if>
+      <if test="number2 != null" >
+        number2,
+      </if>
+      <if test="number3 != null" >
+        number3,
+      </if>
+      <if test="number4 != null" >
+        number4,
+      </if>
+      <if test="fBuildCost1 != null" >
+        fBuildCost1,
+      </if>
+      <if test="fBuildCost2 != null" >
+        fBuildCost2,
+      </if>
+      <if test="fBuildCost3 != null" >
+        fBuildCost3,
+      </if>
+      <if test="fBuildCost4 != null" >
+        fBuildCost4,
+      </if>
+      <if test="rBulidCost1 != null" >
+        rBulidCost1,
+      </if>
+      <if test="rBulidCost2 != null" >
+        rBulidCost2,
+      </if>
+      <if test="rBulidCost3 != null" >
+        rBulidCost3,
+      </if>
+      <if test="rBulidCost4 != null" >
+        rBulidCost4,
+      </if>
+      <if test="operCost1 != null" >
+        operCost1,
+      </if>
+      <if test="operCost2 != null" >
+        operCost2,
+      </if>
+      <if test="operCost3 != null" >
+        operCost3,
+      </if>
+      <if test="operCost4 != null" >
+        operCost4,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eff != null" >
+        #{eff,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedPower != null" >
+        #{ratedPower,jdbcType=DOUBLE},
+      </if>
+      <if test="lifetime != null" >
+        #{lifetime,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="number1 != null" >
+        #{number1,jdbcType=INTEGER},
+      </if>
+      <if test="number2 != null" >
+        #{number2,jdbcType=INTEGER},
+      </if>
+      <if test="number3 != null" >
+        #{number3,jdbcType=INTEGER},
+      </if>
+      <if test="number4 != null" >
+        #{number4,jdbcType=INTEGER},
+      </if>
+      <if test="fBuildCost1 != null" >
+        #{fBuildCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost2 != null" >
+        #{fBuildCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost3 != null" >
+        #{fBuildCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost4 != null" >
+        #{fBuildCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost1 != null" >
+        #{rBulidCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost2 != null" >
+        #{rBulidCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost3 != null" >
+        #{rBulidCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost4 != null" >
+        #{rBulidCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost1 != null" >
+        #{operCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost2 != null" >
+        #{operCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost3 != null" >
+        #{operCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost4 != null" >
+        #{operCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Residual_heat" >
+    update residual_heat
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eff != null" >
+        eff = #{eff,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedPower != null" >
+        ratedPower = #{ratedPower,jdbcType=DOUBLE},
+      </if>
+      <if test="lifetime != null" >
+        lifetime = #{lifetime,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="number1 != null" >
+        number1 = #{number1,jdbcType=INTEGER},
+      </if>
+      <if test="number2 != null" >
+        number2 = #{number2,jdbcType=INTEGER},
+      </if>
+      <if test="number3 != null" >
+        number3 = #{number3,jdbcType=INTEGER},
+      </if>
+      <if test="number4 != null" >
+        number4 = #{number4,jdbcType=INTEGER},
+      </if>
+      <if test="fBuildCost1 != null" >
+        fBuildCost1 = #{fBuildCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost2 != null" >
+        fBuildCost2 = #{fBuildCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost3 != null" >
+        fBuildCost3 = #{fBuildCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost4 != null" >
+        fBuildCost4 = #{fBuildCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost1 != null" >
+        rBulidCost1 = #{rBulidCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost2 != null" >
+        rBulidCost2 = #{rBulidCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost3 != null" >
+        rBulidCost3 = #{rBulidCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="rBulidCost4 != null" >
+        rBulidCost4 = #{rBulidCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost1 != null" >
+        operCost1 = #{operCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost2 != null" >
+        operCost2 = #{operCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost3 != null" >
+        operCost3 = #{operCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost4 != null" >
+        operCost4 = #{operCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Residual_heat" >
+    update residual_heat
+    set name = #{name,jdbcType=VARCHAR},
+      eff = #{eff,jdbcType=DOUBLE},
+      ratedPower = #{ratedPower,jdbcType=DOUBLE},
+      lifetime = #{lifetime,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      number1 = #{number1,jdbcType=INTEGER},
+      number2 = #{number2,jdbcType=INTEGER},
+      number3 = #{number3,jdbcType=INTEGER},
+      number4 = #{number4,jdbcType=INTEGER},
+      fBuildCost1 = #{fBuildCost1,jdbcType=DOUBLE},
+      fBuildCost2 = #{fBuildCost2,jdbcType=DOUBLE},
+      fBuildCost3 = #{fBuildCost3,jdbcType=DOUBLE},
+      fBuildCost4 = #{fBuildCost4,jdbcType=DOUBLE},
+      rBulidCost1 = #{rBulidCost1,jdbcType=DOUBLE},
+      rBulidCost2 = #{rBulidCost2,jdbcType=DOUBLE},
+      rBulidCost3 = #{rBulidCost3,jdbcType=DOUBLE},
+      rBulidCost4 = #{rBulidCost4,jdbcType=DOUBLE},
+      operCost1 = #{operCost1,jdbcType=DOUBLE},
+      operCost2 = #{operCost2,jdbcType=DOUBLE},
+      operCost3 = #{operCost3,jdbcType=DOUBLE},
+      operCost4 = #{operCost4,jdbcType=DOUBLE},
+      owner = #{owner,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

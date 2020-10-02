@@ -39,14 +39,18 @@ public class LoginService  {
 
     }
 
-    public String isLogin(HttpServletRequest request){
-        String token = request.getHeader(JWTService.AUTHENTICATION_KEY);
-        String name = TokenUtil.getAudience(token);
-        boolean x = TokenUtil.parseToken(token);
-        if (name!=null&&x){
-            return name;
+    public ErrorReport check(String token){
+        if(token==null||token==""){
+            return new ErrorReport(2,"please login");
+        }
+        if(!TokenUtil.parseToken(token)){
+            return new ErrorReport(2,"please login");
+        }
+        String username = TokenUtil.getAudience(token);
+        if (userMapper.selectByPrimaryKey(username)!=null){
+            return new ErrorReport(0,username);
         }else {
-            return null;
+            return new ErrorReport(2,"please login");
         }
     }
 

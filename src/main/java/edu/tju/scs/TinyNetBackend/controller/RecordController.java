@@ -71,6 +71,15 @@ public class RecordController {
 
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/tinyNet/record/getOutput",method = RequestMethod.POST)
+    public ErrorReport getOutput(@RequestBody(required=false) JSONObject data)
+    {
+        return recordService.getOutput(data.getString("token"),data.getString("recordname"));
+
+    }
+
+
 
 
 

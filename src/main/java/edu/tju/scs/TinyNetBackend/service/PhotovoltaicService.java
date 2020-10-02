@@ -1,15 +1,14 @@
 package edu.tju.scs.TinyNetBackend.service;
 
+import com.alibaba.fastjson.JSONObject;
 import edu.tju.scs.TinyNetBackend.common.utils.TokenUtil;
 import edu.tju.scs.TinyNetBackend.mapper.PhotovoltaicMapper;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
 import edu.tju.scs.TinyNetBackend.model.dto.ResponseData;
-import edu.tju.scs.TinyNetBackend.model.dto.ResponseObjectData;
 import edu.tju.scs.TinyNetBackend.model.po.Photovoltaic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -20,67 +19,110 @@ public class PhotovoltaicService {
 
     private boolean check(int id,String owner)
     {
-        Photovoltaic photovoltaic = photovoltaicMapper.selectByPrimaryKey(id);
-        if(photovoltaic==null||!owner.equals(photovoltaic.getOwner()))
+        if(photovoltaicMapper.selectByPrimaryKey(id)==null||!owner.equals(photovoltaicMapper.selectByPrimaryKey(id).getOwner()))
             return false;
         return true;
     }
 
 
-    public ErrorReport add(HttpServletRequest request, Photovoltaic photovoltaic)
+    public ErrorReport add(JSONObject photovoltaic, String token)
     {
-        String token = request.getHeader(JWTService.AUTHENTICATION_KEY);
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
-        photovoltaic.setOwner(username);
+        photovoltaic.put("owner",username);
+        photovoltaic.remove("id");
+        Photovoltaic photovoltaic1 = JSONObject.toJavaObject(photovoltaic,Photovoltaic.class);
 
-        photovoltaicMapper.insert(photovoltaic);
+        photovoltaicMapper.insert(photovoltaic1);
 
-        return new ErrorReport(0,"success");
+        String new_token=TokenUtil.getToken(username);
+        ResponseData response =new ResponseData();
+        response.addData("token",new_token);
+        return new ErrorReport(0,"success",response);
     }
 
-    public ErrorReport update(HttpServletRequest request,Photovoltaic photovoltaic)
+    public ErrorReport update(JSONObject photovoltaic, String token)
     {
-        String token = request.getHeader(JWTService.AUTHENTICATION_KEY);
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
-        if(!username.equals(photovoltaic.getOwner()))
-            return new ErrorReport(31,"id no exist");
-        if(!check(photovoltaic.getId(),photovoltaic.getOwner()))
-            return new ErrorReport(31,"id no exist");
-        photovoltaicMapper.updateByPrimaryKey(photovoltaic);
-        return new ErrorReport(0,"success");
+        String new_token=TokenUtil.getToken(username);
+        ResponseData response =new ResponseData();
+        response.addData("token",new_token);
+        Photovoltaic photovoltaic1 = JSONObject.toJavaObject(photovoltaic,Photovoltaic.class);
+        if(!username.equals(photovoltaic1.getOwner()))
+            return new ErrorReport(31,"id no exist",response);
+        if(!check(photovoltaic1.getId(),photovoltaic1.getOwner()))
+            return new ErrorReport(31,"id no exist",response);
+        photovoltaicMapper.updateByPrimaryKey(photovoltaic1);
+        return new ErrorReport(0,"success",response);
     }
 
-    public ErrorReport select(HttpServletRequest request,int id)
+    public ErrorReport select(String token,int id)
     {
-        String token = request.getHeader(JWTService.AUTHENTICATION_KEY);
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
-        if(!check(id,username))
-            return new ErrorReport(31,"id no exist");
+        String new_token=TokenUtil.getToken(username);
+
+        ResponseData response =new ResponseData();
+        response.addData("token",new_token);
+
+        if(!check(id,username)){
+            return new ErrorReport(31,"id no exist",response);
+        }
+
         Photovoltaic photovoltaic =photovoltaicMapper.selectByPrimaryKey(id);
-        if(photovoltaic!=null)
-            return new ErrorReport(0,"success",new ResponseObjectData(photovoltaic));
-        else
-            return new ErrorReport(11,"id not found");
+
+        if(photovoltaic!=null){
+            response.addData("data",photovoltaic);
+            return new ErrorReport(0,"success",response);
+        }
+        else{
+            return new ErrorReport(11,"id not found",response);
+        }
     }
 
-    public ErrorReport delete(HttpServletRequest request,int id)
+    public ErrorReport delete(String token,int id)
     {
-        String token = request.getHeader(JWTService.AUTHENTICATION_KEY);
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
+        System.out.println("delete");
         String username = TokenUtil.getAudience(token);
-        if(!check(id,username))
-            return new ErrorReport(31,"id no exist");
+        String new_token=TokenUtil.getToken(username);
+
+        ResponseData response =new ResponseData();
+        response.addData("token",new_token);
+        if(!check(id,username)){
+            return new ErrorReport(31,"id no exist",response);
+        }
         photovoltaicMapper.deleteByPrimaryKey(id);
-        return new ErrorReport(0,"success");
+        return new ErrorReport(0,"success",response);
     }
 
-    public ErrorReport list(HttpServletRequest request)
+    public ErrorReport list(String token,int pi, int ps,String val)
     {
-        String token = request.getHeader(JWTService.AUTHENTICATION_KEY);
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
+        String new_token=TokenUtil.getToken(username);
+        ResponseData response =new ResponseData();
+        response.addData("token",new_token);
+        List<Photovoltaic> photovoltaiclist;
+        if(val==""){
+            photovoltaiclist =photovoltaicMapper.selectByOwner(username,(pi-1)*ps,ps);
+            int total = photovoltaicMapper.countB();
+            response.addData("total",total);
+        }
+        else{
+            photovoltaiclist =photovoltaicMapper.selectByOwner1(username,(pi-1)*ps,ps,val);
+            int total = photovoltaicMapper.countB1(val);
+            response.addData("total",total);
+        }
+        response.addData("list",photovoltaiclist);
 
-        List<Photovoltaic> photovoltaiclist =photovoltaicMapper.selectByOwner(username);
-
-        return new ErrorReport(0,"success",new ResponseData().addData("photovoltaiclist",photovoltaiclist));
+        return new ErrorReport(0,"success",response);
 
     }
 }

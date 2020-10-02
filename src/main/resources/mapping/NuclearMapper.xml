@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.tju.scs.TinyNetBackend.mapper.NuclearMapper" >
+  <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Nuclear" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="lifetime" property="lifetime" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="frequencyModulationCoefficient" property="frequencyModulationCoefficient" jdbcType="DOUBLE" />
+    <result column="minimuLoadRate" property="minimuLoadRate" jdbcType="DOUBLE" />
+    <result column="upperLimitOfNuclearPowerGeneration" property="upperLimitOfNuclearPowerGeneration" jdbcType="DOUBLE" />
+    <result column="quantityOfNuclearFuel" property="quantityOfNuclearFuel" jdbcType="DOUBLE" />
+    <result column="nuclearFuelPrices" property="nuclearFuelPrices" jdbcType="DOUBLE" />
+    <result column="capacity1" property="capacity1" jdbcType="INTEGER" />
+    <result column="capacity2" property="capacity2" jdbcType="INTEGER" />
+    <result column="capacity3" property="capacity3" jdbcType="INTEGER" />
+    <result column="capacity4" property="capacity4" jdbcType="INTEGER" />
+    <result column="fBuildCost1" property="fBuildCost1" jdbcType="DOUBLE" />
+    <result column="fBuildCost2" property="fBuildCost2" jdbcType="DOUBLE" />
+    <result column="fBuildCost3" property="fBuildCost3" jdbcType="DOUBLE" />
+    <result column="fBuildCost4" property="fBuildCost4" jdbcType="DOUBLE" />
+    <result column="rBuildCost1" property="rBuildCost1" jdbcType="DOUBLE" />
+    <result column="rBuildCost2" property="rBuildCost2" jdbcType="DOUBLE" />
+    <result column="rBuildCost3" property="rBuildCost3" jdbcType="DOUBLE" />
+    <result column="rBuildCost4" property="rBuildCost4" jdbcType="DOUBLE" />
+    <result column="operCost1" property="operCost1" jdbcType="DOUBLE" />
+    <result column="operCost2" property="operCost2" jdbcType="DOUBLE" />
+    <result column="operCost3" property="operCost3" jdbcType="DOUBLE" />
+    <result column="operCost4" property="operCost4" jdbcType="DOUBLE" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, lifetime, manufacturer, frequencyModulationCoefficient, minimuLoadRate, 
+    upperLimitOfNuclearPowerGeneration, quantityOfNuclearFuel, nuclearFuelPrices, capacity1, 
+    capacity2, capacity3, capacity4, fBuildCost1, fBuildCost2, fBuildCost3, fBuildCost4, 
+    rBuildCost1, rBuildCost2, rBuildCost3, rBuildCost4, operCost1, operCost2, operCost3, 
+    operCost4, owner
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nuclear
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from nuclear
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from nuclear
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from nuclear
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from nuclear
+    where name REGEXP #{val}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nuclear
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Nuclear" >
+    insert into nuclear (id, name, lifetime, 
+      manufacturer, frequencyModulationCoefficient, 
+      minimuLoadRate, upperLimitOfNuclearPowerGeneration, 
+      quantityOfNuclearFuel, nuclearFuelPrices, 
+      capacity1, capacity2, capacity3, 
+      capacity4, fBuildCost1, fBuildCost2, 
+      fBuildCost3, fBuildCost4, rBuildCost1, 
+      rBuildCost2, rBuildCost3, rBuildCost4, 
+      operCost1, operCost2, operCost3, 
+      operCost4, owner)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{lifetime,jdbcType=DOUBLE}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{frequencyModulationCoefficient,jdbcType=DOUBLE}, 
+      #{minimuLoadRate,jdbcType=DOUBLE}, #{upperLimitOfNuclearPowerGeneration,jdbcType=DOUBLE}, 
+      #{quantityOfNuclearFuel,jdbcType=DOUBLE}, #{nuclearFuelPrices,jdbcType=DOUBLE}, 
+      #{capacity1,jdbcType=INTEGER}, #{capacity2,jdbcType=INTEGER}, #{capacity3,jdbcType=INTEGER}, 
+      #{capacity4,jdbcType=INTEGER}, #{fBuildCost1,jdbcType=DOUBLE}, #{fBuildCost2,jdbcType=DOUBLE}, 
+      #{fBuildCost3,jdbcType=DOUBLE}, #{fBuildCost4,jdbcType=DOUBLE}, #{rBuildCost1,jdbcType=DOUBLE}, 
+      #{rBuildCost2,jdbcType=DOUBLE}, #{rBuildCost3,jdbcType=DOUBLE}, #{rBuildCost4,jdbcType=DOUBLE}, 
+      #{operCost1,jdbcType=DOUBLE}, #{operCost2,jdbcType=DOUBLE}, #{operCost3,jdbcType=DOUBLE}, 
+      #{operCost4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Nuclear" >
+    insert into nuclear
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="lifetime != null" >
+        lifetime,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="frequencyModulationCoefficient != null" >
+        frequencyModulationCoefficient,
+      </if>
+      <if test="minimuLoadRate != null" >
+        minimuLoadRate,
+      </if>
+      <if test="upperLimitOfNuclearPowerGeneration != null" >
+        upperLimitOfNuclearPowerGeneration,
+      </if>
+      <if test="quantityOfNuclearFuel != null" >
+        quantityOfNuclearFuel,
+      </if>
+      <if test="nuclearFuelPrices != null" >
+        nuclearFuelPrices,
+      </if>
+      <if test="capacity1 != null" >
+        capacity1,
+      </if>
+      <if test="capacity2 != null" >
+        capacity2,
+      </if>
+      <if test="capacity3 != null" >
+        capacity3,
+      </if>
+      <if test="capacity4 != null" >
+        capacity4,
+      </if>
+      <if test="fBuildCost1 != null" >
+        fBuildCost1,
+      </if>
+      <if test="fBuildCost2 != null" >
+        fBuildCost2,
+      </if>
+      <if test="fBuildCost3 != null" >
+        fBuildCost3,
+      </if>
+      <if test="fBuildCost4 != null" >
+        fBuildCost4,
+      </if>
+      <if test="rBuildCost1 != null" >
+        rBuildCost1,
+      </if>
+      <if test="rBuildCost2 != null" >
+        rBuildCost2,
+      </if>
+      <if test="rBuildCost3 != null" >
+        rBuildCost3,
+      </if>
+      <if test="rBuildCost4 != null" >
+        rBuildCost4,
+      </if>
+      <if test="operCost1 != null" >
+        operCost1,
+      </if>
+      <if test="operCost2 != null" >
+        operCost2,
+      </if>
+      <if test="operCost3 != null" >
+        operCost3,
+      </if>
+      <if test="operCost4 != null" >
+        operCost4,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lifetime != null" >
+        #{lifetime,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="frequencyModulationCoefficient != null" >
+        #{frequencyModulationCoefficient,jdbcType=DOUBLE},
+      </if>
+      <if test="minimuLoadRate != null" >
+        #{minimuLoadRate,jdbcType=DOUBLE},
+      </if>
+      <if test="upperLimitOfNuclearPowerGeneration != null" >
+        #{upperLimitOfNuclearPowerGeneration,jdbcType=DOUBLE},
+      </if>
+      <if test="quantityOfNuclearFuel != null" >
+        #{quantityOfNuclearFuel,jdbcType=DOUBLE},
+      </if>
+      <if test="nuclearFuelPrices != null" >
+        #{nuclearFuelPrices,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity1 != null" >
+        #{capacity1,jdbcType=INTEGER},
+      </if>
+      <if test="capacity2 != null" >
+        #{capacity2,jdbcType=INTEGER},
+      </if>
+      <if test="capacity3 != null" >
+        #{capacity3,jdbcType=INTEGER},
+      </if>
+      <if test="capacity4 != null" >
+        #{capacity4,jdbcType=INTEGER},
+      </if>
+      <if test="fBuildCost1 != null" >
+        #{fBuildCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost2 != null" >
+        #{fBuildCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost3 != null" >
+        #{fBuildCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost4 != null" >
+        #{fBuildCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost1 != null" >
+        #{rBuildCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost2 != null" >
+        #{rBuildCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost3 != null" >
+        #{rBuildCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost4 != null" >
+        #{rBuildCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost1 != null" >
+        #{operCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost2 != null" >
+        #{operCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost3 != null" >
+        #{operCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost4 != null" >
+        #{operCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Nuclear" >
+    update nuclear
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lifetime != null" >
+        lifetime = #{lifetime,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="frequencyModulationCoefficient != null" >
+        frequencyModulationCoefficient = #{frequencyModulationCoefficient,jdbcType=DOUBLE},
+      </if>
+      <if test="minimuLoadRate != null" >
+        minimuLoadRate = #{minimuLoadRate,jdbcType=DOUBLE},
+      </if>
+      <if test="upperLimitOfNuclearPowerGeneration != null" >
+        upperLimitOfNuclearPowerGeneration = #{upperLimitOfNuclearPowerGeneration,jdbcType=DOUBLE},
+      </if>
+      <if test="quantityOfNuclearFuel != null" >
+        quantityOfNuclearFuel = #{quantityOfNuclearFuel,jdbcType=DOUBLE},
+      </if>
+      <if test="nuclearFuelPrices != null" >
+        nuclearFuelPrices = #{nuclearFuelPrices,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity1 != null" >
+        capacity1 = #{capacity1,jdbcType=INTEGER},
+      </if>
+      <if test="capacity2 != null" >
+        capacity2 = #{capacity2,jdbcType=INTEGER},
+      </if>
+      <if test="capacity3 != null" >
+        capacity3 = #{capacity3,jdbcType=INTEGER},
+      </if>
+      <if test="capacity4 != null" >
+        capacity4 = #{capacity4,jdbcType=INTEGER},
+      </if>
+      <if test="fBuildCost1 != null" >
+        fBuildCost1 = #{fBuildCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost2 != null" >
+        fBuildCost2 = #{fBuildCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost3 != null" >
+        fBuildCost3 = #{fBuildCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="fBuildCost4 != null" >
+        fBuildCost4 = #{fBuildCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost1 != null" >
+        rBuildCost1 = #{rBuildCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost2 != null" >
+        rBuildCost2 = #{rBuildCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost3 != null" >
+        rBuildCost3 = #{rBuildCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="rBuildCost4 != null" >
+        rBuildCost4 = #{rBuildCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost1 != null" >
+        operCost1 = #{operCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost2 != null" >
+        operCost2 = #{operCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost3 != null" >
+        operCost3 = #{operCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="operCost4 != null" >
+        operCost4 = #{operCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Nuclear" >
+    update nuclear
+    set name = #{name,jdbcType=VARCHAR},
+      lifetime = #{lifetime,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      frequencyModulationCoefficient = #{frequencyModulationCoefficient,jdbcType=DOUBLE},
+      minimuLoadRate = #{minimuLoadRate,jdbcType=DOUBLE},
+      upperLimitOfNuclearPowerGeneration = #{upperLimitOfNuclearPowerGeneration,jdbcType=DOUBLE},
+      quantityOfNuclearFuel = #{quantityOfNuclearFuel,jdbcType=DOUBLE},
+      nuclearFuelPrices = #{nuclearFuelPrices,jdbcType=DOUBLE},
+      capacity1 = #{capacity1,jdbcType=INTEGER},
+      capacity2 = #{capacity2,jdbcType=INTEGER},
+      capacity3 = #{capacity3,jdbcType=INTEGER},
+      capacity4 = #{capacity4,jdbcType=INTEGER},
+      fBuildCost1 = #{fBuildCost1,jdbcType=DOUBLE},
+      fBuildCost2 = #{fBuildCost2,jdbcType=DOUBLE},
+      fBuildCost3 = #{fBuildCost3,jdbcType=DOUBLE},
+      fBuildCost4 = #{fBuildCost4,jdbcType=DOUBLE},
+      rBuildCost1 = #{rBuildCost1,jdbcType=DOUBLE},
+      rBuildCost2 = #{rBuildCost2,jdbcType=DOUBLE},
+      rBuildCost3 = #{rBuildCost3,jdbcType=DOUBLE},
+      rBuildCost4 = #{rBuildCost4,jdbcType=DOUBLE},
+      operCost1 = #{operCost1,jdbcType=DOUBLE},
+      operCost2 = #{operCost2,jdbcType=DOUBLE},
+      operCost3 = #{operCost3,jdbcType=DOUBLE},
+      operCost4 = #{operCost4,jdbcType=DOUBLE},
+      owner = #{owner,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

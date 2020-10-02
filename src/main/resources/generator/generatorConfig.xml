@@ -12,7 +12,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://47.94.243.191/tiny_net" userId="tjuuser" password="scs2017">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/tiny_net" userId="root" password="">
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
         <javaTypeResolver>
@@ -33,17 +33,32 @@
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
 
-<!--        <table tableName="photovoltaic" domainObjectName="Photovoltaic" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-<!--                <table tableName="battery" domainObjectName="Battery" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-<!--        <table tableName="wind_turbines" domainObjectName="Wind_Turbines" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-<!--        <table tableName="generator" domainObjectName="Generator" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-<!--        <table tableName="turbine" domainObjectName="Turbine" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+<!--        <table tableName="gas_turbine" domainObjectName="Gas_turbine" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="gas_engine" domainObjectName="Gas_engine" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+
+        <!--        <table tableName="photovoltaic" domainObjectName="Photovoltaic" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--                <table tableName="battery" domainObjectName="Battery" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="wind_turbines" domainObjectName="Wind_Turbines" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="generator" domainObjectName="Generator" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="turbine" domainObjectName="Turbine" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
 
 
 
 
-<!--        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table tableName="record" domainObjectName="Record" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+<!--        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="record" domainObjectName="Record" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+
+<!--        <table tableName="gas_steam" domainObjectName="Gas_steam" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="gas_boiler" domainObjectName="Gas_boiler" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="lithium_bromide" domainObjectName="Lithium_bromide" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="direct_fired_lithium_bromide" domainObjectName="Direct_fired_lithium_bromide" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--       <table tableName="heat_storage" domainObjectName="Heat_storage" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+
+        <table tableName="residual_heat" domainObjectName="Residual_heat" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>
+<!--        <table tableName="plate_heat" domainObjectName="Plate_heat" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+<!--        <table tableName="Nuclear" domainObjectName="Nuclear" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="useActualColumnNames" value="true"/></table>-->
+
+
 
     </context>
 </generatorConfiguration>

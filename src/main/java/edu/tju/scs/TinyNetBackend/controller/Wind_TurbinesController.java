@@ -1,6 +1,7 @@
 package edu.tju.scs.TinyNetBackend.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import edu.tju.scs.TinyNetBackend.common.Annotaion.JWTAuth;
 import edu.tju.scs.TinyNetBackend.model.po.Wind_Turbines;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
@@ -28,48 +29,43 @@ public class Wind_TurbinesController {
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/wind_turbines/add",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport add(@RequestBody Wind_Turbines wind_turbines,HttpServletRequest request)
+    public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = wind_turbinesService.add(request,wind_turbines);
+        ErrorReport result = wind_turbinesService.add(data.getJSONObject("wind_turbines"),data.getString("token"));
         return result;
     }
-
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/wind_turbines/update",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport update(@RequestBody Wind_Turbines wind_turbines,HttpServletRequest request)
+    public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = wind_turbinesService.update(request,wind_turbines);
+        ErrorReport result = wind_turbinesService.update(data.getJSONObject("wind_turbines"),data.getString("token"));
         return result;
     }
 
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/wind_turbines/select",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport select(int id,HttpServletRequest request)
+    public ErrorReport select(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = wind_turbinesService.select(request,id);
+        ErrorReport result = wind_turbinesService.select(data.getString("token"),data.getInteger("id"));
         return result;
     }
-
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/wind_turbines/delete",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport delete(int id,HttpServletRequest request)
+    public ErrorReport delete(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = wind_turbinesService.delete(request,id);
+        ErrorReport result = wind_turbinesService.delete(data.getString("token"),data.getInteger("id"));
         return result;
     }
 
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/wind_turbines/list",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport list(HttpServletRequest request){
-
-
-        ErrorReport result =  wind_turbinesService.list(request);
-
+    public ErrorReport list(@RequestBody(required=false) JSONObject data){
+        System.out.println("/tinyNet/device/wind_turbines/list");
+        ErrorReport result =  wind_turbinesService.list(data.getString("token"),data.getInteger("pi"),data.getInteger("ps"),data.getString("val"));
         return result;
-
     }
 }

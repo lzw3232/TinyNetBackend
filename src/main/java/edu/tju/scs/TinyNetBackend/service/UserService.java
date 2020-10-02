@@ -18,6 +18,8 @@ public class UserService {
     @Autowired
     protected UserMapper userMapper;
 
+
+
     public ErrorReport reg(String username, String password){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         password = passwordEncoder.encode(password);

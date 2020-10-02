@@ -5,7 +5,6 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="edrl" property="edrl" jdbcType="DOUBLE" />
-    <result column="tyntgl" property="tyntgl" jdbcType="DOUBLE" />
     <result column="jeys" property="jeys" jdbcType="DOUBLE" />
     <result column="gfzltynxsl" property="gfzltynxsl" jdbcType="DOUBLE" />
     <result column="gffdxl" property="gffdxl" jdbcType="DOUBLE" />
@@ -16,9 +15,6 @@
     <result column="life" property="life" jdbcType="DOUBLE" />
     <result column="stcWd" property="stcwd" jdbcType="DOUBLE" />
     <result column="factory" property="factory" jdbcType="VARCHAR" />
-    <result column="dmfsl" property="dmfsl" jdbcType="DOUBLE" />
-    <result column="fwj" property="fwj" jdbcType="DOUBLE" />
-    <result column="qxj" property="qxj" jdbcType="DOUBLE" />
     <result column="type" property="type" jdbcType="DOUBLE" />
     <result column="capacity1" property="capacity1" jdbcType="INTEGER" />
     <result column="capacity2" property="capacity2" jdbcType="INTEGER" />
@@ -39,10 +35,9 @@
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, edrl, tyntgl, jeys, gfzltynxsl, gffdxl, noctWd, wdxs, noctGz, gfbbzwd, 
-    life, stcWd, factory, dmfsl, fwj, qxj, type, capacity1, capacity2, capacity3, capacity4, 
-    cjcb1, cjcb2, cjcb3, cjcb4, gxcb1, gxcb2, gxcb3, gxcb4, yxwhcb1, yxwhcb2, yxwhcb3, 
-    yxwhcb4, owner
+    id, name, edrl, jeys, gfzltynxsl, gffdxl, noctWd, wdxs, noctGz, gfbbzwd, life, stcWd, 
+    factory, type, capacity1, capacity2, capacity3, capacity4, cjcb1, cjcb2, cjcb3, cjcb4, 
+    gxcb1, gxcb2, gxcb3, gxcb4, yxwhcb1, yxwhcb2, yxwhcb3, yxwhcb4, owner
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -51,34 +46,52 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     from photovoltaic
-    where owner = #{owner,jdbcType=VARCHAR}
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
   </select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from photovoltaic
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from photovoltaic
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from photovoltaic
+    where name REGEXP #{val}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from photovoltaic
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Photovoltaic" >
     insert into photovoltaic (id, name, edrl, 
-      tyntgl, jeys, gfzltynxsl, 
-      gffdxl, noctWd, wdxs, 
-      noctGz, gfbbzwd, life, 
-      stcWd, factory, dmfsl, 
-      fwj, qxj, type, capacity1, 
+      jeys, gfzltynxsl, gffdxl, 
+      noctWd, wdxs, noctGz, 
+      gfbbzwd, life, stcWd, 
+      factory, type, capacity1, 
       capacity2, capacity3, capacity4, 
       cjcb1, cjcb2, cjcb3, cjcb4, 
       gxcb1, gxcb2, gxcb3, gxcb4, 
       yxwhcb1, yxwhcb2, yxwhcb3, 
       yxwhcb4, owner)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{edrl,jdbcType=DOUBLE}, 
-      #{tyntgl,jdbcType=DOUBLE}, #{jeys,jdbcType=DOUBLE}, #{gfzltynxsl,jdbcType=DOUBLE}, 
-      #{gffdxl,jdbcType=DOUBLE}, #{noctwd,jdbcType=DOUBLE}, #{wdxs,jdbcType=DOUBLE}, 
-      #{noctgz,jdbcType=DOUBLE}, #{gfbbzwd,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, 
-      #{stcwd,jdbcType=DOUBLE}, #{factory,jdbcType=VARCHAR}, #{dmfsl,jdbcType=DOUBLE}, 
-      #{fwj,jdbcType=DOUBLE}, #{qxj,jdbcType=DOUBLE}, #{type,jdbcType=DOUBLE}, #{capacity1,jdbcType=INTEGER}, 
+      #{jeys,jdbcType=DOUBLE}, #{gfzltynxsl,jdbcType=DOUBLE}, #{gffdxl,jdbcType=DOUBLE}, 
+      #{noctwd,jdbcType=DOUBLE}, #{wdxs,jdbcType=DOUBLE}, #{noctgz,jdbcType=DOUBLE}, 
+      #{gfbbzwd,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, #{stcwd,jdbcType=DOUBLE}, 
+      #{factory,jdbcType=VARCHAR}, #{type,jdbcType=DOUBLE}, #{capacity1,jdbcType=INTEGER}, 
       #{capacity2,jdbcType=INTEGER}, #{capacity3,jdbcType=INTEGER}, #{capacity4,jdbcType=INTEGER}, 
       #{cjcb1,jdbcType=DOUBLE}, #{cjcb2,jdbcType=DOUBLE}, #{cjcb3,jdbcType=DOUBLE}, #{cjcb4,jdbcType=DOUBLE}, 
       #{gxcb1,jdbcType=DOUBLE}, #{gxcb2,jdbcType=DOUBLE}, #{gxcb3,jdbcType=DOUBLE}, #{gxcb4,jdbcType=DOUBLE}, 
@@ -96,9 +109,6 @@
       </if>
       <if test="edrl != null" >
         edrl,
-      </if>
-      <if test="tyntgl != null" >
-        tyntgl,
       </if>
       <if test="jeys != null" >
         jeys,
@@ -129,15 +139,6 @@
       </if>
       <if test="factory != null" >
         factory,
-      </if>
-      <if test="dmfsl != null" >
-        dmfsl,
-      </if>
-      <if test="fwj != null" >
-        fwj,
-      </if>
-      <if test="qxj != null" >
-        qxj,
       </if>
       <if test="type != null" >
         type,
@@ -204,9 +205,6 @@
       <if test="edrl != null" >
         #{edrl,jdbcType=DOUBLE},
       </if>
-      <if test="tyntgl != null" >
-        #{tyntgl,jdbcType=DOUBLE},
-      </if>
       <if test="jeys != null" >
         #{jeys,jdbcType=DOUBLE},
       </if>
@@ -236,15 +234,6 @@
       </if>
       <if test="factory != null" >
         #{factory,jdbcType=VARCHAR},
-      </if>
-      <if test="dmfsl != null" >
-        #{dmfsl,jdbcType=DOUBLE},
-      </if>
-      <if test="fwj != null" >
-        #{fwj,jdbcType=DOUBLE},
-      </if>
-      <if test="qxj != null" >
-        #{qxj,jdbcType=DOUBLE},
       </if>
       <if test="type != null" >
         #{type,jdbcType=DOUBLE},
@@ -311,9 +300,6 @@
       <if test="edrl != null" >
         edrl = #{edrl,jdbcType=DOUBLE},
       </if>
-      <if test="tyntgl != null" >
-        tyntgl = #{tyntgl,jdbcType=DOUBLE},
-      </if>
       <if test="jeys != null" >
         jeys = #{jeys,jdbcType=DOUBLE},
       </if>
@@ -343,15 +329,6 @@
       </if>
       <if test="factory != null" >
         factory = #{factory,jdbcType=VARCHAR},
-      </if>
-      <if test="dmfsl != null" >
-        dmfsl = #{dmfsl,jdbcType=DOUBLE},
-      </if>
-      <if test="fwj != null" >
-        fwj = #{fwj,jdbcType=DOUBLE},
-      </if>
-      <if test="qxj != null" >
-        qxj = #{qxj,jdbcType=DOUBLE},
       </if>
       <if test="type != null" >
         type = #{type,jdbcType=DOUBLE},
@@ -414,7 +391,6 @@
     update photovoltaic
     set name = #{name,jdbcType=VARCHAR},
       edrl = #{edrl,jdbcType=DOUBLE},
-      tyntgl = #{tyntgl,jdbcType=DOUBLE},
       jeys = #{jeys,jdbcType=DOUBLE},
       gfzltynxsl = #{gfzltynxsl,jdbcType=DOUBLE},
       gffdxl = #{gffdxl,jdbcType=DOUBLE},
@@ -425,9 +401,6 @@
       life = #{life,jdbcType=DOUBLE},
       stcWd = #{stcwd,jdbcType=DOUBLE},
       factory = #{factory,jdbcType=VARCHAR},
-      dmfsl = #{dmfsl,jdbcType=DOUBLE},
-      fwj = #{fwj,jdbcType=DOUBLE},
-      qxj = #{qxj,jdbcType=DOUBLE},
       type = #{type,jdbcType=DOUBLE},
       capacity1 = #{capacity1,jdbcType=INTEGER},
       capacity2 = #{capacity2,jdbcType=INTEGER},

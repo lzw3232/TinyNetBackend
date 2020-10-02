@@ -1,6 +1,7 @@
 package edu.tju.scs.TinyNetBackend.service;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import edu.tju.scs.TinyNetBackend.common.FileHelper;
 import edu.tju.scs.TinyNetBackend.common.RecordList;
@@ -171,12 +172,30 @@ public class RecordService {
 
     }
 
-    public void addOutput(String recordname,String output)
+    public ErrorReport getOutput(String token,String recordname)
     {
-        RecordWithBLOBs record=recordMapper.selectByPrimaryKey(recordname);
-        record.setState(2);
-        record.setOutput(output);
-        recordMapper.updateByPrimaryKey(record);
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
+        String username = TokenUtil.getAudience(token);
+        String new_token=TokenUtil.getToken(username);
 
+        ResponseData response =new ResponseData();
+        response.addData("token",new_token);
+        if(!check(recordname,username)){
+            return new ErrorReport(31,"id no exist",response);
+        }
+        RecordWithBLOBs record=recordMapper.selectByPrimaryKey(recordname);
+        if(record.getOutput().length()<=10){
+            String output = RecordList.getOutput(record);
+            if(output.length()>=10){
+                record.setOutput(output);
+                recordMapper.updateByPrimaryKeyWithBLOBs(record);
+                response.addData("output", JSON.parseObject(output));
+            }
+        }
+        else{
+            response.addData("output",JSON.parseObject(record.getOutput()));
+        }
+        return new ErrorReport(0,"success",response);
     }
 }

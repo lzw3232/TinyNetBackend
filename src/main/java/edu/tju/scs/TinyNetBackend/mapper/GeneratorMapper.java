@@ -1,7 +1,9 @@
 package edu.tju.scs.TinyNetBackend.mapper;
 
+import edu.tju.scs.TinyNetBackend.model.po.Gas_turbine;
 import edu.tju.scs.TinyNetBackend.model.po.Generator;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,4 +22,9 @@ public interface GeneratorMapper {
     int updateByPrimaryKey(Generator record);
 
     List<Generator> selectByOwner(String username);
+    Integer countB();
+    Integer countB1(@Param("val") String val);
+
+    List<Generator> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);
+    List<Generator> selectByOwner1(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps,@Param("val") String val);
 }

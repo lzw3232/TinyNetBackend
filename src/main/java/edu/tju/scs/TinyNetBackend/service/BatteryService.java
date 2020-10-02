@@ -56,12 +56,13 @@ public class BatteryService {
 
     public ErrorReport update(JSONObject battery, String token)
     {
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
         String new_token=TokenUtil.getToken(username);
         ResponseData response =new ResponseData();
         response.addData("token",new_token);
         Battery battery1 = JSONObject.toJavaObject(battery,Battery.class);
-        System.out.println(battery1);
         if(!username.equals(battery1.getOwner()))
             return new ErrorReport(31,"id no exist",response);
         if(!check(battery1.getId(),battery1.getOwner()))
@@ -72,6 +73,8 @@ public class BatteryService {
 
     public ErrorReport select(String token,int id)
     {
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
         String new_token=TokenUtil.getToken(username);
 
@@ -95,6 +98,8 @@ public class BatteryService {
 
     public ErrorReport delete(String token,int id)
     {
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         System.out.println("delete");
         String username = TokenUtil.getAudience(token);
         String new_token=TokenUtil.getToken(username);
@@ -110,6 +115,8 @@ public class BatteryService {
 
     public ErrorReport list(String token,int pi, int ps,String val)
     {
+        if(!TokenUtil.parseToken(token))
+            return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
         String new_token=TokenUtil.getToken(username);
         ResponseData response =new ResponseData();
@@ -130,4 +137,9 @@ public class BatteryService {
         return new ErrorReport(0,"success",response);
 
     }
+    public ErrorReport lzw()
+    {
+        return new ErrorReport(0,"success");
+    }
+
 }

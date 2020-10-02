@@ -8,7 +8,9 @@ import edu.tju.scs.TinyNetBackend.service.RecordService;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RecordList {
 
@@ -70,28 +72,6 @@ public class RecordList {
         }
     }
 
-
-    public static void main(String[] args) {
-        RecordWithBLOBs record = new RecordWithBLOBs();
-        record.setName("lzw");
-        record.setOwner("lzw");
-        Thread p = new Thread(){
-            public void run(){
-                add(record);
-            }
-        };
-        p.start();
-        try{
-            Thread.sleep(1000);
-        }catch(Exception e){
-            System.exit(0);//退出程序
-        }
-        System.out.println("成功了");
-
-//        RecordInfo recordInfo = getinfo(record);
-//        recordInfo.getProcess().destroy();
-    }
-
     public static void add(RecordWithBLOBs record)
     {
         FileHelper.newRecord(record);
@@ -132,12 +112,57 @@ public class RecordList {
             System.out.println(record.getName()+" is done");
             list.remove(recordInfo);
             System.out.println(list.size());
+            getOutput(record);
 
         }catch (Exception e)
         {
             e.printStackTrace();
         }
 
+    }
+//    public static void main(String[] args) {
+//        RecordWithBLOBs record = new RecordWithBLOBs();
+//        record.setName("lzw");
+//        record.setOwner("lzw");
+//        getOutput(record);
+//    }
+
+
+    public static String getOutput(RecordWithBLOBs record) {
+        JSONObject res = new JSONObject();
+        String filePath = FileHelper.getDir(record.getOwner(),record.getName())+File.separator+"exe"+File.separator+"IO"+File.separator+"OUT0";
+        JSONObject lzw= new JSONObject();
+        File file = new File(filePath);
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+                    //没有子文件夹
+                } else {
+                    String path1 = files[i].getPath();
+                    String fileName = path1.substring(path1.lastIndexOf("\\") + 1);
+                    StringBuilder result = new StringBuilder();
+                    try{
+                        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path1),"gbk"));
+                        String s = null;
+                        while((s = br.readLine())!=null){
+                            result.append(s);
+                            //System.out.println(s);
+                            }
+                            br.close();
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                    lzw.put(fileName,result.toString());
+                }
+            }
+        } else {
+            //没有子文件夹
+        }
+        if(lzw.toString().length()>=10)
+            return lzw.toString();
+        else
+            return "";
     }
 
     public static JSONObject getRes(RecordWithBLOBs record){

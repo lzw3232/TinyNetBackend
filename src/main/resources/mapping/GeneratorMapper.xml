@@ -54,12 +54,32 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     from generator
-    where owner = #{owner,jdbcType=VARCHAR}
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
   </select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from generator
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from generator
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from generator
+    where name REGEXP #{val}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from generator
     where id = #{id,jdbcType=INTEGER}

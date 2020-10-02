@@ -1,6 +1,7 @@
 package edu.tju.scs.TinyNetBackend.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import edu.tju.scs.TinyNetBackend.common.Annotaion.JWTAuth;
 import edu.tju.scs.TinyNetBackend.model.po.Turbine;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
@@ -28,49 +29,46 @@ public class TurbineContorller {
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/turbine/add",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport add(@RequestBody Turbine turbine,HttpServletRequest request)
+    public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = turbineService.add(request,turbine);
+        ErrorReport result = turbineService.add(data.getJSONObject("turbine"),data.getString("token"));
         return result;
     }
 
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/turbine/update",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport update(@RequestBody Turbine turbine,HttpServletRequest request)
+    public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = turbineService.update(request,turbine);
+        ErrorReport result = turbineService.update(data.getJSONObject("turbine"),data.getString("token"));
         return result;
     }
 
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/turbine/select",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport select(int id,HttpServletRequest request)
+    public ErrorReport select(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = turbineService.select(request,id);
+        ErrorReport result = turbineService.select(data.getString("token"),data.getInteger("id"));
         return result;
     }
 
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/turbine/delete",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport delete(int id,HttpServletRequest request)
+    public ErrorReport delete(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = turbineService.delete(request,id);
+        ErrorReport result = turbineService.delete(data.getString("token"),data.getInteger("id"));
         return result;
     }
 
     @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/turbine/list",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport list(HttpServletRequest request){
-
-
-        ErrorReport result =  turbineService.list(request);
-
+    public ErrorReport list(@RequestBody(required=false) JSONObject data){
+        System.out.println("/tinyNet/device/turbine/list");
+        ErrorReport result =  turbineService.list(data.getString("token"),data.getInteger("pi"),data.getInteger("ps"),data.getString("val"));
         return result;
-
     }
 
 }

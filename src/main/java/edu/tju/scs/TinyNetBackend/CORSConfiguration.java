@@ -1,7 +1,5 @@
 package edu.tju.scs.TinyNetBackend;
 
-
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,8 +13,7 @@ public class CORSConfiguration implements WebMvcConfigurer {
                     .allowedMethods("GET","HEAD","POST","PUT","DELETE","OPTIONS")
                     .allowCredentials(true)
                     .allowedHeaders("*")
-                    .maxAge(3600)
-                    .allowedHeaders("*");
+                    .maxAge(3600);
     }
 }
 

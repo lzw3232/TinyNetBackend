@@ -535,24 +535,24 @@ public class FileHelper {
         String path="F:"+File.separator+username+File.separator+recordname+File.separator+"exe"+File.separator+"IO";
         StringBuilder result = new StringBuilder();
 
-        String filePath = "F:\\1.txt";
-        File file1 = new File(filePath);
-        if(file1.exists()){
-            try{
-                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"gbk"));
-                String s = null;
-                while((s = br.readLine())!=null){
-                    result.append(s+"\n");
-                    //System.out.println(s);
-                }
-                br.close();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-
-        String input = result.toString();
-//        String input=record.getInput();
+//        String filePath = "F:\\1.txt";
+//        File file1 = new File(filePath);
+//        if(file1.exists()){
+//            try{
+//                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"gbk"));
+//                String s = null;
+//                while((s = br.readLine())!=null){
+//                    result.append(s+"\n");
+//                    //System.out.println(s);
+//                }
+//                br.close();
+//            }catch(Exception e){
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        String input = result.toString();
+        String input=record.getInput();
         String file[] = input.split("\\|");
 
         try {

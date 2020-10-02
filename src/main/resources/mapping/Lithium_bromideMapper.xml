@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.tju.scs.TinyNetBackend.mapper.Lithium_bromideMapper" >
+  <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Lithium_bromide" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="heatingEnergyEfficiencyRatio" property="heatingEnergyEfficiencyRatio" jdbcType="DOUBLE" />
+    <result column="refrigerationEnergyEfficiencyRatio" property="refrigerationEnergyEfficiencyRatio" jdbcType="DOUBLE" />
+    <result column="ratedHeatingFlueGasPower" property="ratedHeatingFlueGasPower" jdbcType="DOUBLE" />
+    <result column="ratedCoolingFlueGasPower" property="ratedCoolingFlueGasPower" jdbcType="DOUBLE" />
+    <result column="life" property="life" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="DOUBLE" />
+    <result column="numberOfUnits1" property="numberOfUnits1" jdbcType="INTEGER" />
+    <result column="numberOfUnits2" property="numberOfUnits2" jdbcType="INTEGER" />
+    <result column="numberOfUnits3" property="numberOfUnits3" jdbcType="INTEGER" />
+    <result column="numberOfUnits4" property="numberOfUnits4" jdbcType="INTEGER" />
+    <result column="initialConstructionCost1" property="initialConstructionCost1" jdbcType="DOUBLE" />
+    <result column="initialConstructionCost2" property="initialConstructionCost2" jdbcType="DOUBLE" />
+    <result column="initialConstructionCost3" property="initialConstructionCost3" jdbcType="DOUBLE" />
+    <result column="initialConstructionCost4" property="initialConstructionCost4" jdbcType="DOUBLE" />
+    <result column="updateCost1" property="updateCost1" jdbcType="DOUBLE" />
+    <result column="updateCost2" property="updateCost2" jdbcType="DOUBLE" />
+    <result column="updateCost3" property="updateCost3" jdbcType="DOUBLE" />
+    <result column="updateCost4" property="updateCost4" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts1" property="operationAndMaintenanceCosts1" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts2" property="operationAndMaintenanceCosts2" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts3" property="operationAndMaintenanceCosts3" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts4" property="operationAndMaintenanceCosts4" jdbcType="DOUBLE" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, heatingEnergyEfficiencyRatio, refrigerationEnergyEfficiencyRatio, ratedHeatingFlueGasPower, 
+    ratedCoolingFlueGasPower, life, manufacturer, numberOfUnits1, numberOfUnits2, numberOfUnits3, 
+    numberOfUnits4, initialConstructionCost1, initialConstructionCost2, initialConstructionCost3, 
+    initialConstructionCost4, updateCost1, updateCost2, updateCost3, updateCost4, operationAndMaintenanceCosts1, 
+    operationAndMaintenanceCosts2, operationAndMaintenanceCosts3, operationAndMaintenanceCosts4, 
+    owner
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lithium_bromide
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from lithium_bromide
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from lithium_bromide
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from lithium_bromide
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from lithium_bromide
+    where name REGEXP #{val}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lithium_bromide
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Lithium_bromide" >
+    insert into lithium_bromide (id, name, heatingEnergyEfficiencyRatio, 
+      refrigerationEnergyEfficiencyRatio, ratedHeatingFlueGasPower, 
+      ratedCoolingFlueGasPower, life, manufacturer, 
+      numberOfUnits1, numberOfUnits2, numberOfUnits3, 
+      numberOfUnits4, initialConstructionCost1, 
+      initialConstructionCost2, initialConstructionCost3, 
+      initialConstructionCost4, updateCost1, updateCost2, 
+      updateCost3, updateCost4, operationAndMaintenanceCosts1, 
+      operationAndMaintenanceCosts2, operationAndMaintenanceCosts3, 
+      operationAndMaintenanceCosts4, owner)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{heatingEnergyEfficiencyRatio,jdbcType=DOUBLE}, 
+      #{refrigerationEnergyEfficiencyRatio,jdbcType=DOUBLE}, #{ratedHeatingFlueGasPower,jdbcType=DOUBLE}, 
+      #{ratedCoolingFlueGasPower,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, #{manufacturer,jdbcType=DOUBLE}, 
+      #{numberOfUnits1,jdbcType=INTEGER}, #{numberOfUnits2,jdbcType=INTEGER}, #{numberOfUnits3,jdbcType=INTEGER}, 
+      #{numberOfUnits4,jdbcType=INTEGER}, #{initialConstructionCost1,jdbcType=DOUBLE}, 
+      #{initialConstructionCost2,jdbcType=DOUBLE}, #{initialConstructionCost3,jdbcType=DOUBLE}, 
+      #{initialConstructionCost4,jdbcType=DOUBLE}, #{updateCost1,jdbcType=DOUBLE}, #{updateCost2,jdbcType=DOUBLE}, 
+      #{updateCost3,jdbcType=DOUBLE}, #{updateCost4,jdbcType=DOUBLE}, #{operationAndMaintenanceCosts1,jdbcType=DOUBLE}, 
+      #{operationAndMaintenanceCosts2,jdbcType=DOUBLE}, #{operationAndMaintenanceCosts3,jdbcType=DOUBLE}, 
+      #{operationAndMaintenanceCosts4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Lithium_bromide" >
+    insert into lithium_bromide
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="heatingEnergyEfficiencyRatio != null" >
+        heatingEnergyEfficiencyRatio,
+      </if>
+      <if test="refrigerationEnergyEfficiencyRatio != null" >
+        refrigerationEnergyEfficiencyRatio,
+      </if>
+      <if test="ratedHeatingFlueGasPower != null" >
+        ratedHeatingFlueGasPower,
+      </if>
+      <if test="ratedCoolingFlueGasPower != null" >
+        ratedCoolingFlueGasPower,
+      </if>
+      <if test="life != null" >
+        life,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="numberOfUnits1 != null" >
+        numberOfUnits1,
+      </if>
+      <if test="numberOfUnits2 != null" >
+        numberOfUnits2,
+      </if>
+      <if test="numberOfUnits3 != null" >
+        numberOfUnits3,
+      </if>
+      <if test="numberOfUnits4 != null" >
+        numberOfUnits4,
+      </if>
+      <if test="initialConstructionCost1 != null" >
+        initialConstructionCost1,
+      </if>
+      <if test="initialConstructionCost2 != null" >
+        initialConstructionCost2,
+      </if>
+      <if test="initialConstructionCost3 != null" >
+        initialConstructionCost3,
+      </if>
+      <if test="initialConstructionCost4 != null" >
+        initialConstructionCost4,
+      </if>
+      <if test="updateCost1 != null" >
+        updateCost1,
+      </if>
+      <if test="updateCost2 != null" >
+        updateCost2,
+      </if>
+      <if test="updateCost3 != null" >
+        updateCost3,
+      </if>
+      <if test="updateCost4 != null" >
+        updateCost4,
+      </if>
+      <if test="operationAndMaintenanceCosts1 != null" >
+        operationAndMaintenanceCosts1,
+      </if>
+      <if test="operationAndMaintenanceCosts2 != null" >
+        operationAndMaintenanceCosts2,
+      </if>
+      <if test="operationAndMaintenanceCosts3 != null" >
+        operationAndMaintenanceCosts3,
+      </if>
+      <if test="operationAndMaintenanceCosts4 != null" >
+        operationAndMaintenanceCosts4,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="heatingEnergyEfficiencyRatio != null" >
+        #{heatingEnergyEfficiencyRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="refrigerationEnergyEfficiencyRatio != null" >
+        #{refrigerationEnergyEfficiencyRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedHeatingFlueGasPower != null" >
+        #{ratedHeatingFlueGasPower,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedCoolingFlueGasPower != null" >
+        #{ratedCoolingFlueGasPower,jdbcType=DOUBLE},
+      </if>
+      <if test="life != null" >
+        #{life,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=DOUBLE},
+      </if>
+      <if test="numberOfUnits1 != null" >
+        #{numberOfUnits1,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfUnits2 != null" >
+        #{numberOfUnits2,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfUnits3 != null" >
+        #{numberOfUnits3,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfUnits4 != null" >
+        #{numberOfUnits4,jdbcType=INTEGER},
+      </if>
+      <if test="initialConstructionCost1 != null" >
+        #{initialConstructionCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost2 != null" >
+        #{initialConstructionCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost3 != null" >
+        #{initialConstructionCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost4 != null" >
+        #{initialConstructionCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost1 != null" >
+        #{updateCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost2 != null" >
+        #{updateCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost3 != null" >
+        #{updateCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost4 != null" >
+        #{updateCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts1 != null" >
+        #{operationAndMaintenanceCosts1,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts2 != null" >
+        #{operationAndMaintenanceCosts2,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts3 != null" >
+        #{operationAndMaintenanceCosts3,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts4 != null" >
+        #{operationAndMaintenanceCosts4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Lithium_bromide" >
+    update lithium_bromide
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="heatingEnergyEfficiencyRatio != null" >
+        heatingEnergyEfficiencyRatio = #{heatingEnergyEfficiencyRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="refrigerationEnergyEfficiencyRatio != null" >
+        refrigerationEnergyEfficiencyRatio = #{refrigerationEnergyEfficiencyRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedHeatingFlueGasPower != null" >
+        ratedHeatingFlueGasPower = #{ratedHeatingFlueGasPower,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedCoolingFlueGasPower != null" >
+        ratedCoolingFlueGasPower = #{ratedCoolingFlueGasPower,jdbcType=DOUBLE},
+      </if>
+      <if test="life != null" >
+        life = #{life,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=DOUBLE},
+      </if>
+      <if test="numberOfUnits1 != null" >
+        numberOfUnits1 = #{numberOfUnits1,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfUnits2 != null" >
+        numberOfUnits2 = #{numberOfUnits2,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfUnits3 != null" >
+        numberOfUnits3 = #{numberOfUnits3,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfUnits4 != null" >
+        numberOfUnits4 = #{numberOfUnits4,jdbcType=INTEGER},
+      </if>
+      <if test="initialConstructionCost1 != null" >
+        initialConstructionCost1 = #{initialConstructionCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost2 != null" >
+        initialConstructionCost2 = #{initialConstructionCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost3 != null" >
+        initialConstructionCost3 = #{initialConstructionCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost4 != null" >
+        initialConstructionCost4 = #{initialConstructionCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost1 != null" >
+        updateCost1 = #{updateCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost2 != null" >
+        updateCost2 = #{updateCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost3 != null" >
+        updateCost3 = #{updateCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost4 != null" >
+        updateCost4 = #{updateCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts1 != null" >
+        operationAndMaintenanceCosts1 = #{operationAndMaintenanceCosts1,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts2 != null" >
+        operationAndMaintenanceCosts2 = #{operationAndMaintenanceCosts2,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts3 != null" >
+        operationAndMaintenanceCosts3 = #{operationAndMaintenanceCosts3,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts4 != null" >
+        operationAndMaintenanceCosts4 = #{operationAndMaintenanceCosts4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Lithium_bromide" >
+    update lithium_bromide
+    set name = #{name,jdbcType=VARCHAR},
+      heatingEnergyEfficiencyRatio = #{heatingEnergyEfficiencyRatio,jdbcType=DOUBLE},
+      refrigerationEnergyEfficiencyRatio = #{refrigerationEnergyEfficiencyRatio,jdbcType=DOUBLE},
+      ratedHeatingFlueGasPower = #{ratedHeatingFlueGasPower,jdbcType=DOUBLE},
+      ratedCoolingFlueGasPower = #{ratedCoolingFlueGasPower,jdbcType=DOUBLE},
+      life = #{life,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=DOUBLE},
+      numberOfUnits1 = #{numberOfUnits1,jdbcType=INTEGER},
+      numberOfUnits2 = #{numberOfUnits2,jdbcType=INTEGER},
+      numberOfUnits3 = #{numberOfUnits3,jdbcType=INTEGER},
+      numberOfUnits4 = #{numberOfUnits4,jdbcType=INTEGER},
+      initialConstructionCost1 = #{initialConstructionCost1,jdbcType=DOUBLE},
+      initialConstructionCost2 = #{initialConstructionCost2,jdbcType=DOUBLE},
+      initialConstructionCost3 = #{initialConstructionCost3,jdbcType=DOUBLE},
+      initialConstructionCost4 = #{initialConstructionCost4,jdbcType=DOUBLE},
+      updateCost1 = #{updateCost1,jdbcType=DOUBLE},
+      updateCost2 = #{updateCost2,jdbcType=DOUBLE},
+      updateCost3 = #{updateCost3,jdbcType=DOUBLE},
+      updateCost4 = #{updateCost4,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts1 = #{operationAndMaintenanceCosts1,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts2 = #{operationAndMaintenanceCosts2,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts3 = #{operationAndMaintenanceCosts3,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts4 = #{operationAndMaintenanceCosts4,jdbcType=DOUBLE},
+      owner = #{owner,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

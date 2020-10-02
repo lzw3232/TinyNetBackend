@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.tju.scs.TinyNetBackend.mapper.Heat_storageMapper" >
+  <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Heat_storage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="heatStorageEfficiency" property="heatStorageEfficiency" jdbcType="DOUBLE" />
+    <result column="heatReleaseEfficiency" property="heatReleaseEfficiency" jdbcType="DOUBLE" />
+    <result column="maximumHeatStorageRate" property="maximumHeatStorageRate" jdbcType="DOUBLE" />
+    <result column="maximumHeatReleaseRate" property="maximumHeatReleaseRate" jdbcType="DOUBLE" />
+    <result column="selfLossRate" property="selfLossRate" jdbcType="DOUBLE" />
+    <result column="life" property="life" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="DOUBLE" />
+    <result column="capacity1" property="capacity1" jdbcType="DOUBLE" />
+    <result column="capacity2" property="capacity2" jdbcType="DOUBLE" />
+    <result column="capacity3" property="capacity3" jdbcType="DOUBLE" />
+    <result column="capacity4" property="capacity4" jdbcType="DOUBLE" />
+    <result column="initialConstructionCost1" property="initialConstructionCost1" jdbcType="DOUBLE" />
+    <result column="initialConstructionCost2" property="initialConstructionCost2" jdbcType="DOUBLE" />
+    <result column="initialConstructionCost3" property="initialConstructionCost3" jdbcType="DOUBLE" />
+    <result column="initialConstructionCost4" property="initialConstructionCost4" jdbcType="DOUBLE" />
+    <result column="updateCost1" property="updateCost1" jdbcType="DOUBLE" />
+    <result column="updateCost2" property="updateCost2" jdbcType="DOUBLE" />
+    <result column="updateCost3" property="updateCost3" jdbcType="DOUBLE" />
+    <result column="updateCost4" property="updateCost4" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts1" property="operationAndMaintenanceCosts1" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts2" property="operationAndMaintenanceCosts2" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts3" property="operationAndMaintenanceCosts3" jdbcType="DOUBLE" />
+    <result column="operationAndMaintenanceCosts4" property="operationAndMaintenanceCosts4" jdbcType="DOUBLE" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, heatStorageEfficiency, heatReleaseEfficiency, maximumHeatStorageRate, maximumHeatReleaseRate, 
+    selfLossRate, life, manufacturer, capacity1, capacity2, capacity3, capacity4, initialConstructionCost1, 
+    initialConstructionCost2, initialConstructionCost3, initialConstructionCost4, updateCost1, 
+    updateCost2, updateCost3, updateCost4, operationAndMaintenanceCosts1, operationAndMaintenanceCosts2, 
+    operationAndMaintenanceCosts3, operationAndMaintenanceCosts4, owner
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from heat_storage
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from heat_storage
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from heat_storage
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from heat_storage
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from heat_storage
+    where name REGEXP #{val}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from heat_storage
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_storage" >
+    insert into heat_storage (id, name, heatStorageEfficiency, 
+      heatReleaseEfficiency, maximumHeatStorageRate, 
+      maximumHeatReleaseRate, selfLossRate, life, 
+      manufacturer, capacity1, capacity2, 
+      capacity3, capacity4, initialConstructionCost1, 
+      initialConstructionCost2, initialConstructionCost3, 
+      initialConstructionCost4, updateCost1, updateCost2, 
+      updateCost3, updateCost4, operationAndMaintenanceCosts1, 
+      operationAndMaintenanceCosts2, operationAndMaintenanceCosts3, 
+      operationAndMaintenanceCosts4, owner)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{heatStorageEfficiency,jdbcType=DOUBLE}, 
+      #{heatReleaseEfficiency,jdbcType=DOUBLE}, #{maximumHeatStorageRate,jdbcType=DOUBLE}, 
+      #{maximumHeatReleaseRate,jdbcType=DOUBLE}, #{selfLossRate,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, 
+      #{manufacturer,jdbcType=DOUBLE}, #{capacity1,jdbcType=DOUBLE}, #{capacity2,jdbcType=DOUBLE}, 
+      #{capacity3,jdbcType=DOUBLE}, #{capacity4,jdbcType=DOUBLE}, #{initialConstructionCost1,jdbcType=DOUBLE}, 
+      #{initialConstructionCost2,jdbcType=DOUBLE}, #{initialConstructionCost3,jdbcType=DOUBLE}, 
+      #{initialConstructionCost4,jdbcType=DOUBLE}, #{updateCost1,jdbcType=DOUBLE}, #{updateCost2,jdbcType=DOUBLE}, 
+      #{updateCost3,jdbcType=DOUBLE}, #{updateCost4,jdbcType=DOUBLE}, #{operationAndMaintenanceCosts1,jdbcType=DOUBLE}, 
+      #{operationAndMaintenanceCosts2,jdbcType=DOUBLE}, #{operationAndMaintenanceCosts3,jdbcType=DOUBLE}, 
+      #{operationAndMaintenanceCosts4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_storage" >
+    insert into heat_storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="heatStorageEfficiency != null" >
+        heatStorageEfficiency,
+      </if>
+      <if test="heatReleaseEfficiency != null" >
+        heatReleaseEfficiency,
+      </if>
+      <if test="maximumHeatStorageRate != null" >
+        maximumHeatStorageRate,
+      </if>
+      <if test="maximumHeatReleaseRate != null" >
+        maximumHeatReleaseRate,
+      </if>
+      <if test="selfLossRate != null" >
+        selfLossRate,
+      </if>
+      <if test="life != null" >
+        life,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="capacity1 != null" >
+        capacity1,
+      </if>
+      <if test="capacity2 != null" >
+        capacity2,
+      </if>
+      <if test="capacity3 != null" >
+        capacity3,
+      </if>
+      <if test="capacity4 != null" >
+        capacity4,
+      </if>
+      <if test="initialConstructionCost1 != null" >
+        initialConstructionCost1,
+      </if>
+      <if test="initialConstructionCost2 != null" >
+        initialConstructionCost2,
+      </if>
+      <if test="initialConstructionCost3 != null" >
+        initialConstructionCost3,
+      </if>
+      <if test="initialConstructionCost4 != null" >
+        initialConstructionCost4,
+      </if>
+      <if test="updateCost1 != null" >
+        updateCost1,
+      </if>
+      <if test="updateCost2 != null" >
+        updateCost2,
+      </if>
+      <if test="updateCost3 != null" >
+        updateCost3,
+      </if>
+      <if test="updateCost4 != null" >
+        updateCost4,
+      </if>
+      <if test="operationAndMaintenanceCosts1 != null" >
+        operationAndMaintenanceCosts1,
+      </if>
+      <if test="operationAndMaintenanceCosts2 != null" >
+        operationAndMaintenanceCosts2,
+      </if>
+      <if test="operationAndMaintenanceCosts3 != null" >
+        operationAndMaintenanceCosts3,
+      </if>
+      <if test="operationAndMaintenanceCosts4 != null" >
+        operationAndMaintenanceCosts4,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="heatStorageEfficiency != null" >
+        #{heatStorageEfficiency,jdbcType=DOUBLE},
+      </if>
+      <if test="heatReleaseEfficiency != null" >
+        #{heatReleaseEfficiency,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumHeatStorageRate != null" >
+        #{maximumHeatStorageRate,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumHeatReleaseRate != null" >
+        #{maximumHeatReleaseRate,jdbcType=DOUBLE},
+      </if>
+      <if test="selfLossRate != null" >
+        #{selfLossRate,jdbcType=DOUBLE},
+      </if>
+      <if test="life != null" >
+        #{life,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity1 != null" >
+        #{capacity1,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity2 != null" >
+        #{capacity2,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity3 != null" >
+        #{capacity3,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity4 != null" >
+        #{capacity4,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost1 != null" >
+        #{initialConstructionCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost2 != null" >
+        #{initialConstructionCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost3 != null" >
+        #{initialConstructionCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost4 != null" >
+        #{initialConstructionCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost1 != null" >
+        #{updateCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost2 != null" >
+        #{updateCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost3 != null" >
+        #{updateCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost4 != null" >
+        #{updateCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts1 != null" >
+        #{operationAndMaintenanceCosts1,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts2 != null" >
+        #{operationAndMaintenanceCosts2,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts3 != null" >
+        #{operationAndMaintenanceCosts3,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts4 != null" >
+        #{operationAndMaintenanceCosts4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_storage" >
+    update heat_storage
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="heatStorageEfficiency != null" >
+        heatStorageEfficiency = #{heatStorageEfficiency,jdbcType=DOUBLE},
+      </if>
+      <if test="heatReleaseEfficiency != null" >
+        heatReleaseEfficiency = #{heatReleaseEfficiency,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumHeatStorageRate != null" >
+        maximumHeatStorageRate = #{maximumHeatStorageRate,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumHeatReleaseRate != null" >
+        maximumHeatReleaseRate = #{maximumHeatReleaseRate,jdbcType=DOUBLE},
+      </if>
+      <if test="selfLossRate != null" >
+        selfLossRate = #{selfLossRate,jdbcType=DOUBLE},
+      </if>
+      <if test="life != null" >
+        life = #{life,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity1 != null" >
+        capacity1 = #{capacity1,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity2 != null" >
+        capacity2 = #{capacity2,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity3 != null" >
+        capacity3 = #{capacity3,jdbcType=DOUBLE},
+      </if>
+      <if test="capacity4 != null" >
+        capacity4 = #{capacity4,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost1 != null" >
+        initialConstructionCost1 = #{initialConstructionCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost2 != null" >
+        initialConstructionCost2 = #{initialConstructionCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost3 != null" >
+        initialConstructionCost3 = #{initialConstructionCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="initialConstructionCost4 != null" >
+        initialConstructionCost4 = #{initialConstructionCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost1 != null" >
+        updateCost1 = #{updateCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost2 != null" >
+        updateCost2 = #{updateCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost3 != null" >
+        updateCost3 = #{updateCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost4 != null" >
+        updateCost4 = #{updateCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts1 != null" >
+        operationAndMaintenanceCosts1 = #{operationAndMaintenanceCosts1,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts2 != null" >
+        operationAndMaintenanceCosts2 = #{operationAndMaintenanceCosts2,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts3 != null" >
+        operationAndMaintenanceCosts3 = #{operationAndMaintenanceCosts3,jdbcType=DOUBLE},
+      </if>
+      <if test="operationAndMaintenanceCosts4 != null" >
+        operationAndMaintenanceCosts4 = #{operationAndMaintenanceCosts4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_storage" >
+    update heat_storage
+    set name = #{name,jdbcType=VARCHAR},
+      heatStorageEfficiency = #{heatStorageEfficiency,jdbcType=DOUBLE},
+      heatReleaseEfficiency = #{heatReleaseEfficiency,jdbcType=DOUBLE},
+      maximumHeatStorageRate = #{maximumHeatStorageRate,jdbcType=DOUBLE},
+      maximumHeatReleaseRate = #{maximumHeatReleaseRate,jdbcType=DOUBLE},
+      selfLossRate = #{selfLossRate,jdbcType=DOUBLE},
+      life = #{life,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=DOUBLE},
+      capacity1 = #{capacity1,jdbcType=DOUBLE},
+      capacity2 = #{capacity2,jdbcType=DOUBLE},
+      capacity3 = #{capacity3,jdbcType=DOUBLE},
+      capacity4 = #{capacity4,jdbcType=DOUBLE},
+      initialConstructionCost1 = #{initialConstructionCost1,jdbcType=DOUBLE},
+      initialConstructionCost2 = #{initialConstructionCost2,jdbcType=DOUBLE},
+      initialConstructionCost3 = #{initialConstructionCost3,jdbcType=DOUBLE},
+      initialConstructionCost4 = #{initialConstructionCost4,jdbcType=DOUBLE},
+      updateCost1 = #{updateCost1,jdbcType=DOUBLE},
+      updateCost2 = #{updateCost2,jdbcType=DOUBLE},
+      updateCost3 = #{updateCost3,jdbcType=DOUBLE},
+      updateCost4 = #{updateCost4,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts1 = #{operationAndMaintenanceCosts1,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts2 = #{operationAndMaintenanceCosts2,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts3 = #{operationAndMaintenanceCosts3,jdbcType=DOUBLE},
+      operationAndMaintenanceCosts4 = #{operationAndMaintenanceCosts4,jdbcType=DOUBLE},
+      owner = #{owner,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
