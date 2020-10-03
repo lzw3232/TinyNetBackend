@@ -15,7 +15,7 @@ public class Lithium_bromide {
 
     private Double life;
 
-    private Double manufacturer;
+    private String manufacturer;
 
     private Integer numberOfUnits1;
 
@@ -107,12 +107,12 @@ public class Lithium_bromide {
         this.life = life;
     }
 
-    public Double getManufacturer() {
+    public String getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(Double manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer == null ? null : manufacturer.trim();
     }
 
     public Integer getNumberOfUnits1() {

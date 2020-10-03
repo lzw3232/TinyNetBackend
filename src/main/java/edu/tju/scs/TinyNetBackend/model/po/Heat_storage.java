@@ -17,7 +17,7 @@ public class Heat_storage {
 
     private Double life;
 
-    private Double manufacturer;
+    private String manufacturer;
 
     private Double capacity1;
 
@@ -117,12 +117,12 @@ public class Heat_storage {
         this.life = life;
     }
 
-    public Double getManufacturer() {
+    public String getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(Double manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer == null ? null : manufacturer.trim();
     }
 
     public Double getCapacity1() {

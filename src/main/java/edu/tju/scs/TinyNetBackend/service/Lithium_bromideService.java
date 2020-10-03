@@ -12,11 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Author: liyuze
- * @Description:
- * @Date: Created in 22:36 18/12/12.
- */
+
 @Slf4j
 @Service
 public class Lithium_bromideService {

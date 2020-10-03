@@ -8,11 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.ErrorManager;
 
-/**
- * @Author: liyuze
- * @Description:
- * @Date: Created in 23:20 18/12/10.
- */
+
 @Slf4j
 @Component
 public class RedisUtil {

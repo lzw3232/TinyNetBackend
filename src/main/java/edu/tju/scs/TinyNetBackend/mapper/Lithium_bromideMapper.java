@@ -1,6 +1,6 @@
 package edu.tju.scs.TinyNetBackend.mapper;
 
-import edu.tju.scs.TinyNetBackend.model.po.Heat_storage;
+import edu.tju.scs.TinyNetBackend.model.po.Battery;
 import edu.tju.scs.TinyNetBackend.model.po.Lithium_bromide;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -20,7 +20,6 @@ public interface Lithium_bromideMapper {
     int updateByPrimaryKeySelective(Lithium_bromide record);
 
     int updateByPrimaryKey(Lithium_bromide record);
-
     Integer countB();
     Integer countB1(@Param("val") String val);
 

@@ -14,11 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @Author: liyuze
- * @Description:
- * @Date: Created in 22:33 18/12/10.
- */
+
 @Slf4j
 @Service
 public class JWTService {

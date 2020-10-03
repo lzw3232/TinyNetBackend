@@ -9,7 +9,7 @@
     <result column="ratedHeatingFlueGasPower" property="ratedHeatingFlueGasPower" jdbcType="DOUBLE" />
     <result column="ratedCoolingFlueGasPower" property="ratedCoolingFlueGasPower" jdbcType="DOUBLE" />
     <result column="life" property="life" jdbcType="DOUBLE" />
-    <result column="manufacturer" property="manufacturer" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
     <result column="numberOfUnits1" property="numberOfUnits1" jdbcType="INTEGER" />
     <result column="numberOfUnits2" property="numberOfUnits2" jdbcType="INTEGER" />
     <result column="numberOfUnits3" property="numberOfUnits3" jdbcType="INTEGER" />
@@ -68,6 +68,7 @@
     select count(*) from lithium_bromide
     where name REGEXP #{val}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from lithium_bromide
     where id = #{id,jdbcType=INTEGER}
@@ -85,7 +86,7 @@
       operationAndMaintenanceCosts4, owner)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{heatingEnergyEfficiencyRatio,jdbcType=DOUBLE}, 
       #{refrigerationEnergyEfficiencyRatio,jdbcType=DOUBLE}, #{ratedHeatingFlueGasPower,jdbcType=DOUBLE}, 
-      #{ratedCoolingFlueGasPower,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, #{manufacturer,jdbcType=DOUBLE}, 
+      #{ratedCoolingFlueGasPower,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, 
       #{numberOfUnits1,jdbcType=INTEGER}, #{numberOfUnits2,jdbcType=INTEGER}, #{numberOfUnits3,jdbcType=INTEGER}, 
       #{numberOfUnits4,jdbcType=INTEGER}, #{initialConstructionCost1,jdbcType=DOUBLE}, 
       #{initialConstructionCost2,jdbcType=DOUBLE}, #{initialConstructionCost3,jdbcType=DOUBLE}, 
@@ -196,7 +197,7 @@
         #{life,jdbcType=DOUBLE},
       </if>
       <if test="manufacturer != null" >
-        #{manufacturer,jdbcType=DOUBLE},
+        #{manufacturer,jdbcType=VARCHAR},
       </if>
       <if test="numberOfUnits1 != null" >
         #{numberOfUnits1,jdbcType=INTEGER},
@@ -273,7 +274,7 @@
         life = #{life,jdbcType=DOUBLE},
       </if>
       <if test="manufacturer != null" >
-        manufacturer = #{manufacturer,jdbcType=DOUBLE},
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
       </if>
       <if test="numberOfUnits1 != null" >
         numberOfUnits1 = #{numberOfUnits1,jdbcType=INTEGER},
@@ -337,7 +338,7 @@
       ratedHeatingFlueGasPower = #{ratedHeatingFlueGasPower,jdbcType=DOUBLE},
       ratedCoolingFlueGasPower = #{ratedCoolingFlueGasPower,jdbcType=DOUBLE},
       life = #{life,jdbcType=DOUBLE},
-      manufacturer = #{manufacturer,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
       numberOfUnits1 = #{numberOfUnits1,jdbcType=INTEGER},
       numberOfUnits2 = #{numberOfUnits2,jdbcType=INTEGER},
       numberOfUnits3 = #{numberOfUnits3,jdbcType=INTEGER},

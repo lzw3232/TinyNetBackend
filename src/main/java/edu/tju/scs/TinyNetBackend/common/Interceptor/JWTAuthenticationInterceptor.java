@@ -19,11 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
-/**
- * @Author: liyuze
- * @Description:
- * @Date: Created in 17:10 18/12/11.
- */
+
 @Slf4j
 public class JWTAuthenticationInterceptor implements HandlerInterceptor {
 

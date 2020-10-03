@@ -17,11 +17,8 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * @Author: liyuze
- * @Description:
- * @Date: Created in 22:36 18/12/12.
- */
+
+
 @Slf4j
 @Service
 public class BatteryService {

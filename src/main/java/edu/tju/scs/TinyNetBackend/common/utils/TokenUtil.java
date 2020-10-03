@@ -14,11 +14,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.time.DateUtils;
 
-/**
- * @Author: liyuze
- * @Description:
- * @Date: Created in 21:55 18/12/10.
- */
+
 @Slf4j
 public class TokenUtil {
 

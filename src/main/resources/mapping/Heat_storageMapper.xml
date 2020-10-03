@@ -10,7 +10,7 @@
     <result column="maximumHeatReleaseRate" property="maximumHeatReleaseRate" jdbcType="DOUBLE" />
     <result column="selfLossRate" property="selfLossRate" jdbcType="DOUBLE" />
     <result column="life" property="life" jdbcType="DOUBLE" />
-    <result column="manufacturer" property="manufacturer" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
     <result column="capacity1" property="capacity1" jdbcType="DOUBLE" />
     <result column="capacity2" property="capacity2" jdbcType="DOUBLE" />
     <result column="capacity3" property="capacity3" jdbcType="DOUBLE" />
@@ -87,7 +87,7 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{heatStorageEfficiency,jdbcType=DOUBLE}, 
       #{heatReleaseEfficiency,jdbcType=DOUBLE}, #{maximumHeatStorageRate,jdbcType=DOUBLE}, 
       #{maximumHeatReleaseRate,jdbcType=DOUBLE}, #{selfLossRate,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, 
-      #{manufacturer,jdbcType=DOUBLE}, #{capacity1,jdbcType=DOUBLE}, #{capacity2,jdbcType=DOUBLE}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{capacity1,jdbcType=DOUBLE}, #{capacity2,jdbcType=DOUBLE}, 
       #{capacity3,jdbcType=DOUBLE}, #{capacity4,jdbcType=DOUBLE}, #{initialConstructionCost1,jdbcType=DOUBLE}, 
       #{initialConstructionCost2,jdbcType=DOUBLE}, #{initialConstructionCost3,jdbcType=DOUBLE}, 
       #{initialConstructionCost4,jdbcType=DOUBLE}, #{updateCost1,jdbcType=DOUBLE}, #{updateCost2,jdbcType=DOUBLE}, 
@@ -203,7 +203,7 @@
         #{life,jdbcType=DOUBLE},
       </if>
       <if test="manufacturer != null" >
-        #{manufacturer,jdbcType=DOUBLE},
+        #{manufacturer,jdbcType=VARCHAR},
       </if>
       <if test="capacity1 != null" >
         #{capacity1,jdbcType=DOUBLE},
@@ -283,7 +283,7 @@
         life = #{life,jdbcType=DOUBLE},
       </if>
       <if test="manufacturer != null" >
-        manufacturer = #{manufacturer,jdbcType=DOUBLE},
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
       </if>
       <if test="capacity1 != null" >
         capacity1 = #{capacity1,jdbcType=DOUBLE},
@@ -348,7 +348,7 @@
       maximumHeatReleaseRate = #{maximumHeatReleaseRate,jdbcType=DOUBLE},
       selfLossRate = #{selfLossRate,jdbcType=DOUBLE},
       life = #{life,jdbcType=DOUBLE},
-      manufacturer = #{manufacturer,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
       capacity1 = #{capacity1,jdbcType=DOUBLE},
       capacity2 = #{capacity2,jdbcType=DOUBLE},
       capacity3 = #{capacity3,jdbcType=DOUBLE},
