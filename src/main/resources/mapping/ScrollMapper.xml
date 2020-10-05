@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.tju.scs.TinyNetBackend.mapper.ScrollMapper" >
+  <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Scroll" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="power" property="power" jdbcType="DOUBLE" />
+    <result column="costRate" property="costRate" jdbcType="DOUBLE" />
+    <result column="loadRate" property="loadRate" jdbcType="DOUBLE" />
+    <result column="life" property="life" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="number1" property="number1" jdbcType="INTEGER" />
+    <result column="number2" property="number2" jdbcType="INTEGER" />
+    <result column="number3" property="number3" jdbcType="INTEGER" />
+    <result column="number4" property="number4" jdbcType="INTEGER" />
+    <result column="newCost1" property="newCost1" jdbcType="DOUBLE" />
+    <result column="newCost2" property="newCost2" jdbcType="DOUBLE" />
+    <result column="newCost3" property="newCost3" jdbcType="DOUBLE" />
+    <result column="newCost4" property="newCost4" jdbcType="DOUBLE" />
+    <result column="updateCost1" property="updateCost1" jdbcType="DOUBLE" />
+    <result column="updateCost2" property="updateCost2" jdbcType="DOUBLE" />
+    <result column="updateCost3" property="updateCost3" jdbcType="DOUBLE" />
+    <result column="updateCost4" property="updateCost4" jdbcType="DOUBLE" />
+    <result column="runCost1" property="runCost1" jdbcType="DOUBLE" />
+    <result column="runCost2" property="runCost2" jdbcType="DOUBLE" />
+    <result column="runCost3" property="runCost3" jdbcType="DOUBLE" />
+    <result column="runCost4" property="runCost4" jdbcType="DOUBLE" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, power, costRate, loadRate, life, manufacturer, number1, number2, number3, 
+    number4, newCost1, newCost2, newCost3, newCost4, updateCost1, updateCost2, updateCost3, 
+    updateCost4, runCost1, runCost2, runCost3, runCost4, owner
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from scroll
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
+  select
+  <include refid="Base_Column_List" />
+  from scroll
+  where owner = #{username,jdbcType=VARCHAR}
+  LIMIT #{pi},#{ps}
+</select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from scroll
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from scroll
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from scroll
+    where name REGEXP #{val}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from scroll
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Scroll" >
+    insert into scroll (id, name, power, 
+      costRate, loadRate, life, 
+      manufacturer, number1, number2, 
+      number3, number4, newCost1, 
+      newCost2, newCost3, newCost4, 
+      updateCost1, updateCost2, updateCost3, 
+      updateCost4, runCost1, runCost2, 
+      runCost3, runCost4, owner
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{power,jdbcType=DOUBLE}, 
+      #{costRate,jdbcType=DOUBLE}, #{loadRate,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{number1,jdbcType=INTEGER}, #{number2,jdbcType=INTEGER}, 
+      #{number3,jdbcType=INTEGER}, #{number4,jdbcType=INTEGER}, #{newCost1,jdbcType=DOUBLE}, 
+      #{newCost2,jdbcType=DOUBLE}, #{newCost3,jdbcType=DOUBLE}, #{newCost4,jdbcType=DOUBLE}, 
+      #{updateCost1,jdbcType=DOUBLE}, #{updateCost2,jdbcType=DOUBLE}, #{updateCost3,jdbcType=DOUBLE}, 
+      #{updateCost4,jdbcType=DOUBLE}, #{runCost1,jdbcType=DOUBLE}, #{runCost2,jdbcType=DOUBLE}, 
+      #{runCost3,jdbcType=DOUBLE}, #{runCost4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Scroll" >
+    insert into scroll
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="costRate != null" >
+        costRate,
+      </if>
+      <if test="loadRate != null" >
+        loadRate,
+      </if>
+      <if test="life != null" >
+        life,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="number1 != null" >
+        number1,
+      </if>
+      <if test="number2 != null" >
+        number2,
+      </if>
+      <if test="number3 != null" >
+        number3,
+      </if>
+      <if test="number4 != null" >
+        number4,
+      </if>
+      <if test="newCost1 != null" >
+        newCost1,
+      </if>
+      <if test="newCost2 != null" >
+        newCost2,
+      </if>
+      <if test="newCost3 != null" >
+        newCost3,
+      </if>
+      <if test="newCost4 != null" >
+        newCost4,
+      </if>
+      <if test="updateCost1 != null" >
+        updateCost1,
+      </if>
+      <if test="updateCost2 != null" >
+        updateCost2,
+      </if>
+      <if test="updateCost3 != null" >
+        updateCost3,
+      </if>
+      <if test="updateCost4 != null" >
+        updateCost4,
+      </if>
+      <if test="runCost1 != null" >
+        runCost1,
+      </if>
+      <if test="runCost2 != null" >
+        runCost2,
+      </if>
+      <if test="runCost3 != null" >
+        runCost3,
+      </if>
+      <if test="runCost4 != null" >
+        runCost4,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=DOUBLE},
+      </if>
+      <if test="costRate != null" >
+        #{costRate,jdbcType=DOUBLE},
+      </if>
+      <if test="loadRate != null" >
+        #{loadRate,jdbcType=DOUBLE},
+      </if>
+      <if test="life != null" >
+        #{life,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="number1 != null" >
+        #{number1,jdbcType=INTEGER},
+      </if>
+      <if test="number2 != null" >
+        #{number2,jdbcType=INTEGER},
+      </if>
+      <if test="number3 != null" >
+        #{number3,jdbcType=INTEGER},
+      </if>
+      <if test="number4 != null" >
+        #{number4,jdbcType=INTEGER},
+      </if>
+      <if test="newCost1 != null" >
+        #{newCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="newCost2 != null" >
+        #{newCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="newCost3 != null" >
+        #{newCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="newCost4 != null" >
+        #{newCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost1 != null" >
+        #{updateCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost2 != null" >
+        #{updateCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost3 != null" >
+        #{updateCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost4 != null" >
+        #{updateCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost1 != null" >
+        #{runCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost2 != null" >
+        #{runCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost3 != null" >
+        #{runCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost4 != null" >
+        #{runCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Scroll" >
+    update scroll
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        power = #{power,jdbcType=DOUBLE},
+      </if>
+      <if test="costRate != null" >
+        costRate = #{costRate,jdbcType=DOUBLE},
+      </if>
+      <if test="loadRate != null" >
+        loadRate = #{loadRate,jdbcType=DOUBLE},
+      </if>
+      <if test="life != null" >
+        life = #{life,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="number1 != null" >
+        number1 = #{number1,jdbcType=INTEGER},
+      </if>
+      <if test="number2 != null" >
+        number2 = #{number2,jdbcType=INTEGER},
+      </if>
+      <if test="number3 != null" >
+        number3 = #{number3,jdbcType=INTEGER},
+      </if>
+      <if test="number4 != null" >
+        number4 = #{number4,jdbcType=INTEGER},
+      </if>
+      <if test="newCost1 != null" >
+        newCost1 = #{newCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="newCost2 != null" >
+        newCost2 = #{newCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="newCost3 != null" >
+        newCost3 = #{newCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="newCost4 != null" >
+        newCost4 = #{newCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost1 != null" >
+        updateCost1 = #{updateCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost2 != null" >
+        updateCost2 = #{updateCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost3 != null" >
+        updateCost3 = #{updateCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="updateCost4 != null" >
+        updateCost4 = #{updateCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost1 != null" >
+        runCost1 = #{runCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost2 != null" >
+        runCost2 = #{runCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost3 != null" >
+        runCost3 = #{runCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="runCost4 != null" >
+        runCost4 = #{runCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Scroll" >
+    update scroll
+    set name = #{name,jdbcType=VARCHAR},
+      power = #{power,jdbcType=DOUBLE},
+      costRate = #{costRate,jdbcType=DOUBLE},
+      loadRate = #{loadRate,jdbcType=DOUBLE},
+      life = #{life,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      number1 = #{number1,jdbcType=INTEGER},
+      number2 = #{number2,jdbcType=INTEGER},
+      number3 = #{number3,jdbcType=INTEGER},
+      number4 = #{number4,jdbcType=INTEGER},
+      newCost1 = #{newCost1,jdbcType=DOUBLE},
+      newCost2 = #{newCost2,jdbcType=DOUBLE},
+      newCost3 = #{newCost3,jdbcType=DOUBLE},
+      newCost4 = #{newCost4,jdbcType=DOUBLE},
+      updateCost1 = #{updateCost1,jdbcType=DOUBLE},
+      updateCost2 = #{updateCost2,jdbcType=DOUBLE},
+      updateCost3 = #{updateCost3,jdbcType=DOUBLE},
+      updateCost4 = #{updateCost4,jdbcType=DOUBLE},
+      runCost1 = #{runCost1,jdbcType=DOUBLE},
+      runCost2 = #{runCost2,jdbcType=DOUBLE},
+      runCost3 = #{runCost3,jdbcType=DOUBLE},
+      runCost4 = #{runCost4,jdbcType=DOUBLE},
+      owner = #{owner,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
