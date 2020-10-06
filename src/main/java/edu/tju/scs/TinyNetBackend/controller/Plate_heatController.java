@@ -25,7 +25,7 @@ public class Plate_heatController {
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = plate_heatService.add(data.getJSONObject("heat_storage"),data.getString("token"));
+        ErrorReport result = plate_heatService.add(data.getJSONObject("plate_heat"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class Plate_heatController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = plate_heatService.update(data.getJSONObject("heat_storage"),data.getString("token"));
+        ErrorReport result = plate_heatService.update(data.getJSONObject("plate_heat"),data.getString("token"));
         return result;
     }
 

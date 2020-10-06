@@ -36,7 +36,6 @@ public class Plate_heatService {
         plate_heat.put("owner",username);
         plate_heat.remove("id");
         Plate_heat plate_heat1 = JSONObject.toJavaObject(plate_heat, Plate_heat.class);
-
         plate_heatMapper.insert(plate_heat1);
 
         String new_token=TokenUtil.getToken(username);

@@ -26,7 +26,7 @@ public class HostController {
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
         System.out.println(data);
-        ErrorReport result = hostService.add(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = hostService.add(data.getJSONObject("host"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class HostController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = hostService.update(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = hostService.update(data.getJSONObject("host"),data.getString("token"));
         return result;
     }
 

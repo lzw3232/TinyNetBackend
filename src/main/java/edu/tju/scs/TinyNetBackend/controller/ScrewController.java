@@ -26,7 +26,7 @@ public class ScrewController {
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
         System.out.println(data);
-        ErrorReport result = screwService.add(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = screwService.add(data.getJSONObject("screw"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class ScrewController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = screwService.update(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = screwService.update(data.getJSONObject("screw"),data.getString("token"));
         return result;
     }
 

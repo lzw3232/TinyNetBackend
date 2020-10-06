@@ -19,6 +19,8 @@ public class Nuclear {
 
     private Double nuclearFuelPrices;
 
+    private Double nuclearPowerFuelReplacementTime;
+
     private Integer capacity1;
 
     private Integer capacity2;
@@ -123,6 +125,14 @@ public class Nuclear {
 
     public void setNuclearFuelPrices(Double nuclearFuelPrices) {
         this.nuclearFuelPrices = nuclearFuelPrices;
+    }
+
+    public Double getNuclearPowerFuelReplacementTime() {
+        return nuclearPowerFuelReplacementTime;
+    }
+
+    public void setNuclearPowerFuelReplacementTime(Double nuclearPowerFuelReplacementTime) {
+        this.nuclearPowerFuelReplacementTime = nuclearPowerFuelReplacementTime;
     }
 
     public Integer getCapacity1() {

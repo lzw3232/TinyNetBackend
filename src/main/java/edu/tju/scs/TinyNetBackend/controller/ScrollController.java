@@ -26,7 +26,7 @@ public class ScrollController {
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
         System.out.println(data);
-        ErrorReport result = scrollService.add(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = scrollService.add(data.getJSONObject("scroll"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class ScrollController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = scrollService.update(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = scrollService.update(data.getJSONObject("scroll"),data.getString("token"));
         return result;
     }
 

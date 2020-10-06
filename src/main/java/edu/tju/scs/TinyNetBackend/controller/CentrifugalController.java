@@ -26,7 +26,7 @@ public class CentrifugalController {
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
         System.out.println(data);
-        ErrorReport result = centrifugalService.add(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = centrifugalService.add(data.getJSONObject("centrifugal"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class CentrifugalController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = centrifugalService.update(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = centrifugalService.update(data.getJSONObject("centrifugal"),data.getString("token"));
         return result;
     }
 

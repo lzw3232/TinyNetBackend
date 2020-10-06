@@ -26,7 +26,7 @@ public class Electric_boilerController {
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
         System.out.println(data);
-        ErrorReport result = electric_boilerService.add(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = electric_boilerService.add(data.getJSONObject("electric_boiler"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class Electric_boilerController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = electric_boilerService.update(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = electric_boilerService.update(data.getJSONObject("electric_boiler"),data.getString("token"));
         return result;
     }
 

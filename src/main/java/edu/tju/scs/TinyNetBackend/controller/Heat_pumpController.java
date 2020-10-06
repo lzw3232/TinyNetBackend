@@ -26,7 +26,7 @@ public class Heat_pumpController {
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
         System.out.println(data);
-        ErrorReport result = heat_pumpService.add(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = heat_pumpService.add(data.getJSONObject("heat_pump"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class Heat_pumpController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = heat_pumpService.update(data.getJSONObject("battery"),data.getString("token"));
+        ErrorReport result = heat_pumpService.update(data.getJSONObject("heat_pump"),data.getString("token"));
         return result;
     }
 

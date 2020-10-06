@@ -29,13 +29,13 @@ public class Plate_heat {
 
     private Double fBuildCost4;
 
-    private Double rBuildCos1;
+    private Double rBuildCost1;
 
-    private Double rBuildCos2;
+    private Double rBuildCost2;
 
-    private Double rBuildCos3;
+    private Double rBuildCost3;
 
-    private Double rBuildCos4;
+    private Double rBuildCost4;
 
     private Double operCost1;
 
@@ -159,36 +159,36 @@ public class Plate_heat {
         this.fBuildCost4 = fBuildCost4;
     }
 
-    public Double getrBuildCos1() {
-        return rBuildCos1;
+    public Double getrBuildCost1() {
+        return rBuildCost1;
     }
 
-    public void setrBuildCos1(Double rBuildCos1) {
-        this.rBuildCos1 = rBuildCos1;
+    public void setrBuildCost1(Double rBuildCost1) {
+        this.rBuildCost1 = rBuildCost1;
     }
 
-    public Double getrBuildCos2() {
-        return rBuildCos2;
+    public Double getrBuildCost2() {
+        return rBuildCost2;
     }
 
-    public void setrBuildCos2(Double rBuildCos2) {
-        this.rBuildCos2 = rBuildCos2;
+    public void setrBuildCost2(Double rBuildCost2) {
+        this.rBuildCost2 = rBuildCost2;
     }
 
-    public Double getrBuildCos3() {
-        return rBuildCos3;
+    public Double getrBuildCost3() {
+        return rBuildCost3;
     }
 
-    public void setrBuildCos3(Double rBuildCos3) {
-        this.rBuildCos3 = rBuildCos3;
+    public void setrBuildCost3(Double rBuildCost3) {
+        this.rBuildCost3 = rBuildCost3;
     }
 
-    public Double getrBuildCos4() {
-        return rBuildCos4;
+    public Double getrBuildCost4() {
+        return rBuildCost4;
     }
 
-    public void setrBuildCos4(Double rBuildCos4) {
-        this.rBuildCos4 = rBuildCos4;
+    public void setrBuildCost4(Double rBuildCost4) {
+        this.rBuildCost4 = rBuildCost4;
     }
 
     public Double getOperCost1() {

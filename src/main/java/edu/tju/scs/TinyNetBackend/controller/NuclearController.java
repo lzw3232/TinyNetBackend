@@ -25,7 +25,7 @@ public class NuclearController {
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = nuclearService.add(data.getJSONObject("heat_storage"),data.getString("token"));
+        ErrorReport result = nuclearService.add(data.getJSONObject("nuclear"),data.getString("token"));
         return result;
     }
 
@@ -34,7 +34,7 @@ public class NuclearController {
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = nuclearService.update(data.getJSONObject("heat_storage"),data.getString("token"));
+        ErrorReport result = nuclearService.update(data.getJSONObject("nuclear"),data.getString("token"));
         return result;
     }
 

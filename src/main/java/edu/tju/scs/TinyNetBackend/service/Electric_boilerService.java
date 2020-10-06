@@ -33,6 +33,7 @@ public class Electric_boilerService {
         if(!TokenUtil.parseToken(token))
             return new ErrorReport(2,"please login");
         String username = TokenUtil.getAudience(token);
+        System.out.println(electric_boiler);
         electric_boiler.put("owner",username);
         electric_boiler.remove("id");
         Electric_boiler electric_boiler1 = JSONObject.toJavaObject(electric_boiler,Electric_boiler.class);
