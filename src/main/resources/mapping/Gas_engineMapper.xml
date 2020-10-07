@@ -25,19 +25,15 @@
     <result column="operCost2" property="operCost2" jdbcType="DOUBLE" />
     <result column="operCost3" property="operCost3" jdbcType="DOUBLE" />
     <result column="operCost4" property="operCost4" jdbcType="DOUBLE" />
-    <result column="outPower1" property="outPower1" jdbcType="VARCHAR" />
-    <result column="outPower2" property="outPower2" jdbcType="VARCHAR" />
-    <result column="outPower3" property="outPower3" jdbcType="VARCHAR" />
-    <result column="fuelUse1" property="fuelUse1" jdbcType="VARCHAR" />
-    <result column="fuelUse2" property="fuelUse2" jdbcType="VARCHAR" />
-    <result column="fuelUse3" property="fuelUse3" jdbcType="VARCHAR" />
+    <result column="outPower" property="outPower" jdbcType="VARCHAR" />
+    <result column="fuelUse" property="fuelUse" jdbcType="VARCHAR" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, ratedPower, mLoadRate, coWaterPowerRatio, gasEleRatio, lifetime, number1, 
     number2, number3, number4, fBuildCost1, fBuildCost2, fBuildCost3, fBuildCost4, rBuildCost1, 
     rBuildCost2, rBuildCost3, rBuildCost4, operCost1, operCost2, operCost3, operCost4, 
-    outPower1, outPower2, outPower3, fuelUse1, fuelUse2, fuelUse3, owner
+    outPower, fuelUse, owner
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -84,10 +80,8 @@
       fBuildCost2, fBuildCost3, fBuildCost4, 
       rBuildCost1, rBuildCost2, rBuildCost3, 
       rBuildCost4, operCost1, operCost2, 
-      operCost3, operCost4, outPower1, 
-      outPower2, outPower3, fuelUse1, 
-      fuelUse2, fuelUse3, owner
-      )
+      operCost3, operCost4, outPower, 
+      fuelUse, owner)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedPower,jdbcType=DOUBLE}, 
       #{mLoadRate,jdbcType=DOUBLE}, #{coWaterPowerRatio,jdbcType=DOUBLE}, #{gasEleRatio,jdbcType=DOUBLE}, 
       #{lifetime,jdbcType=DOUBLE}, #{number1,jdbcType=INTEGER}, #{number2,jdbcType=INTEGER}, 
@@ -95,10 +89,8 @@
       #{fBuildCost2,jdbcType=DOUBLE}, #{fBuildCost3,jdbcType=DOUBLE}, #{fBuildCost4,jdbcType=DOUBLE}, 
       #{rBuildCost1,jdbcType=DOUBLE}, #{rBuildCost2,jdbcType=DOUBLE}, #{rBuildCost3,jdbcType=DOUBLE}, 
       #{rBuildCost4,jdbcType=DOUBLE}, #{operCost1,jdbcType=DOUBLE}, #{operCost2,jdbcType=DOUBLE}, 
-      #{operCost3,jdbcType=DOUBLE}, #{operCost4,jdbcType=DOUBLE}, #{outPower1,jdbcType=VARCHAR}, 
-      #{outPower2,jdbcType=VARCHAR}, #{outPower3,jdbcType=VARCHAR}, #{fuelUse1,jdbcType=VARCHAR}, 
-      #{fuelUse2,jdbcType=VARCHAR}, #{fuelUse3,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}
-      )
+      #{operCost3,jdbcType=DOUBLE}, #{operCost4,jdbcType=DOUBLE}, #{outPower,jdbcType=VARCHAR}, 
+      #{fuelUse,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Gas_engine" >
     insert into gas_engine
@@ -172,23 +164,11 @@
       <if test="operCost4 != null" >
         operCost4,
       </if>
-      <if test="outPower1 != null" >
-        outPower1,
+      <if test="outPower != null" >
+        outPower,
       </if>
-      <if test="outPower2 != null" >
-        outPower2,
-      </if>
-      <if test="outPower3 != null" >
-        outPower3,
-      </if>
-      <if test="fuelUse1 != null" >
-        fuelUse1,
-      </if>
-      <if test="fuelUse2 != null" >
-        fuelUse2,
-      </if>
-      <if test="fuelUse3 != null" >
-        fuelUse3,
+      <if test="fuelUse != null" >
+        fuelUse,
       </if>
       <if test="owner != null" >
         owner,
@@ -264,23 +244,11 @@
       <if test="operCost4 != null" >
         #{operCost4,jdbcType=DOUBLE},
       </if>
-      <if test="outPower1 != null" >
-        #{outPower1,jdbcType=VARCHAR},
+      <if test="outPower != null" >
+        #{outPower,jdbcType=VARCHAR},
       </if>
-      <if test="outPower2 != null" >
-        #{outPower2,jdbcType=VARCHAR},
-      </if>
-      <if test="outPower3 != null" >
-        #{outPower3,jdbcType=VARCHAR},
-      </if>
-      <if test="fuelUse1 != null" >
-        #{fuelUse1,jdbcType=VARCHAR},
-      </if>
-      <if test="fuelUse2 != null" >
-        #{fuelUse2,jdbcType=VARCHAR},
-      </if>
-      <if test="fuelUse3 != null" >
-        #{fuelUse3,jdbcType=VARCHAR},
+      <if test="fuelUse != null" >
+        #{fuelUse,jdbcType=VARCHAR},
       </if>
       <if test="owner != null" >
         #{owner,jdbcType=VARCHAR},
@@ -356,23 +324,11 @@
       <if test="operCost4 != null" >
         operCost4 = #{operCost4,jdbcType=DOUBLE},
       </if>
-      <if test="outPower1 != null" >
-        outPower1 = #{outPower1,jdbcType=VARCHAR},
+      <if test="outPower != null" >
+        outPower = #{outPower,jdbcType=VARCHAR},
       </if>
-      <if test="outPower2 != null" >
-        outPower2 = #{outPower2,jdbcType=VARCHAR},
-      </if>
-      <if test="outPower3 != null" >
-        outPower3 = #{outPower3,jdbcType=VARCHAR},
-      </if>
-      <if test="fuelUse1 != null" >
-        fuelUse1 = #{fuelUse1,jdbcType=VARCHAR},
-      </if>
-      <if test="fuelUse2 != null" >
-        fuelUse2 = #{fuelUse2,jdbcType=VARCHAR},
-      </if>
-      <if test="fuelUse3 != null" >
-        fuelUse3 = #{fuelUse3,jdbcType=VARCHAR},
+      <if test="fuelUse != null" >
+        fuelUse = #{fuelUse,jdbcType=VARCHAR},
       </if>
       <if test="owner != null" >
         owner = #{owner,jdbcType=VARCHAR},
@@ -404,12 +360,8 @@
       operCost2 = #{operCost2,jdbcType=DOUBLE},
       operCost3 = #{operCost3,jdbcType=DOUBLE},
       operCost4 = #{operCost4,jdbcType=DOUBLE},
-      outPower1 = #{outPower1,jdbcType=VARCHAR},
-      outPower2 = #{outPower2,jdbcType=VARCHAR},
-      outPower3 = #{outPower3,jdbcType=VARCHAR},
-      fuelUse1 = #{fuelUse1,jdbcType=VARCHAR},
-      fuelUse2 = #{fuelUse2,jdbcType=VARCHAR},
-      fuelUse3 = #{fuelUse3,jdbcType=VARCHAR},
+      outPower = #{outPower,jdbcType=VARCHAR},
+      fuelUse = #{fuelUse,jdbcType=VARCHAR},
       owner = #{owner,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -29,13 +29,13 @@ public class Residual_heat {
 
     private Double fBuildCost4;
 
-    private Double rBulidCost1;
+    private Double rBuildCost1;
 
-    private Double rBulidCost2;
+    private Double rBuildCost2;
 
-    private Double rBulidCost3;
+    private Double rBuildCost3;
 
-    private Double rBulidCost4;
+    private Double rBuildCost4;
 
     private Double operCost1;
 
@@ -159,36 +159,36 @@ public class Residual_heat {
         this.fBuildCost4 = fBuildCost4;
     }
 
-    public Double getrBulidCost1() {
-        return rBulidCost1;
+    public Double getrBuildCost1() {
+        return rBuildCost1;
     }
 
-    public void setrBulidCost1(Double rBulidCost1) {
-        this.rBulidCost1 = rBulidCost1;
+    public void setrBuildCost1(Double rBuildCost1) {
+        this.rBuildCost1 = rBuildCost1;
     }
 
-    public Double getrBulidCost2() {
-        return rBulidCost2;
+    public Double getrBuildCost2() {
+        return rBuildCost2;
     }
 
-    public void setrBulidCost2(Double rBulidCost2) {
-        this.rBulidCost2 = rBulidCost2;
+    public void setrBuildCost2(Double rBuildCost2) {
+        this.rBuildCost2 = rBuildCost2;
     }
 
-    public Double getrBulidCost3() {
-        return rBulidCost3;
+    public Double getrBuildCost3() {
+        return rBuildCost3;
     }
 
-    public void setrBulidCost3(Double rBulidCost3) {
-        this.rBulidCost3 = rBulidCost3;
+    public void setrBuildCost3(Double rBuildCost3) {
+        this.rBuildCost3 = rBuildCost3;
     }
 
-    public Double getrBulidCost4() {
-        return rBulidCost4;
+    public Double getrBuildCost4() {
+        return rBuildCost4;
     }
 
-    public void setrBulidCost4(Double rBulidCost4) {
-        this.rBulidCost4 = rBulidCost4;
+    public void setrBuildCost4(Double rBuildCost4) {
+        this.rBuildCost4 = rBuildCost4;
     }
 
     public Double getOperCost1() {

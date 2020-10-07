@@ -1,10 +1,12 @@
 package edu.tju.scs.TinyNetBackend.mapper;
 
+import edu.tju.scs.TinyNetBackend.model.po.Battery;
 import edu.tju.scs.TinyNetBackend.model.po.Gas_engine;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 @Mapper
 public interface Gas_engineMapper {
     int deleteByPrimaryKey(Integer id);

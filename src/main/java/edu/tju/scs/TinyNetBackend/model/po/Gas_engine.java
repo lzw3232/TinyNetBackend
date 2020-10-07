@@ -47,17 +47,9 @@ public class Gas_engine {
 
     private Double operCost4;
 
-    private String outPower1;
+    private String outPower;
 
-    private String outPower2;
-
-    private String outPower3;
-
-    private String fuelUse1;
-
-    private String fuelUse2;
-
-    private String fuelUse3;
+    private String fuelUse;
 
     private String owner;
 
@@ -245,52 +237,20 @@ public class Gas_engine {
         this.operCost4 = operCost4;
     }
 
-    public String getOutPower1() {
-        return outPower1;
+    public String getOutPower() {
+        return outPower;
     }
 
-    public void setOutPower1(String outPower1) {
-        this.outPower1 = outPower1 == null ? null : outPower1.trim();
+    public void setOutPower(String outPower) {
+        this.outPower = outPower == null ? null : outPower.trim();
     }
 
-    public String getOutPower2() {
-        return outPower2;
+    public String getFuelUse() {
+        return fuelUse;
     }
 
-    public void setOutPower2(String outPower2) {
-        this.outPower2 = outPower2 == null ? null : outPower2.trim();
-    }
-
-    public String getOutPower3() {
-        return outPower3;
-    }
-
-    public void setOutPower3(String outPower3) {
-        this.outPower3 = outPower3 == null ? null : outPower3.trim();
-    }
-
-    public String getFuelUse1() {
-        return fuelUse1;
-    }
-
-    public void setFuelUse1(String fuelUse1) {
-        this.fuelUse1 = fuelUse1 == null ? null : fuelUse1.trim();
-    }
-
-    public String getFuelUse2() {
-        return fuelUse2;
-    }
-
-    public void setFuelUse2(String fuelUse2) {
-        this.fuelUse2 = fuelUse2 == null ? null : fuelUse2.trim();
-    }
-
-    public String getFuelUse3() {
-        return fuelUse3;
-    }
-
-    public void setFuelUse3(String fuelUse3) {
-        this.fuelUse3 = fuelUse3 == null ? null : fuelUse3.trim();
+    public void setFuelUse(String fuelUse) {
+        this.fuelUse = fuelUse == null ? null : fuelUse.trim();
     }
 
     public String getOwner() {
