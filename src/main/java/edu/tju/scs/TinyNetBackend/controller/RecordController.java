@@ -22,44 +22,44 @@ public class RecordController {
 
     @RequestMapping(value = "/tinyNet/record/add",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport add(String recordname,String input,HttpServletRequest request)
+    public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.add(request,recordname,input);
+        return recordService.add(data.getString("token"),data.getJSONObject("record"));
     }
 
     @RequestMapping(value = "/tinyNet/record/update",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport update(String recordname,String input,HttpServletRequest request)
+    public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.update(request,recordname,input);
+        return recordService.update(data.getString("token"),data.getJSONObject("record"));
     }
 
     @RequestMapping(value = "/tinyNet/record/delete",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport delete(String recordname,HttpServletRequest request)
+    public ErrorReport delete(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.delete(request,recordname);
+        return recordService.delete(data.getString("token"),data.getInteger("id"));
     }
 
     @RequestMapping(value = "/tinyNet/record/select",method = RequestMethod.POST)
     @ResponseBody
-    public ErrorReport select(String recordname,HttpServletRequest request)
+    public ErrorReport select(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.select(request,recordname);
+        return recordService.select(data.getString("token"),data.getInteger("id"));
     }
 
     @RequestMapping(value = "/tinyNet/record/list",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport list(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.list(data.getString("token"));
+        return recordService.list(data.getString("token"),data.getInteger("pi"),data.getInteger("ps"),data.getString("val"));
     }
 
     @ResponseBody
     @RequestMapping(value = "/tinyNet/record/action",method = RequestMethod.POST)
     public ErrorReport action(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.action(data.getString("token"),data.getString("recordname"));
+        return recordService.action(data.getString("token"),data.getJSONObject("data"));
 
     }
 
@@ -67,7 +67,7 @@ public class RecordController {
     @RequestMapping(value = "/tinyNet/record/getRes",method = RequestMethod.POST)
     public ErrorReport getRes(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.getRes(data.getString("token"),data.getString("recordname"));
+        return recordService.getRes(data.getString("token"),data.getInteger("id"));
 
     }
 
@@ -75,7 +75,7 @@ public class RecordController {
     @RequestMapping(value = "/tinyNet/record/getOutput",method = RequestMethod.POST)
     public ErrorReport getOutput(@RequestBody(required=false) JSONObject data)
     {
-        return recordService.getOutput(data.getString("token"),data.getString("recordname"));
+        return recordService.getOutput(data.getString("token"),data.getInteger("id"));
 
     }
 

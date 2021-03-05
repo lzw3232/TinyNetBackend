@@ -20,7 +20,7 @@ public class Lithium_bromideController {
     @Autowired
     protected Lithium_bromideService lithium_bromideService;
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/lithium_bromide/add",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
@@ -29,7 +29,7 @@ public class Lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/lithium_bromide/update",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
@@ -38,7 +38,7 @@ public class Lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/lithium_bromide/select",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport select(@RequestBody(required=false) JSONObject data)
@@ -47,7 +47,7 @@ public class Lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/lithium_bromide/delete",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport delete(@RequestBody(required=false) JSONObject data)
@@ -56,7 +56,7 @@ public class Lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/lithium_bromide/list",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport list(@RequestBody(required=false) JSONObject data){

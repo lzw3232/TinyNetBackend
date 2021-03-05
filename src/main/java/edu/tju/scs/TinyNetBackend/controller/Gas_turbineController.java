@@ -20,7 +20,7 @@ public class Gas_turbineController {
     @Autowired
     protected Gas_turbineService gas_turbineService;
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/gas_turbine/add",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
@@ -29,7 +29,7 @@ public class Gas_turbineController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/gas_turbine/update",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
@@ -38,7 +38,7 @@ public class Gas_turbineController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/gas_turbine/select",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport select(@RequestBody(required=false) JSONObject data)
@@ -47,7 +47,7 @@ public class Gas_turbineController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/gas_turbine/delete",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport delete(@RequestBody(required=false) JSONObject data)
@@ -56,7 +56,7 @@ public class Gas_turbineController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/gas_turbine/list",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport list(@RequestBody(required=false) JSONObject data){

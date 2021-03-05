@@ -1,26 +1,28 @@
 package edu.tju.scs.TinyNetBackend.mapper;
 
 import edu.tju.scs.TinyNetBackend.model.po.Record;
-import edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface RecordMapper {
-    int deleteByPrimaryKey(String name);
+    int deleteByPrimaryKey(Integer id);
 
-    int insert(RecordWithBLOBs record);
+    int insert(Record record);
 
-    int insertSelective(RecordWithBLOBs record);
+    int insertSelective(Record record);
 
-    RecordWithBLOBs selectByPrimaryKey(String name);
+    Record selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(RecordWithBLOBs record);
-
-    int updateByPrimaryKeyWithBLOBs(RecordWithBLOBs record);
+    int updateByPrimaryKeySelective(Record record);
 
     int updateByPrimaryKey(Record record);
 
-    List<RecordWithBLOBs> selectByOwner(String owner);
+    Integer countB();
+    Integer countB1(@Param("val") String val);
+
+    List<Record> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);
+    List<Record> selectByOwner1(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps,@Param("val") String val);
 }

@@ -16,13 +16,7 @@
     <result column="so2" property="so2" jdbcType="DOUBLE" />
     <result column="dyhw" property="dyhw" jdbcType="DOUBLE" />
     <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="glqxNum" property="glqxnum" jdbcType="INTEGER" />
-    <result column="scgl1" property="scgl1" jdbcType="DOUBLE" />
-    <result column="scgl2" property="scgl2" jdbcType="DOUBLE" />
-    <result column="scgl3" property="scgl3" jdbcType="DOUBLE" />
-    <result column="rlxh1" property="rlxh1" jdbcType="DOUBLE" />
-    <result column="rlxh2" property="rlxh2" jdbcType="DOUBLE" />
-    <result column="rlxh3" property="rlxh3" jdbcType="DOUBLE" />
+    <result column="glqxNum" property="glqxNum" jdbcType="INTEGER" />
     <result column="capacity1" property="capacity1" jdbcType="INTEGER" />
     <result column="capacity2" property="capacity2" jdbcType="INTEGER" />
     <result column="capacity3" property="capacity3" jdbcType="INTEGER" />
@@ -39,13 +33,15 @@
     <result column="yxwhcb2" property="yxwhcb2" jdbcType="DOUBLE" />
     <result column="yxwhcb3" property="yxwhcb3" jdbcType="DOUBLE" />
     <result column="yxwhcb4" property="yxwhcb4" jdbcType="DOUBLE" />
+    <result column="outPower" property="outPower" jdbcType="VARCHAR" />
+    <result column="fuelUse" property="fuelUse" jdbcType="VARCHAR" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, edgl, zdfzl, zxyysj, life, factory, co2, co, wrsdqhhw, klw, so2, dyhw, 
-    type, glqxNum, scgl1, scgl2, scgl3, rlxh1, rlxh2, rlxh3, capacity1, capacity2, capacity3, 
-    capacity4, cjcb1, cjcb2, cjcb3, cjcb4, gxcb1, gxcb2, gxcb3, gxcb4, yxwhcb1, yxwhcb2, 
-    yxwhcb3, yxwhcb4, owner
+    type, glqxNum, capacity1, capacity2, capacity3, capacity4, cjcb1, cjcb2, cjcb3, cjcb4, 
+    gxcb1, gxcb2, gxcb3, gxcb4, yxwhcb1, yxwhcb2, yxwhcb3, yxwhcb4, outPower, fuelUse, 
+    owner
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -89,24 +85,24 @@
       zdfzl, zxyysj, life, factory, 
       co2, co, wrsdqhhw, klw, 
       so2, dyhw, type, glqxNum, 
-      scgl1, scgl2, scgl3, rlxh1, 
-      rlxh2, rlxh3, capacity1, 
-      capacity2, capacity3, capacity4, 
-      cjcb1, cjcb2, cjcb3, cjcb4, 
-      gxcb1, gxcb2, gxcb3, gxcb4, 
-      yxwhcb1, yxwhcb2, yxwhcb3, 
-      yxwhcb4, owner)
+      capacity1, capacity2, capacity3, 
+      capacity4, cjcb1, cjcb2, 
+      cjcb3, cjcb4, gxcb1, gxcb2, 
+      gxcb3, gxcb4, yxwhcb1, 
+      yxwhcb2, yxwhcb3, yxwhcb4, 
+      outPower, fuelUse, owner
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{edgl,jdbcType=DOUBLE}, 
       #{zdfzl,jdbcType=DOUBLE}, #{zxyysj,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, #{factory,jdbcType=VARCHAR}, 
       #{co2,jdbcType=DOUBLE}, #{co,jdbcType=DOUBLE}, #{wrsdqhhw,jdbcType=DOUBLE}, #{klw,jdbcType=DOUBLE}, 
-      #{so2,jdbcType=DOUBLE}, #{dyhw,jdbcType=DOUBLE}, #{type,jdbcType=VARCHAR}, #{glqxnum,jdbcType=INTEGER}, 
-      #{scgl1,jdbcType=DOUBLE}, #{scgl2,jdbcType=DOUBLE}, #{scgl3,jdbcType=DOUBLE}, #{rlxh1,jdbcType=DOUBLE}, 
-      #{rlxh2,jdbcType=DOUBLE}, #{rlxh3,jdbcType=DOUBLE}, #{capacity1,jdbcType=INTEGER}, 
-      #{capacity2,jdbcType=INTEGER}, #{capacity3,jdbcType=INTEGER}, #{capacity4,jdbcType=INTEGER}, 
-      #{cjcb1,jdbcType=DOUBLE}, #{cjcb2,jdbcType=DOUBLE}, #{cjcb3,jdbcType=DOUBLE}, #{cjcb4,jdbcType=DOUBLE}, 
-      #{gxcb1,jdbcType=DOUBLE}, #{gxcb2,jdbcType=DOUBLE}, #{gxcb3,jdbcType=DOUBLE}, #{gxcb4,jdbcType=DOUBLE}, 
-      #{yxwhcb1,jdbcType=DOUBLE}, #{yxwhcb2,jdbcType=DOUBLE}, #{yxwhcb3,jdbcType=DOUBLE}, 
-      #{yxwhcb4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
+      #{so2,jdbcType=DOUBLE}, #{dyhw,jdbcType=DOUBLE}, #{type,jdbcType=VARCHAR}, #{glqxNum,jdbcType=INTEGER}, 
+      #{capacity1,jdbcType=INTEGER}, #{capacity2,jdbcType=INTEGER}, #{capacity3,jdbcType=INTEGER}, 
+      #{capacity4,jdbcType=INTEGER}, #{cjcb1,jdbcType=DOUBLE}, #{cjcb2,jdbcType=DOUBLE}, 
+      #{cjcb3,jdbcType=DOUBLE}, #{cjcb4,jdbcType=DOUBLE}, #{gxcb1,jdbcType=DOUBLE}, #{gxcb2,jdbcType=DOUBLE}, 
+      #{gxcb3,jdbcType=DOUBLE}, #{gxcb4,jdbcType=DOUBLE}, #{yxwhcb1,jdbcType=DOUBLE}, 
+      #{yxwhcb2,jdbcType=DOUBLE}, #{yxwhcb3,jdbcType=DOUBLE}, #{yxwhcb4,jdbcType=DOUBLE}, 
+      #{outPower,jdbcType=VARCHAR}, #{fuelUse,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Generator" >
     insert into generator
@@ -153,26 +149,8 @@
       <if test="type != null" >
         type,
       </if>
-      <if test="glqxnum != null" >
+      <if test="glqxNum != null" >
         glqxNum,
-      </if>
-      <if test="scgl1 != null" >
-        scgl1,
-      </if>
-      <if test="scgl2 != null" >
-        scgl2,
-      </if>
-      <if test="scgl3 != null" >
-        scgl3,
-      </if>
-      <if test="rlxh1 != null" >
-        rlxh1,
-      </if>
-      <if test="rlxh2 != null" >
-        rlxh2,
-      </if>
-      <if test="rlxh3 != null" >
-        rlxh3,
       </if>
       <if test="capacity1 != null" >
         capacity1,
@@ -222,6 +200,12 @@
       <if test="yxwhcb4 != null" >
         yxwhcb4,
       </if>
+      <if test="outPower != null" >
+        outPower,
+      </if>
+      <if test="fuelUse != null" >
+        fuelUse,
+      </if>
       <if test="owner != null" >
         owner,
       </if>
@@ -269,26 +253,8 @@
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
       </if>
-      <if test="glqxnum != null" >
-        #{glqxnum,jdbcType=INTEGER},
-      </if>
-      <if test="scgl1 != null" >
-        #{scgl1,jdbcType=DOUBLE},
-      </if>
-      <if test="scgl2 != null" >
-        #{scgl2,jdbcType=DOUBLE},
-      </if>
-      <if test="scgl3 != null" >
-        #{scgl3,jdbcType=DOUBLE},
-      </if>
-      <if test="rlxh1 != null" >
-        #{rlxh1,jdbcType=DOUBLE},
-      </if>
-      <if test="rlxh2 != null" >
-        #{rlxh2,jdbcType=DOUBLE},
-      </if>
-      <if test="rlxh3 != null" >
-        #{rlxh3,jdbcType=DOUBLE},
+      <if test="glqxNum != null" >
+        #{glqxNum,jdbcType=INTEGER},
       </if>
       <if test="capacity1 != null" >
         #{capacity1,jdbcType=INTEGER},
@@ -338,6 +304,12 @@
       <if test="yxwhcb4 != null" >
         #{yxwhcb4,jdbcType=DOUBLE},
       </if>
+      <if test="outPower != null" >
+        #{outPower,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelUse != null" >
+        #{fuelUse,jdbcType=VARCHAR},
+      </if>
       <if test="owner != null" >
         #{owner,jdbcType=VARCHAR},
       </if>
@@ -385,26 +357,8 @@
       <if test="type != null" >
         type = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="glqxnum != null" >
-        glqxNum = #{glqxnum,jdbcType=INTEGER},
-      </if>
-      <if test="scgl1 != null" >
-        scgl1 = #{scgl1,jdbcType=DOUBLE},
-      </if>
-      <if test="scgl2 != null" >
-        scgl2 = #{scgl2,jdbcType=DOUBLE},
-      </if>
-      <if test="scgl3 != null" >
-        scgl3 = #{scgl3,jdbcType=DOUBLE},
-      </if>
-      <if test="rlxh1 != null" >
-        rlxh1 = #{rlxh1,jdbcType=DOUBLE},
-      </if>
-      <if test="rlxh2 != null" >
-        rlxh2 = #{rlxh2,jdbcType=DOUBLE},
-      </if>
-      <if test="rlxh3 != null" >
-        rlxh3 = #{rlxh3,jdbcType=DOUBLE},
+      <if test="glqxNum != null" >
+        glqxNum = #{glqxNum,jdbcType=INTEGER},
       </if>
       <if test="capacity1 != null" >
         capacity1 = #{capacity1,jdbcType=INTEGER},
@@ -454,6 +408,12 @@
       <if test="yxwhcb4 != null" >
         yxwhcb4 = #{yxwhcb4,jdbcType=DOUBLE},
       </if>
+      <if test="outPower != null" >
+        outPower = #{outPower,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelUse != null" >
+        fuelUse = #{fuelUse,jdbcType=VARCHAR},
+      </if>
       <if test="owner != null" >
         owner = #{owner,jdbcType=VARCHAR},
       </if>
@@ -475,13 +435,7 @@
       so2 = #{so2,jdbcType=DOUBLE},
       dyhw = #{dyhw,jdbcType=DOUBLE},
       type = #{type,jdbcType=VARCHAR},
-      glqxNum = #{glqxnum,jdbcType=INTEGER},
-      scgl1 = #{scgl1,jdbcType=DOUBLE},
-      scgl2 = #{scgl2,jdbcType=DOUBLE},
-      scgl3 = #{scgl3,jdbcType=DOUBLE},
-      rlxh1 = #{rlxh1,jdbcType=DOUBLE},
-      rlxh2 = #{rlxh2,jdbcType=DOUBLE},
-      rlxh3 = #{rlxh3,jdbcType=DOUBLE},
+      glqxNum = #{glqxNum,jdbcType=INTEGER},
       capacity1 = #{capacity1,jdbcType=INTEGER},
       capacity2 = #{capacity2,jdbcType=INTEGER},
       capacity3 = #{capacity3,jdbcType=INTEGER},
@@ -498,6 +452,8 @@
       yxwhcb2 = #{yxwhcb2,jdbcType=DOUBLE},
       yxwhcb3 = #{yxwhcb3,jdbcType=DOUBLE},
       yxwhcb4 = #{yxwhcb4,jdbcType=DOUBLE},
+      outPower = #{outPower,jdbcType=VARCHAR},
+      fuelUse = #{fuelUse,jdbcType=VARCHAR},
       owner = #{owner,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

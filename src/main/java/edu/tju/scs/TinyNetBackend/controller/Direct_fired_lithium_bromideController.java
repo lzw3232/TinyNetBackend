@@ -20,7 +20,7 @@ public class Direct_fired_lithium_bromideController {
     @Autowired
     protected Direct_fired_lithium_bromideService direct_fired_lithium_bromideService;
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/direct_fired_lithium_bromide/add",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
@@ -29,7 +29,7 @@ public class Direct_fired_lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/direct_fired_lithium_bromide/update",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
@@ -38,7 +38,7 @@ public class Direct_fired_lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/direct_fired_lithium_bromide/select",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport select(@RequestBody(required=false) JSONObject data)
@@ -47,7 +47,7 @@ public class Direct_fired_lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/direct_fired_lithium_bromide/delete",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport delete(@RequestBody(required=false) JSONObject data)
@@ -56,7 +56,7 @@ public class Direct_fired_lithium_bromideController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/direct_fired_lithium_bromide/list",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport list(@RequestBody(required=false) JSONObject data){

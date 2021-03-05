@@ -20,7 +20,7 @@ public class Residual_heatController {
     @Autowired
     protected Residual_heatService residual_heatService;
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/residual_heat/add",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
@@ -29,7 +29,7 @@ public class Residual_heatController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/residual_heat/update",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
@@ -38,7 +38,7 @@ public class Residual_heatController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/residual_heat/select",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport select(@RequestBody(required=false) JSONObject data)
@@ -47,7 +47,7 @@ public class Residual_heatController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/residual_heat/delete",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport delete(@RequestBody(required=false) JSONObject data)
@@ -56,7 +56,7 @@ public class Residual_heatController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/residual_heat/list",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport list(@RequestBody(required=false) JSONObject data){

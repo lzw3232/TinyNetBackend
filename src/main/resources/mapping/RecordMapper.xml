@@ -2,52 +2,69 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.tju.scs.TinyNetBackend.mapper.RecordMapper" >
   <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Record" >
-    <id column="name" property="name" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs" extends="BaseResultMap" >
-    <result column="input" property="input" jdbcType="LONGVARCHAR" />
-    <result column="output" property="output" jdbcType="LONGVARCHAR" />
+    <result column="input" property="input" jdbcType="VARCHAR" />
+    <result column="output" property="output" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    name, state, owner
+    id, name, state, owner, input, output
   </sql>
-  <sql id="Blob_Column_List" >
-    input, output
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from record
-    where name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
 
 
-  <select id="selectByOwner" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from record
-    where owner = #{owner,jdbcType=VARCHAR}
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from record
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from record
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from record
+    where name REGEXP #{val}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from record
-    where name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs" >
-    insert into record (name, state, owner, 
-      input, output)
-    values (#{name,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{owner,jdbcType=VARCHAR}, 
-      #{input,jdbcType=LONGVARCHAR}, #{output,jdbcType=LONGVARCHAR})
+  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Record" >
+    insert into record (id, name, state, 
+      owner, input, output
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{owner,jdbcType=VARCHAR}, #{input,jdbcType=VARCHAR}, #{output,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs" >
+  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Record" >
     insert into record
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="name != null" >
         name,
       </if>
@@ -65,6 +82,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
@@ -75,16 +95,19 @@
         #{owner,jdbcType=VARCHAR},
       </if>
       <if test="input != null" >
-        #{input,jdbcType=LONGVARCHAR},
+        #{input,jdbcType=VARCHAR},
       </if>
       <if test="output != null" >
-        #{output,jdbcType=LONGVARCHAR},
+        #{output,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Record" >
     update record
     <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="state != null" >
         state = #{state,jdbcType=INTEGER},
       </if>
@@ -92,26 +115,21 @@
         owner = #{owner,jdbcType=VARCHAR},
       </if>
       <if test="input != null" >
-        input = #{input,jdbcType=LONGVARCHAR},
+        input = #{input,jdbcType=VARCHAR},
       </if>
       <if test="output != null" >
-        output = #{output,jdbcType=LONGVARCHAR},
+        output = #{output,jdbcType=VARCHAR},
       </if>
     </set>
-    where name = #{name,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs" >
-    update record
-    set state = #{state,jdbcType=INTEGER},
-      owner = #{owner,jdbcType=VARCHAR},
-      input = #{input,jdbcType=LONGVARCHAR},
-      output = #{output,jdbcType=LONGVARCHAR}
-    where name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Record" >
     update record
-    set state = #{state,jdbcType=INTEGER},
-      owner = #{owner,jdbcType=VARCHAR}
-    where name = #{name,jdbcType=VARCHAR}
+    set name = #{name,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      owner = #{owner,jdbcType=VARCHAR},
+      input = #{input,jdbcType=VARCHAR},
+      output = #{output,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

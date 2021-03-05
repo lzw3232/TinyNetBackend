@@ -26,7 +26,7 @@ public class Wind_TurbinesController {
     @Autowired
     protected Wind_TurbinesService wind_turbinesService;
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/wind_turbines/add",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
@@ -34,7 +34,7 @@ public class Wind_TurbinesController {
         ErrorReport result = wind_turbinesService.add(data.getJSONObject("wind_turbines"),data.getString("token"));
         return result;
     }
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/wind_turbines/update",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
@@ -43,7 +43,7 @@ public class Wind_TurbinesController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/wind_turbines/select",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport select(@RequestBody(required=false) JSONObject data)
@@ -51,7 +51,7 @@ public class Wind_TurbinesController {
         ErrorReport result = wind_turbinesService.select(data.getString("token"),data.getInteger("id"));
         return result;
     }
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/wind_turbines/delete",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport delete(@RequestBody(required=false) JSONObject data)
@@ -60,7 +60,7 @@ public class Wind_TurbinesController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/wind_turbines/list",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport list(@RequestBody(required=false) JSONObject data){

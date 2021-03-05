@@ -6,13 +6,10 @@ import edu.tju.scs.TinyNetBackend.common.utils.TokenUtil;
 import edu.tju.scs.TinyNetBackend.mapper.TurbineMapper;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
 import edu.tju.scs.TinyNetBackend.model.dto.ResponseData;
-import edu.tju.scs.TinyNetBackend.model.dto.ResponseObjectData;
-import edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs;
 import edu.tju.scs.TinyNetBackend.model.po.Turbine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service

@@ -20,8 +20,6 @@ public interface GeneratorMapper {
     int updateByPrimaryKeySelective(Generator record);
 
     int updateByPrimaryKey(Generator record);
-
-    List<Generator> selectByOwner(String username);
     Integer countB();
     Integer countB1(@Param("val") String val);
 

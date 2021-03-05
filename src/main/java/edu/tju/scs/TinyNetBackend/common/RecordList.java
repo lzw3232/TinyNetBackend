@@ -2,21 +2,17 @@ package edu.tju.scs.TinyNetBackend.common;
 
 
 import com.alibaba.fastjson.JSONObject;
-import edu.tju.scs.TinyNetBackend.model.dto.ResponseData;
-import edu.tju.scs.TinyNetBackend.model.po.RecordWithBLOBs;
-import edu.tju.scs.TinyNetBackend.service.RecordService;
+import edu.tju.scs.TinyNetBackend.model.po.Record;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RecordList {
 
     private static List<RecordInfo>  list = new ArrayList<RecordInfo>();
 
-    public static RecordInfo getinfo(RecordWithBLOBs record)
+    public static RecordInfo getinfo(Record record)
     {
         String owner=record.getOwner();
         String name=record.getName();
@@ -29,7 +25,7 @@ public class RecordList {
     }
 
 
-    public static boolean check(RecordWithBLOBs record)
+    public static boolean check(Record record)
     {
         String name=record.getOwner();
         if(getsize()==0){
@@ -59,10 +55,11 @@ public class RecordList {
 
     public static void update()
     {
+        FileHelper fileHelper = new FileHelper();
         for (RecordInfo i:list)
         {
             Process p=i.getProcess();
-            if(FileHelper.checkFinish(i.getOwner(),i.getName()))
+            if(fileHelper.checkFinish(i.getOwner(),i.getName()))
             {
                 list.remove(i);
 
@@ -72,52 +69,52 @@ public class RecordList {
         }
     }
 
-    public static void add(RecordWithBLOBs record)
+    public static void add(Record record)
     {
-        FileHelper.newRecord(record);
-        FileHelper.setIO(record);
-        RecordInfo recordInfo=new RecordInfo(record.getName(),record.getOwner());
-        recordInfo.setRuntime(Runtime.getRuntime());
-
-
-        try {
-            recordInfo.setProcess(recordInfo.getRuntime().exec(FileHelper.getExe(record.getOwner(),record.getName()),null,new File(FileHelper.getDir(record.getOwner(),record.getName())+File.separator+"exe")));
-            //recordInfo.setProcess(recordInfo.getRuntime().exec(FileHelper.getExe(record.getOwner(),record.getName())));
-
-            System.out.println("is run");
-
-            list.add(recordInfo);
-            System.out.println(list.size());
-
-            BufferedInputStream in = new BufferedInputStream(recordInfo.getProcess().getInputStream());
-            BufferedOutputStream outputStream =new BufferedOutputStream(recordInfo.getProcess().getOutputStream());
-            BufferedReader inBr = new BufferedReader(new InputStreamReader(in,"GB2312"));
-            BufferedWriter outp = new BufferedWriter(new OutputStreamWriter(outputStream));
-            outp.write("1111");
-            outp.flush();
-            String lineStr;
-
-
-            while ((lineStr = inBr.readLine()) != null)
-                //获得命令执行后在控制台的输出信息
-
-                System.out.print("");// 打印输出信息不能删，否则会出现程序意外终止，原因不明
-            //检查命令是否执行失败。
-            if (recordInfo.getProcess().waitFor() != 0) {
-                if (recordInfo.getProcess().exitValue() == 1)//p.exitValue()==0表示正常结束，1：非正常结束
-                    System.err.println("命令执行失败!");
-            }
-            inBr.close();
-            in.close();
-            System.out.println(record.getName()+" is done");
-            list.remove(recordInfo);
-            System.out.println(list.size());
-            getOutput(record);
-
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+//        FileHelper.newRecord(record);
+//        FileHelper.setIO(record);
+//        RecordInfo recordInfo=new RecordInfo(record.getName(),record.getOwner());
+//        recordInfo.setRuntime(Runtime.getRuntime());
+//
+//
+//        try {
+//            recordInfo.setProcess(recordInfo.getRuntime().exec(FileHelper.getExe(record.getOwner(),record.getName()),null,new File(FileHelper.getDir(record.getOwner(),record.getName())+File.separator+"exe")));
+//            //recordInfo.setProcess(recordInfo.getRuntime().exec(FileHelper.getExe(record.getOwner(),record.getName())));
+//
+//            System.out.println("is run");
+//
+//            list.add(recordInfo);
+//            System.out.println(list.size());
+//
+//            BufferedInputStream in = new BufferedInputStream(recordInfo.getProcess().getInputStream());
+//            BufferedOutputStream outputStream =new BufferedOutputStream(recordInfo.getProcess().getOutputStream());
+//            BufferedReader inBr = new BufferedReader(new InputStreamReader(in,"GB2312"));
+//            BufferedWriter outp = new BufferedWriter(new OutputStreamWriter(outputStream));
+//            outp.write("1111");
+//            outp.flush();
+//            String lineStr;
+//
+//
+//            while ((lineStr = inBr.readLine()) != null)
+//                //获得命令执行后在控制台的输出信息
+//
+//                System.out.print("");// 打印输出信息不能删，否则会出现程序意外终止，原因不明
+//            //检查命令是否执行失败。
+//            if (recordInfo.getProcess().waitFor() != 0) {
+//                if (recordInfo.getProcess().exitValue() == 1)//p.exitValue()==0表示正常结束，1：非正常结束
+//                    System.err.println("命令执行失败!");
+//            }
+//            inBr.close();
+//            in.close();
+//            System.out.println(record.getName()+" is done");
+//            list.remove(recordInfo);
+//            System.out.println(list.size());
+//            getOutput(record);
+//
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
 
     }
 //    public static void main(String[] args) {
@@ -128,7 +125,7 @@ public class RecordList {
 //    }
 
 
-    public static String getOutput(RecordWithBLOBs record) {
+    public static String getOutput(Record record) {
         JSONObject res = new JSONObject();
         String filePath = FileHelper.getDir(record.getOwner(),record.getName())+File.separator+"exe"+File.separator+"IO"+File.separator+"OUT0";
         JSONObject lzw= new JSONObject();
@@ -165,7 +162,7 @@ public class RecordList {
             return "";
     }
 
-    public static JSONObject getRes(RecordWithBLOBs record){
+    public static JSONObject getRes(Record record){
         JSONObject res = new JSONObject();
         String filePath = FileHelper.getDir(record.getOwner(),record.getName())+File.separator+"LogFile.txt";
         File file = new File(filePath);
@@ -193,6 +190,12 @@ public class RecordList {
 
 
         return res;
+    }
+
+    public static void add1(Record record,JSONObject data,String owner){
+        FileHelper fileHelper = new FileHelper();
+        fileHelper.newRecord(record);
+        fileHelper.setIO(record,data);
     }
 
 

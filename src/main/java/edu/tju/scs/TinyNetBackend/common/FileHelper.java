@@ -3,186 +3,285 @@ package edu.tju.scs.TinyNetBackend.common;
 import com.alibaba.fastjson.JSON;
 
 import com.alibaba.fastjson.JSONObject;
+import edu.tju.scs.TinyNetBackend.mapper.*;
 import edu.tju.scs.TinyNetBackend.model.po.*;
 import edu.tju.scs.TinyNetBackend.model.po.Record;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class FileHelper {
+    @Autowired
+    protected BatteryMapper batteryMapper;
 
-    public static String getOurput(String username,String recordname)
+    private static String Dir = "F:";
+
+    //创建目录并拷贝目标程序到文件夹下
+    public void newRecord(Record record)
     {
-        String path="/"+username+"/"+recordname+"/IO/OUT0/";
-        String ret="";
-        JSONObject output = new JSONObject();
-        JSONObject temp;
-        File file;
-        FileInputStream in;
-        Scanner scanner;
-        List<Double>list;
-        /*
+        String path=Dir+File.separator+record.getOwner()+File.separator+record.getName();
         try {
 
-            File file = new File(path);
-            String[] filePath = file.list();
-            for (int i = 0; i < filePath.length; i++)
-            {
-
-                File tempfile = new File(path+"/"+filePath[i]);
-                FileInputStream in = new FileInputStream(tempfile);
-                ret=ret+filePath[i]+";";
-                Scanner scanner = new Scanner(in);
-                while (scanner.hasNext())
-                {
-                    ret=ret+scanner.nextLine()+'\n';
-                }
-
-                in.close();
-                if(i!=filePath.length-1)
-                    ret=ret+'|';
-
-            }
-
-
+            //copyDir("F:\\exe",path);
+            copyFolder("F:"+File.separator+"exe",path);
         }catch (Exception e)
         {
             e.printStackTrace();
         }
-
-        */
-        try{
-
-            file=new File(path+"Abschille_Details.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("pjzlgl",scanner.nextDouble());
-            temp.put("rjzll",scanner.nextDouble());
-            temp.put("zzll",scanner.nextDouble());
-            temp.put("zxsclgl",scanner.nextDouble());
-            temp.put("zdsclgl",scanner.nextDouble());
-            temp.put("pjcrgl",scanner.nextDouble());
-            temp.put("rjcrl",scanner.nextDouble());
-            temp.put("zcrl",scanner.nextDouble());
-            temp.put("zxscrgl",scanner.nextDouble());
-            temp.put("zdscrgl",scanner.nextDouble());
-            temp.put("yxsj",scanner.nextDouble());
-            temp.put("xszyql",scanner.nextDouble());
-            output.put("Abschille_Details",temp);
-            in.close();
-
-            file=new File(path+"AccPowerSupply.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("qnhdlzj",scanner.nextDouble());
-            output.put("AccPowerSupply",temp);
-            in.close();
-
-            file=new File(path+"AnnualCost_Abschille.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("czcbnz",scanner.nextDouble());
-            temp.put("thcbnz",scanner.nextDouble());
-            temp.put("ywcbnz",scanner.nextDouble());
-            temp.put("rlcbnz",scanner.nextDouble());
-            temp.put("cznz",scanner.nextDouble());
-            temp.put("cbzjnz",scanner.nextDouble());
-            output.put("AnnualCost_Abschille",temp);
-            in.close();
-
-            file=new File(path+"AnnualCost_accumulateloan.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("qkljnz",scanner.nextDouble());
-            list = new ArrayList<>();
-            while(scanner.hasNext())
-                list.add(scanner.nextDouble());
-            temp.put("qkljnzlist",list);
-            output.put("AnnualCost_accumulateloan",temp);
-            in.close();
-
-            file=new File(path+"AnnualCost_accumulateNPV.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("ljjxjlnz",scanner.nextDouble());
-            list = new ArrayList<>();
-            while(scanner.hasNext())
-                list.add(scanner.nextDouble());
-            temp.put("ljjxjlnzlist",list);
-            output.put("AnnualCost_accumulateNPV",temp);
-            in.close();
-
-            file=new File(path+"Every_AnnualCost_BT.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("czcbnz",scanner.nextDouble());
-            temp.put("thcbnz",scanner.nextDouble());
-            temp.put("ywcbnz",scanner.nextDouble());
-            temp.put("rlcbnz",scanner.nextDouble());
-            temp.put("cznz",scanner.nextDouble());
-            temp.put("cbzjnz",scanner.nextDouble());
-            output.put("Every_AnnualCost_BT",temp);
-            in.close();
-
-            file=new File(path+"AnnualCost_Cool.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("zlsynz",scanner.nextDouble());
-            list = new ArrayList<>();
-            while(scanner.hasNext())
-                list.add(scanner.nextDouble());
-            temp.put("zlsynzlist",list);
-            output.put("AnnualCost_Cool",temp);
-            in.close();
-
-            file=new File(path+"AnnualCost_Coolstorage.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("czcbnz",scanner.nextDouble());
-            temp.put("thcbnz",scanner.nextDouble());
-            temp.put("ywcbnz",scanner.nextDouble());
-            temp.put("rlcbnz",scanner.nextDouble());
-            temp.put("cznz",scanner.nextDouble());
-            temp.put("cbzjnz",scanner.nextDouble());
-            output.put("AnnualCost_Coolstorage",temp);
-            in.close();
-
-            file=new File(path+"AnnualCost_costflow.txt");
-            in = new FileInputStream(file);
-            scanner = new Scanner(in);
-            temp =  new JSONObject();
-            temp.put("jycbnz",scanner.nextDouble());
-            list = new ArrayList<>();
-            while(scanner.hasNext())
-                list.add(scanner.nextDouble());
-            temp.put("jycbnzlist",list);
-            output.put("AnnualCost_costflow",temp);
-            in.close();
-
-            //11-20
-
-
-
-
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return  output.toString();
     }
 
-    public  static  String readFile(String path)
+    public void setIO(Record record,JSONObject data)
+    {
+        String username=record.getOwner();
+        String recordname=record.getName();
+        String path="F:"+File.separator+username+File.separator+recordname+File.separator+"exe"+File.separator+"IO";
+        String input = getInput(record,data);
+
+//        StringBuilder result = new StringBuilder();
+
+//        String filePath = "F:\\1.txt";
+//        File file1 = new File(filePath);
+//        if(file1.exists()){
+//            try{
+//                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"gbk"));
+//                String s = null;
+//                while((s = br.readLine())!=null){
+//                    result.append(s+"\n");
+//                    //System.out.println(s);
+//                }
+//                br.close();
+//            }catch(Exception e){
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        String input = result.toString();
+//        String input=record.getInput();
+//        String file[] = input.split("\\|");
+//
+//        try {
+//            (new File(path)).mkdir();
+//            (new File(path+File.separator+"IN0")).mkdir();
+//            (new File(path+File.separator+"OUT0")).mkdir();
+//            for(int i=0;i<file.length;i++)
+//            {
+//                //System.out.println(file[i]);
+//                String temp[]=file[i].split(":");
+//                if(temp.length==2)
+//                {
+//                    File newfile = new File(path+File.separator+"IN0"+File.separator+temp[0]);
+//                    FileOutputStream out = new FileOutputStream(newfile);
+//
+//                    out.write(temp[1].getBytes());
+//                    out.close();
+//                }
+//                else if(temp.length==1)
+//                {
+//                    File newfile = new File(path+File.separator+"IN0"+File.separator+temp[0]);
+//                    FileOutputStream out = new FileOutputStream(newfile);
+//
+//                    out.close();
+//
+//                }
+//            }
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+
+    }
+
+    public String getInput(Record record,JSONObject data)
+    {
+        String input = "";
+
+//      BatteryParameter.txt  Battery
+        input += "BatteryParameter.txt:";
+        JSONObject battery = data.getJSONObject("deviceData").getJSONObject("battery");
+        input += battery.getString("string1");
+        input += battery.getString("soc_1")+"\n";
+        input += battery.getString("soc_2")+"\n";
+        input += battery.getString("soc_3")+"\n";
+        input += battery.getString("total_flow")+"\n";
+        input += battery.getString("back_flow")+"\n";
+        input += battery.getString("string2");
+
+//        ConverterParameter.txt 已删 未写
+        input += "|ConverterParameter.txt:";
+
+//        DieselParameter.txt
+        input += "|DieselParameter.txt:";
+
+
+        return  input;
+//        String path=Dir+File.separator+record.getOwner()+File.separator+record.getName()+File.separator+"IO"+File.separator+"OUT0"+File.separator;
+//        String ret="";
+//        JSONObject output = new JSONObject();
+//        JSONObject temp;
+//        File file;
+//        FileInputStream in;
+//        Scanner scanner;
+//        List<Double>list;
+//        /*
+//        try {
+//
+//            File file = new File(path);
+//            String[] filePath = file.list();
+//            for (int i = 0; i < filePath.length; i++)
+//            {
+//
+//                File tempfile = new File(path+"/"+filePath[i]);
+//                FileInputStream in = new FileInputStream(tempfile);
+//                ret=ret+filePath[i]+";";
+//                Scanner scanner = new Scanner(in);
+//                while (scanner.hasNext())
+//                {
+//                    ret=ret+scanner.nextLine()+'\n';
+//                }
+//
+//                in.close();
+//                if(i!=filePath.length-1)
+//                    ret=ret+'|';
+//
+//            }
+//
+//
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//        */
+//        try{
+//            file=new File(path+"Abschille_Details.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("pjzlgl",scanner.nextDouble());
+//            temp.put("rjzll",scanner.nextDouble());
+//            temp.put("zzll",scanner.nextDouble());
+//            temp.put("zxsclgl",scanner.nextDouble());
+//            temp.put("zdsclgl",scanner.nextDouble());
+//            temp.put("pjcrgl",scanner.nextDouble());
+//            temp.put("rjcrl",scanner.nextDouble());
+//            temp.put("zcrl",scanner.nextDouble());
+//            temp.put("zxscrgl",scanner.nextDouble());
+//            temp.put("zdscrgl",scanner.nextDouble());
+//            temp.put("yxsj",scanner.nextDouble());
+//            temp.put("xszyql",scanner.nextDouble());
+//            output.put("Abschille_Details",temp);
+//            in.close();
+//
+//            file=new File(path+"AccPowerSupply.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("qnhdlzj",scanner.nextDouble());
+//            output.put("AccPowerSupply",temp);
+//            in.close();
+//
+//            file=new File(path+"AnnualCost_Abschille.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("czcbnz",scanner.nextDouble());
+//            temp.put("thcbnz",scanner.nextDouble());
+//            temp.put("ywcbnz",scanner.nextDouble());
+//            temp.put("rlcbnz",scanner.nextDouble());
+//            temp.put("cznz",scanner.nextDouble());
+//            temp.put("cbzjnz",scanner.nextDouble());
+//            output.put("AnnualCost_Abschille",temp);
+//            in.close();
+//
+//            file=new File(path+"AnnualCost_accumulateloan.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("qkljnz",scanner.nextDouble());
+//            list = new ArrayList<>();
+//            while(scanner.hasNext())
+//                list.add(scanner.nextDouble());
+//            temp.put("qkljnzlist",list);
+//            output.put("AnnualCost_accumulateloan",temp);
+//            in.close();
+//
+//            file=new File(path+"AnnualCost_accumulateNPV.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("ljjxjlnz",scanner.nextDouble());
+//            list = new ArrayList<>();
+//            while(scanner.hasNext())
+//                list.add(scanner.nextDouble());
+//            temp.put("ljjxjlnzlist",list);
+//            output.put("AnnualCost_accumulateNPV",temp);
+//            in.close();
+//
+//            file=new File(path+"Every_AnnualCost_BT.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("czcbnz",scanner.nextDouble());
+//            temp.put("thcbnz",scanner.nextDouble());
+//            temp.put("ywcbnz",scanner.nextDouble());
+//            temp.put("rlcbnz",scanner.nextDouble());
+//            temp.put("cznz",scanner.nextDouble());
+//            temp.put("cbzjnz",scanner.nextDouble());
+//            output.put("Every_AnnualCost_BT",temp);
+//            in.close();
+//
+//            file=new File(path+"AnnualCost_Cool.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("zlsynz",scanner.nextDouble());
+//            list = new ArrayList<>();
+//            while(scanner.hasNext())
+//                list.add(scanner.nextDouble());
+//            temp.put("zlsynzlist",list);
+//            output.put("AnnualCost_Cool",temp);
+//            in.close();
+//
+//            file=new File(path+"AnnualCost_Coolstorage.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("czcbnz",scanner.nextDouble());
+//            temp.put("thcbnz",scanner.nextDouble());
+//            temp.put("ywcbnz",scanner.nextDouble());
+//            temp.put("rlcbnz",scanner.nextDouble());
+//            temp.put("cznz",scanner.nextDouble());
+//            temp.put("cbzjnz",scanner.nextDouble());
+//            output.put("AnnualCost_Coolstorage",temp);
+//            in.close();
+//
+//            file=new File(path+"AnnualCost_costflow.txt");
+//            in = new FileInputStream(file);
+//            scanner = new Scanner(in);
+//            temp =  new JSONObject();
+//            temp.put("jycbnz",scanner.nextDouble());
+//            list = new ArrayList<>();
+//            while(scanner.hasNext())
+//                list.add(scanner.nextDouble());
+//            temp.put("jycbnzlist",list);
+//            output.put("AnnualCost_costflow",temp);
+//            in.close();
+//
+//            //11-20
+//
+//
+
+
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+    }
+
+    public  String readFile(String path)
     {
         String ret="";
         try{
@@ -205,7 +304,7 @@ public class FileHelper {
     }
 
 
-    public static String getInput(String temp)
+    public String getInput(String temp)
     {
         String ret="";
         JSONObject jsonpObject= JSON.parseObject(temp);
@@ -256,25 +355,25 @@ public class FileHelper {
             len=generators.size();
             for(int i=0;i<len;i++)
             {
-                ret+=generators.get(i).toString1();
-                if(generators.get(i).getType().equals("汽油"))
-                {
-                    ret+=generatordata.get("qiyou_price").toString()+'\n';
-                }
-                else
-                {
-                    ret+=generatordata.get("chaiyou_price").toString()+'\n';
-                }
-                ret+=generators.get(i).toString2()+'\n';
+//                ret+=generators.get(i).toString1();
+//                if(generators.get(i).getType().equals("汽油"))
+//                {
+//                    ret+=generatordata.get("qiyou_price").toString()+'\n';
+//                }
+//                else
+//                {
+//                    ret+=generatordata.get("chaiyou_price").toString()+'\n';
+//                }
+//                ret+=generators.get(i).toString2()+'\n';
             }
-            //System.out.println(batterydata.toString());
-            ret+="|";
-            for(int i=0;i<len;i++)
-            {
-                ret+="DieselPowerCurve"+Integer.toString(i)+".txt:";
-                ret+=generators.get(i).toString3();
-                ret+="|";
-            }
+//            //System.out.println(batterydata.toString());
+//            ret+="|";
+//            for(int i=0;i<len;i++)
+//            {
+//                ret+="DieselPowerCurve"+Integer.toString(i)+".txt:";
+//                ret+=generators.get(i).toString3();
+//                ret+="|";
+//            }
         }
         else
         {
@@ -462,7 +561,7 @@ public class FileHelper {
         return ret;
     }
 
-    public static boolean checkFinish(String username,String recordname)
+    public boolean checkFinish(String username,String recordname)
     {
         String path="F:"+File.separator+username+File.separator+recordname+File.separator+"exe"+File.separator+"IO"+File.separator+"OUT0";
         String[] filePath=null;
@@ -481,20 +580,9 @@ public class FileHelper {
             return false;
     }
 
-    public static void newRecord(Record record)
-    {
-        String path="F:"+File.separator+record.getOwner()+File.separator+record.getName();
-        try {
 
-            //copyDir("F:\\exe",path);
-            copyFolder("F:"+File.separator+"exe",path);
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 
-    public static void createUser(String username)
+    public void createUser(String username)
     {
         String newPath = "/"+username;
         try {
@@ -520,72 +608,7 @@ public class FileHelper {
     {
         return "F:"+File.separator+username+File.separator+recordname;
     }
-    public static void main(String[] args) {
-        RecordWithBLOBs record = new RecordWithBLOBs();
-        record.setName("lzw");
-        record.setOwner("lzw");
-        getIO(record);
-    }
 
-
-    public static void setIO(RecordWithBLOBs record)
-    {
-        String username=record.getOwner();
-        String recordname=record.getName();
-        String path="F:"+File.separator+username+File.separator+recordname+File.separator+"exe"+File.separator+"IO";
-        StringBuilder result = new StringBuilder();
-
-//        String filePath = "F:\\1.txt";
-//        File file1 = new File(filePath);
-//        if(file1.exists()){
-//            try{
-//                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"gbk"));
-//                String s = null;
-//                while((s = br.readLine())!=null){
-//                    result.append(s+"\n");
-//                    //System.out.println(s);
-//                }
-//                br.close();
-//            }catch(Exception e){
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        String input = result.toString();
-        String input=record.getInput();
-        String file[] = input.split("\\|");
-
-        try {
-            (new File(path)).mkdir();
-            (new File(path+File.separator+"IN0")).mkdir();
-            (new File(path+File.separator+"OUT0")).mkdir();
-            for(int i=0;i<file.length;i++)
-            {
-                //System.out.println(file[i]);
-                String temp[]=file[i].split(":");
-                if(temp.length==2)
-                {
-                    File newfile = new File(path+File.separator+"IN0"+File.separator+temp[0]);
-                    FileOutputStream out = new FileOutputStream(newfile);
-
-                    out.write(temp[1].getBytes());
-                    out.close();
-                }
-                else if(temp.length==1)
-                {
-                    File newfile = new File(path+File.separator+"IN0"+File.separator+temp[0]);
-                    FileOutputStream out = new FileOutputStream(newfile);
-
-                    out.close();
-
-                }
-            }
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-    }
 
     public static void copyFolder(String oldPath, String newPath) {
 
@@ -666,7 +689,7 @@ public class FileHelper {
         out.close();
     }
 
-    public static void getIO(RecordWithBLOBs record)
+    public static void getIO(Record record)
     {
         String username=record.getOwner();
         String recordname=record.getName();

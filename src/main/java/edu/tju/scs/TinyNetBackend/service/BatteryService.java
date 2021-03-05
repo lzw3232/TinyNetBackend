@@ -1,22 +1,16 @@
 package edu.tju.scs.TinyNetBackend.service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import edu.tju.scs.TinyNetBackend.common.utils.TokenUtil;
 import edu.tju.scs.TinyNetBackend.mapper.BatteryMapper;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
 import edu.tju.scs.TinyNetBackend.model.dto.ResponseData;
-import edu.tju.scs.TinyNetBackend.model.dto.ResponseObjectData;
 import edu.tju.scs.TinyNetBackend.model.po.Battery;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
 
 
 @Slf4j

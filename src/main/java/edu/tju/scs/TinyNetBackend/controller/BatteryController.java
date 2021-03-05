@@ -20,7 +20,7 @@ public class BatteryController {
     protected BatteryService batteryService;
 
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/battery/add",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
@@ -46,7 +46,7 @@ public class BatteryController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
+
     @RequestMapping(value = "/tinyNet/device/battery/delete",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport delete(@RequestBody(required=false) JSONObject data)
@@ -55,7 +55,6 @@ public class BatteryController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
     @RequestMapping(value = "/tinyNet/device/battery/list",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport list(@RequestBody(required=false) JSONObject data){
@@ -63,12 +62,12 @@ public class BatteryController {
         return result;
     }
 
-    @JWTAuth(value = {JWTService.ADMIN_ROLE, JWTService.USER_ROLE})
-    @RequestMapping(value = "/lzw",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/{username}",method = RequestMethod.GET)
     @ResponseBody
-    public ErrorReport lzw(@RequestBody(required=false) JSONObject data){
-        ErrorReport result =  batteryService.lzw();
-        return result;
+    public String lzw(@RequestBody(required=false) JSONObject data, @PathVariable String username){
+//        ErrorReport result =  batteryService.lzw(username);
+        return username;
     }
 
 

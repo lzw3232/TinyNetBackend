@@ -29,19 +29,7 @@ public class Generator {
 
     private String type;
 
-    private Integer glqxnum;
-
-    private Double scgl1;
-
-    private Double scgl2;
-
-    private Double scgl3;
-
-    private Double rlxh1;
-
-    private Double rlxh2;
-
-    private Double rlxh3;
+    private Integer glqxNum;
 
     private Integer capacity1;
 
@@ -74,6 +62,10 @@ public class Generator {
     private Double yxwhcb3;
 
     private Double yxwhcb4;
+
+    private String outPower;
+
+    private String fuelUse;
 
     private String owner;
 
@@ -189,60 +181,12 @@ public class Generator {
         this.type = type == null ? null : type.trim();
     }
 
-    public Integer getGlqxnum() {
-        return glqxnum;
+    public Integer getGlqxNum() {
+        return glqxNum;
     }
 
-    public void setGlqxnum(Integer glqxnum) {
-        this.glqxnum = glqxnum;
-    }
-
-    public Double getScgl1() {
-        return scgl1;
-    }
-
-    public void setScgl1(Double scgl1) {
-        this.scgl1 = scgl1;
-    }
-
-    public Double getScgl2() {
-        return scgl2;
-    }
-
-    public void setScgl2(Double scgl2) {
-        this.scgl2 = scgl2;
-    }
-
-    public Double getScgl3() {
-        return scgl3;
-    }
-
-    public void setScgl3(Double scgl3) {
-        this.scgl3 = scgl3;
-    }
-
-    public Double getRlxh1() {
-        return rlxh1;
-    }
-
-    public void setRlxh1(Double rlxh1) {
-        this.rlxh1 = rlxh1;
-    }
-
-    public Double getRlxh2() {
-        return rlxh2;
-    }
-
-    public void setRlxh2(Double rlxh2) {
-        this.rlxh2 = rlxh2;
-    }
-
-    public Double getRlxh3() {
-        return rlxh3;
-    }
-
-    public void setRlxh3(Double rlxh3) {
-        this.rlxh3 = rlxh3;
+    public void setGlqxNum(Integer glqxNum) {
+        this.glqxNum = glqxNum;
     }
 
     public Integer getCapacity1() {
@@ -373,62 +317,27 @@ public class Generator {
         this.yxwhcb4 = yxwhcb4;
     }
 
+    public String getOutPower() {
+        return outPower;
+    }
+
+    public void setOutPower(String outPower) {
+        this.outPower = outPower == null ? null : outPower.trim();
+    }
+
+    public String getFuelUse() {
+        return fuelUse;
+    }
+
+    public void setFuelUse(String fuelUse) {
+        this.fuelUse = fuelUse == null ? null : fuelUse.trim();
+    }
+
     public String getOwner() {
         return owner;
     }
 
     public void setOwner(String owner) {
         this.owner = owner == null ? null : owner.trim();
-    }
-
-    public  String  toString1()
-    {
-        String ret="";
-        ret+=Double.toString(edgl)+'\n';
-        ret+=Double.toString(zdfzl)+'\n';
-        ret+=Double.toString(zxyysj)+'\n';
-        ret+=Double.toString(life)+'\n';
-        ret+=Double.toString(co)+'\n';
-        ret+=Double.toString(wrsdqhhw)+'\n';
-        ret+=Double.toString(klw)+'\n';
-        ret+=Double.toString(dyhw)+'\n';
-        ret+=Double.toString(so2)+'\n';
-
-        return  ret;
-
-    }
-
-    public String toString2()
-    {
-        String ret="";
-        ret+=Integer.toString(capacity1)+' ';
-        ret+=Integer.toString(capacity2)+' ';
-        ret+=Integer.toString(capacity3)+' ';
-        ret+=Integer.toString(capacity4)+'\n';
-        ret+=Double.toString(cjcb1)+' ';
-        ret+=Double.toString(cjcb2)+' ';
-        ret+=Double.toString(cjcb3)+' ';
-        ret+=Double.toString(cjcb4)+'\n';
-        ret+=Double.toString(gxcb1)+' ';
-        ret+=Double.toString(gxcb2)+' ';
-        ret+=Double.toString(gxcb3)+' ';
-        ret+=Double.toString(gxcb4)+'\n';
-        ret+=Double.toString(yxwhcb1)+' ';
-        ret+=Double.toString(yxwhcb2)+' ';
-        ret+=Double.toString(yxwhcb3)+' ';
-        ret+=Double.toString(yxwhcb4)+'\n';
-        return ret;
-    }
-
-    public String toString3()
-    {
-        String ret="";
-        ret+=Double.toString(scgl1)+' ';
-        ret+=Double.toString(rlxh1)+'\n';
-        ret+=Double.toString(scgl2)+' ';
-        ret+=Double.toString(rlxh2)+'\n';
-        ret+=Double.toString(scgl3)+' ';
-        ret+=Double.toString(rlxh3)+'\n';
-        return ret;
     }
 }
