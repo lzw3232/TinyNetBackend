@@ -24,6 +24,4 @@ public class ErrorReport {
     @Setter
     private ResponseData data;
 
-
-
 }

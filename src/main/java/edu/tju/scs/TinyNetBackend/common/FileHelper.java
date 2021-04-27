@@ -327,13 +327,13 @@ public class FileHelper {
             len=batterys.size();
             for(int i=0;i<len;i++)
             {
-                ret+=batterys.get(i).toString1();
-                ret+=batterydata.get("battery_soc_init").toString()+'\n';
-                ret+=batterydata.get("battery_soc_upper_limit").toString()+'\n';
-                ret+=batterydata.get("battery_soc_lower_limit").toString()+'\n';
-                ret+=batterydata.get("battery_total_flow").toString()+'\n';
-                ret+=batterydata.get("battery_back_flow").toString()+'\n';
-                ret+=batterys.get(i).toString2()+'\n';
+//                ret+=batterys.get(i).toString1();
+//                ret+=batterydata.get("battery_soc_init").toString()+'\n';
+//                ret+=batterydata.get("battery_soc_upper_limit").toString()+'\n';
+//                ret+=batterydata.get("battery_soc_lower_limit").toString()+'\n';
+//                ret+=batterydata.get("battery_total_flow").toString()+'\n';
+//                ret+=batterydata.get("battery_back_flow").toString()+'\n';
+//                ret+=batterys.get(i).toString2()+'\n';
             }
         }
 
@@ -351,7 +351,7 @@ public class FileHelper {
         if(generatordata!=null)
         {
             generatordata = JSON.parseObject(generatordata.get("data").toString());
-            List<Generator> generators  = JSON.parseArray(generatordata.get("generator_ids").toString(), Generator.class);
+            List<Battery> generators  = JSON.parseArray(generatordata.get("generator_ids").toString(), Battery.class);
             len=generators.size();
             for(int i=0;i<len;i++)
             {
@@ -412,12 +412,12 @@ public class FileHelper {
         if(turbinedata!=null)
         {
             turbinedata = JSON.parseObject(turbinedata.get("data").toString());
-            List<Turbine> turbines  = JSON.parseArray(turbinedata.get("turbine_ids").toString(),Turbine.class);
+            List<Battery> turbines  = JSON.parseArray(turbinedata.get("turbine_ids").toString(),Battery.class);
             // List<Battery> batterys = JSON.parseArray(batterydata.get("battery_ids").toString());
             len=turbines.size();
             for(int i=0;i<len;i++)
             {
-                ret+=turbines.get(i).toString1()+'\n';
+//                ret+=turbines.get(i).toString1()+'\n';
             }
         }
         ret+="|";
@@ -432,11 +432,11 @@ public class FileHelper {
             len=photovoltaics.size();
             for(int i=0;i<len;i++)
             {
-                ret+=photovoltaics.get(i).toString1();
-                ret+=photovoltaicdata.get("photovoltaic_sq").toString()+'\n';
-                ret+=photovoltaicdata.get("photovoltaic_wd").toString()+'\n';
-                ret+=photovoltaicdata.get("photovoltaic_jd").toString()+'\n';
-                ret+=photovoltaics.get(i).toString2()+'\n';
+//                ret+=photovoltaics.get(i).toString1();
+//                ret+=photovoltaicdata.get("photovoltaic_sq").toString()+'\n';
+//                ret+=photovoltaicdata.get("photovoltaic_wd").toString()+'\n';
+//                ret+=photovoltaicdata.get("photovoltaic_jd").toString()+'\n';
+//                ret+=photovoltaics.get(i).toString2()+'\n';
             }
         }
         ret+="|";
@@ -521,24 +521,24 @@ public class FileHelper {
         JSONObject wind_turbinesdata = JSON.parseObject(json.get("wind_turbines").toString());
         if(wind_turbinesdata!=null)
         {
-            wind_turbinesdata = JSON.parseObject(wind_turbinesdata.get("data").toString());
-            List<Wind_Turbines> wind_turbines  = JSON.parseArray(wind_turbinesdata.get("wind_turbines_ids").toString(), Wind_Turbines.class);
-            len=wind_turbines.size();
-            for(int i=0;i<len;i++)
-            {
-                ret += wind_turbinesdata.get("fscldjdmgd").toString() + '\n';
-                ret += wind_turbinesdata.get("hbgd").toString() + '\n';
-                ret += wind_turbinesdata.get("dmcccd").toString() + '\n';
-                ret += wind_turbines.get(i).toString1() + '\n';
-            }
-            //System.out.println(batterydata.toString());
-            ret+="|";
-            for(int i=0;i<len;i++)
-            {
-                ret+="WTPowerCurve"+Integer.toString(i)+".txt:";
-                ret+=wind_turbines.get(i).toString2();
-                ret+="|";
-            }
+//            wind_turbinesdata = JSON.parseObject(wind_turbinesdata.get("data").toString());
+//            List<Wind_Turbines> wind_turbines  = JSON.parseArray(wind_turbinesdata.get("wind_turbines_ids").toString(), Wind_Turbines.class);
+//            len=wind_turbines.size();
+//            for(int i=0;i<len;i++)
+//            {
+//                ret += wind_turbinesdata.get("fscldjdmgd").toString() + '\n';
+//                ret += wind_turbinesdata.get("hbgd").toString() + '\n';
+//                ret += wind_turbinesdata.get("dmcccd").toString() + '\n';
+//                ret += wind_turbines.get(i).toString1() + '\n';
+//            }
+//            //System.out.println(batterydata.toString());
+//            ret+="|";
+//            for(int i=0;i<len;i++)
+//            {
+//                ret+="WTPowerCurve"+Integer.toString(i)+".txt:";
+//                ret+=wind_turbines.get(i).toString2();
+//                ret+="|";
+//            }
         }
         else
         {

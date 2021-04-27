@@ -1,29 +1,29 @@
 package edu.tju.scs.TinyNetBackend.service;
 
+
 import com.alibaba.fastjson.JSONObject;
 import edu.tju.scs.TinyNetBackend.common.utils.TokenUtil;
 import edu.tju.scs.TinyNetBackend.mapper.Gas_boilerMapper;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
 import edu.tju.scs.TinyNetBackend.model.dto.ResponseData;
 import edu.tju.scs.TinyNetBackend.model.po.Gas_boiler;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-@Slf4j
 @Service
 public class Gas_boilerService {
 
     @Autowired
     protected Gas_boilerMapper gas_boilerMapper;
 
+
     private boolean check(int id,String owner)
     {
         if(gas_boilerMapper.selectByPrimaryKey(id)==null||!owner.equals(gas_boilerMapper.selectByPrimaryKey(id).getOwner()))
-            return false;        return true;
+            return false;
+        return true;
     }
 
 
@@ -34,7 +34,7 @@ public class Gas_boilerService {
         String username = TokenUtil.getAudience(token);
         gas_boiler.put("owner",username);
         gas_boiler.remove("id");
-        Gas_boiler gas_boiler1 = JSONObject.toJavaObject(gas_boiler, Gas_boiler.class);
+        Gas_boiler gas_boiler1 = JSONObject.toJavaObject(gas_boiler,Gas_boiler.class);
 
         gas_boilerMapper.insert(gas_boiler1);
 
@@ -126,10 +126,6 @@ public class Gas_boilerService {
 
         return new ErrorReport(0,"success",response);
 
-    }
-    public ErrorReport lzw()
-    {
-        return new ErrorReport(0,"success");
     }
 
 }

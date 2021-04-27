@@ -5,51 +5,51 @@ public class Heat_storage {
 
     private String name;
 
-    private Double heatStorageEfficiency;
+    private Double efficiencycharge;
 
-    private Double heatReleaseEfficiency;
+    private Double efficiencydischarge;
 
-    private Double maximumHeatStorageRate;
+    private Double maxchargerate;
 
-    private Double maximumHeatReleaseRate;
+    private Double maxdischargerate;
 
-    private Double selfLossRate;
+    private Double decay;
 
-    private Double life;
+    private Double lifeTime;
 
     private String manufacturer;
 
-    private Double capacity1;
+    private Double numberOrCapacity1;
 
-    private Double capacity2;
+    private Double numberOrCapacity2;
 
-    private Double capacity3;
+    private Double numberOrCapacity3;
 
-    private Double capacity4;
+    private Double numberOrCapacity4;
 
-    private Double initialConstructionCost1;
+    private Double capitalCurve1;
 
-    private Double initialConstructionCost2;
+    private Double capitalCurve2;
 
-    private Double initialConstructionCost3;
+    private Double capitalCurve3;
 
-    private Double initialConstructionCost4;
+    private Double capitalCurve4;
 
-    private Double updateCost1;
+    private Double replacementCost1;
 
-    private Double updateCost2;
+    private Double replacementCost2;
 
-    private Double updateCost3;
+    private Double replacementCost3;
 
-    private Double updateCost4;
+    private Double replacementCost4;
 
-    private Double operationAndMaintenanceCosts1;
+    private Double maintainCost1;
 
-    private Double operationAndMaintenanceCosts2;
+    private Double maintainCost2;
 
-    private Double operationAndMaintenanceCosts3;
+    private Double maintainCost3;
 
-    private Double operationAndMaintenanceCosts4;
+    private Double maintainCost4;
 
     private String owner;
 
@@ -69,52 +69,52 @@ public class Heat_storage {
         this.name = name == null ? null : name.trim();
     }
 
-    public Double getHeatStorageEfficiency() {
-        return heatStorageEfficiency;
+    public Double getEfficiencycharge() {
+        return efficiencycharge;
     }
 
-    public void setHeatStorageEfficiency(Double heatStorageEfficiency) {
-        this.heatStorageEfficiency = heatStorageEfficiency;
+    public void setEfficiencycharge(Double efficiencycharge) {
+        this.efficiencycharge = efficiencycharge;
     }
 
-    public Double getHeatReleaseEfficiency() {
-        return heatReleaseEfficiency;
+    public Double getEfficiencydischarge() {
+        return efficiencydischarge;
     }
 
-    public void setHeatReleaseEfficiency(Double heatReleaseEfficiency) {
-        this.heatReleaseEfficiency = heatReleaseEfficiency;
+    public void setEfficiencydischarge(Double efficiencydischarge) {
+        this.efficiencydischarge = efficiencydischarge;
     }
 
-    public Double getMaximumHeatStorageRate() {
-        return maximumHeatStorageRate;
+    public Double getMaxchargerate() {
+        return maxchargerate;
     }
 
-    public void setMaximumHeatStorageRate(Double maximumHeatStorageRate) {
-        this.maximumHeatStorageRate = maximumHeatStorageRate;
+    public void setMaxchargerate(Double maxchargerate) {
+        this.maxchargerate = maxchargerate;
     }
 
-    public Double getMaximumHeatReleaseRate() {
-        return maximumHeatReleaseRate;
+    public Double getMaxdischargerate() {
+        return maxdischargerate;
     }
 
-    public void setMaximumHeatReleaseRate(Double maximumHeatReleaseRate) {
-        this.maximumHeatReleaseRate = maximumHeatReleaseRate;
+    public void setMaxdischargerate(Double maxdischargerate) {
+        this.maxdischargerate = maxdischargerate;
     }
 
-    public Double getSelfLossRate() {
-        return selfLossRate;
+    public Double getDecay() {
+        return decay;
     }
 
-    public void setSelfLossRate(Double selfLossRate) {
-        this.selfLossRate = selfLossRate;
+    public void setDecay(Double decay) {
+        this.decay = decay;
     }
 
-    public Double getLife() {
-        return life;
+    public Double getLifeTime() {
+        return lifeTime;
     }
 
-    public void setLife(Double life) {
-        this.life = life;
+    public void setLifeTime(Double lifeTime) {
+        this.lifeTime = lifeTime;
     }
 
     public String getManufacturer() {
@@ -125,132 +125,132 @@ public class Heat_storage {
         this.manufacturer = manufacturer == null ? null : manufacturer.trim();
     }
 
-    public Double getCapacity1() {
-        return capacity1;
+    public Double getNumberOrCapacity1() {
+        return numberOrCapacity1;
     }
 
-    public void setCapacity1(Double capacity1) {
-        this.capacity1 = capacity1;
+    public void setNumberOrCapacity1(Double numberOrCapacity1) {
+        this.numberOrCapacity1 = numberOrCapacity1;
     }
 
-    public Double getCapacity2() {
-        return capacity2;
+    public Double getNumberOrCapacity2() {
+        return numberOrCapacity2;
     }
 
-    public void setCapacity2(Double capacity2) {
-        this.capacity2 = capacity2;
+    public void setNumberOrCapacity2(Double numberOrCapacity2) {
+        this.numberOrCapacity2 = numberOrCapacity2;
     }
 
-    public Double getCapacity3() {
-        return capacity3;
+    public Double getNumberOrCapacity3() {
+        return numberOrCapacity3;
     }
 
-    public void setCapacity3(Double capacity3) {
-        this.capacity3 = capacity3;
+    public void setNumberOrCapacity3(Double numberOrCapacity3) {
+        this.numberOrCapacity3 = numberOrCapacity3;
     }
 
-    public Double getCapacity4() {
-        return capacity4;
+    public Double getNumberOrCapacity4() {
+        return numberOrCapacity4;
     }
 
-    public void setCapacity4(Double capacity4) {
-        this.capacity4 = capacity4;
+    public void setNumberOrCapacity4(Double numberOrCapacity4) {
+        this.numberOrCapacity4 = numberOrCapacity4;
     }
 
-    public Double getInitialConstructionCost1() {
-        return initialConstructionCost1;
+    public Double getCapitalCurve1() {
+        return capitalCurve1;
     }
 
-    public void setInitialConstructionCost1(Double initialConstructionCost1) {
-        this.initialConstructionCost1 = initialConstructionCost1;
+    public void setCapitalCurve1(Double capitalCurve1) {
+        this.capitalCurve1 = capitalCurve1;
     }
 
-    public Double getInitialConstructionCost2() {
-        return initialConstructionCost2;
+    public Double getCapitalCurve2() {
+        return capitalCurve2;
     }
 
-    public void setInitialConstructionCost2(Double initialConstructionCost2) {
-        this.initialConstructionCost2 = initialConstructionCost2;
+    public void setCapitalCurve2(Double capitalCurve2) {
+        this.capitalCurve2 = capitalCurve2;
     }
 
-    public Double getInitialConstructionCost3() {
-        return initialConstructionCost3;
+    public Double getCapitalCurve3() {
+        return capitalCurve3;
     }
 
-    public void setInitialConstructionCost3(Double initialConstructionCost3) {
-        this.initialConstructionCost3 = initialConstructionCost3;
+    public void setCapitalCurve3(Double capitalCurve3) {
+        this.capitalCurve3 = capitalCurve3;
     }
 
-    public Double getInitialConstructionCost4() {
-        return initialConstructionCost4;
+    public Double getCapitalCurve4() {
+        return capitalCurve4;
     }
 
-    public void setInitialConstructionCost4(Double initialConstructionCost4) {
-        this.initialConstructionCost4 = initialConstructionCost4;
+    public void setCapitalCurve4(Double capitalCurve4) {
+        this.capitalCurve4 = capitalCurve4;
     }
 
-    public Double getUpdateCost1() {
-        return updateCost1;
+    public Double getReplacementCost1() {
+        return replacementCost1;
     }
 
-    public void setUpdateCost1(Double updateCost1) {
-        this.updateCost1 = updateCost1;
+    public void setReplacementCost1(Double replacementCost1) {
+        this.replacementCost1 = replacementCost1;
     }
 
-    public Double getUpdateCost2() {
-        return updateCost2;
+    public Double getReplacementCost2() {
+        return replacementCost2;
     }
 
-    public void setUpdateCost2(Double updateCost2) {
-        this.updateCost2 = updateCost2;
+    public void setReplacementCost2(Double replacementCost2) {
+        this.replacementCost2 = replacementCost2;
     }
 
-    public Double getUpdateCost3() {
-        return updateCost3;
+    public Double getReplacementCost3() {
+        return replacementCost3;
     }
 
-    public void setUpdateCost3(Double updateCost3) {
-        this.updateCost3 = updateCost3;
+    public void setReplacementCost3(Double replacementCost3) {
+        this.replacementCost3 = replacementCost3;
     }
 
-    public Double getUpdateCost4() {
-        return updateCost4;
+    public Double getReplacementCost4() {
+        return replacementCost4;
     }
 
-    public void setUpdateCost4(Double updateCost4) {
-        this.updateCost4 = updateCost4;
+    public void setReplacementCost4(Double replacementCost4) {
+        this.replacementCost4 = replacementCost4;
     }
 
-    public Double getOperationAndMaintenanceCosts1() {
-        return operationAndMaintenanceCosts1;
+    public Double getMaintainCost1() {
+        return maintainCost1;
     }
 
-    public void setOperationAndMaintenanceCosts1(Double operationAndMaintenanceCosts1) {
-        this.operationAndMaintenanceCosts1 = operationAndMaintenanceCosts1;
+    public void setMaintainCost1(Double maintainCost1) {
+        this.maintainCost1 = maintainCost1;
     }
 
-    public Double getOperationAndMaintenanceCosts2() {
-        return operationAndMaintenanceCosts2;
+    public Double getMaintainCost2() {
+        return maintainCost2;
     }
 
-    public void setOperationAndMaintenanceCosts2(Double operationAndMaintenanceCosts2) {
-        this.operationAndMaintenanceCosts2 = operationAndMaintenanceCosts2;
+    public void setMaintainCost2(Double maintainCost2) {
+        this.maintainCost2 = maintainCost2;
     }
 
-    public Double getOperationAndMaintenanceCosts3() {
-        return operationAndMaintenanceCosts3;
+    public Double getMaintainCost3() {
+        return maintainCost3;
     }
 
-    public void setOperationAndMaintenanceCosts3(Double operationAndMaintenanceCosts3) {
-        this.operationAndMaintenanceCosts3 = operationAndMaintenanceCosts3;
+    public void setMaintainCost3(Double maintainCost3) {
+        this.maintainCost3 = maintainCost3;
     }
 
-    public Double getOperationAndMaintenanceCosts4() {
-        return operationAndMaintenanceCosts4;
+    public Double getMaintainCost4() {
+        return maintainCost4;
     }
 
-    public void setOperationAndMaintenanceCosts4(Double operationAndMaintenanceCosts4) {
-        this.operationAndMaintenanceCosts4 = operationAndMaintenanceCosts4;
+    public void setMaintainCost4(Double maintainCost4) {
+        this.maintainCost4 = maintainCost4;
     }
 
     public String getOwner() {

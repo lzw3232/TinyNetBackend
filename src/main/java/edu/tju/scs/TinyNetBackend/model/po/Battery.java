@@ -5,59 +5,59 @@ public class Battery {
 
     private String name;
 
-    private Double eddy;
+    private Double ratedVoltage;
 
-    private Double xhcfdxl;
+    private Double roundTridEfficiency;
 
-    private Double zdcdsl;
+    private Double maximumChargeRate;
 
-    private Double zdcddl;
+    private Double maximumChargeCurrent;
 
-    private Double zdfdsl;
+    private Double constRate;
 
-    private Double dcrl;
+    private Double maximumCapacity;
 
-    private Double life;
+    private Double floatLife;
 
-    private Double qsmfd;
+    private Double lifeTimeThroughput;
 
-    private Integer clgs;
+    private Integer DAtype;
 
-    private String factory;
+    private Integer numberofBattery;
 
-    private Integer type;
+    private String manufacturer;
 
-    private Integer capacity1;
+    private Integer numberOrCapacity1;
 
-    private Integer capacity2;
+    private Integer numberOrCapacity2;
 
-    private Integer capacity3;
+    private Integer numberOrCapacity3;
 
-    private Integer capacity4;
+    private Integer numberOrCapacity4;
 
-    private Double cjcb1;
+    private Double capitalCurve1;
 
-    private Double cjcb2;
+    private Double capitalCurve2;
 
-    private Double cjcb3;
+    private Double capitalCurve3;
 
-    private Double cjcb4;
+    private Double capitalCurve4;
 
-    private Double gxcb1;
+    private Double replacementCost1;
 
-    private Double gxcb2;
+    private Double replacementCost2;
 
-    private Double gxcb3;
+    private Double replacementCost3;
 
-    private Double gxcb4;
+    private Double replacementCost4;
 
-    private Double yxwhcb1;
+    private Double maintainCost1;
 
-    private Double yxwhcb2;
+    private Double maintainCost2;
 
-    private Double yxwhcb3;
+    private Double maintainCost3;
 
-    private Double yxwhcb4;
+    private Double maintainCost4;
 
     private String owner;
 
@@ -77,220 +77,220 @@ public class Battery {
         this.name = name == null ? null : name.trim();
     }
 
-    public Double getEddy() {
-        return eddy;
+    public Double getRatedVoltage() {
+        return ratedVoltage;
     }
 
-    public void setEddy(Double eddy) {
-        this.eddy = eddy;
+    public void setRatedVoltage(Double ratedVoltage) {
+        this.ratedVoltage = ratedVoltage;
     }
 
-    public Double getXhcfdxl() {
-        return xhcfdxl;
+    public Double getRoundTridEfficiency() {
+        return roundTridEfficiency;
     }
 
-    public void setXhcfdxl(Double xhcfdxl) {
-        this.xhcfdxl = xhcfdxl;
+    public void setRoundTridEfficiency(Double roundTridEfficiency) {
+        this.roundTridEfficiency = roundTridEfficiency;
     }
 
-    public Double getZdcdsl() {
-        return zdcdsl;
+    public Double getMaximumChargeRate() {
+        return maximumChargeRate;
     }
 
-    public void setZdcdsl(Double zdcdsl) {
-        this.zdcdsl = zdcdsl;
+    public void setMaximumChargeRate(Double maximumChargeRate) {
+        this.maximumChargeRate = maximumChargeRate;
     }
 
-    public Double getZdcddl() {
-        return zdcddl;
+    public Double getMaximumChargeCurrent() {
+        return maximumChargeCurrent;
     }
 
-    public void setZdcddl(Double zdcddl) {
-        this.zdcddl = zdcddl;
+    public void setMaximumChargeCurrent(Double maximumChargeCurrent) {
+        this.maximumChargeCurrent = maximumChargeCurrent;
     }
 
-    public Double getZdfdsl() {
-        return zdfdsl;
+    public Double getConstRate() {
+        return constRate;
     }
 
-    public void setZdfdsl(Double zdfdsl) {
-        this.zdfdsl = zdfdsl;
+    public void setConstRate(Double constRate) {
+        this.constRate = constRate;
     }
 
-    public Double getDcrl() {
-        return dcrl;
+    public Double getMaximumCapacity() {
+        return maximumCapacity;
     }
 
-    public void setDcrl(Double dcrl) {
-        this.dcrl = dcrl;
+    public void setMaximumCapacity(Double maximumCapacity) {
+        this.maximumCapacity = maximumCapacity;
     }
 
-    public Double getLife() {
-        return life;
+    public Double getFloatLife() {
+        return floatLife;
     }
 
-    public void setLife(Double life) {
-        this.life = life;
+    public void setFloatLife(Double floatLife) {
+        this.floatLife = floatLife;
     }
 
-    public Double getQsmfd() {
-        return qsmfd;
+    public Double getLifeTimeThroughput() {
+        return lifeTimeThroughput;
     }
 
-    public void setQsmfd(Double qsmfd) {
-        this.qsmfd = qsmfd;
+    public void setLifeTimeThroughput(Double lifeTimeThroughput) {
+        this.lifeTimeThroughput = lifeTimeThroughput;
     }
 
-    public Integer getClgs() {
-        return clgs;
+    public Integer getDAtype() {
+        return DAtype;
     }
 
-    public void setClgs(Integer clgs) {
-        this.clgs = clgs;
+    public void setDAtype(Integer DAtype) {
+        this.DAtype = DAtype;
     }
 
-    public String getFactory() {
-        return factory;
+    public Integer getNumberofBattery() {
+        return numberofBattery;
     }
 
-    public void setFactory(String factory) {
-        this.factory = factory == null ? null : factory.trim();
+    public void setNumberofBattery(Integer numberofBattery) {
+        this.numberofBattery = numberofBattery;
     }
 
-    public Integer getType() {
-        return type;
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer == null ? null : manufacturer.trim();
     }
 
-    public Integer getCapacity1() {
-        return capacity1;
+    public Integer getNumberOrCapacity1() {
+        return numberOrCapacity1;
     }
 
-    public void setCapacity1(Integer capacity1) {
-        this.capacity1 = capacity1;
+    public void setNumberOrCapacity1(Integer numberOrCapacity1) {
+        this.numberOrCapacity1 = numberOrCapacity1;
     }
 
-    public Integer getCapacity2() {
-        return capacity2;
+    public Integer getNumberOrCapacity2() {
+        return numberOrCapacity2;
     }
 
-    public void setCapacity2(Integer capacity2) {
-        this.capacity2 = capacity2;
+    public void setNumberOrCapacity2(Integer numberOrCapacity2) {
+        this.numberOrCapacity2 = numberOrCapacity2;
     }
 
-    public Integer getCapacity3() {
-        return capacity3;
+    public Integer getNumberOrCapacity3() {
+        return numberOrCapacity3;
     }
 
-    public void setCapacity3(Integer capacity3) {
-        this.capacity3 = capacity3;
+    public void setNumberOrCapacity3(Integer numberOrCapacity3) {
+        this.numberOrCapacity3 = numberOrCapacity3;
     }
 
-    public Integer getCapacity4() {
-        return capacity4;
+    public Integer getNumberOrCapacity4() {
+        return numberOrCapacity4;
     }
 
-    public void setCapacity4(Integer capacity4) {
-        this.capacity4 = capacity4;
+    public void setNumberOrCapacity4(Integer numberOrCapacity4) {
+        this.numberOrCapacity4 = numberOrCapacity4;
     }
 
-    public Double getCjcb1() {
-        return cjcb1;
+    public Double getCapitalCurve1() {
+        return capitalCurve1;
     }
 
-    public void setCjcb1(Double cjcb1) {
-        this.cjcb1 = cjcb1;
+    public void setCapitalCurve1(Double capitalCurve1) {
+        this.capitalCurve1 = capitalCurve1;
     }
 
-    public Double getCjcb2() {
-        return cjcb2;
+    public Double getCapitalCurve2() {
+        return capitalCurve2;
     }
 
-    public void setCjcb2(Double cjcb2) {
-        this.cjcb2 = cjcb2;
+    public void setCapitalCurve2(Double capitalCurve2) {
+        this.capitalCurve2 = capitalCurve2;
     }
 
-    public Double getCjcb3() {
-        return cjcb3;
+    public Double getCapitalCurve3() {
+        return capitalCurve3;
     }
 
-    public void setCjcb3(Double cjcb3) {
-        this.cjcb3 = cjcb3;
+    public void setCapitalCurve3(Double capitalCurve3) {
+        this.capitalCurve3 = capitalCurve3;
     }
 
-    public Double getCjcb4() {
-        return cjcb4;
+    public Double getCapitalCurve4() {
+        return capitalCurve4;
     }
 
-    public void setCjcb4(Double cjcb4) {
-        this.cjcb4 = cjcb4;
+    public void setCapitalCurve4(Double capitalCurve4) {
+        this.capitalCurve4 = capitalCurve4;
     }
 
-    public Double getGxcb1() {
-        return gxcb1;
+    public Double getReplacementCost1() {
+        return replacementCost1;
     }
 
-    public void setGxcb1(Double gxcb1) {
-        this.gxcb1 = gxcb1;
+    public void setReplacementCost1(Double replacementCost1) {
+        this.replacementCost1 = replacementCost1;
     }
 
-    public Double getGxcb2() {
-        return gxcb2;
+    public Double getReplacementCost2() {
+        return replacementCost2;
     }
 
-    public void setGxcb2(Double gxcb2) {
-        this.gxcb2 = gxcb2;
+    public void setReplacementCost2(Double replacementCost2) {
+        this.replacementCost2 = replacementCost2;
     }
 
-    public Double getGxcb3() {
-        return gxcb3;
+    public Double getReplacementCost3() {
+        return replacementCost3;
     }
 
-    public void setGxcb3(Double gxcb3) {
-        this.gxcb3 = gxcb3;
+    public void setReplacementCost3(Double replacementCost3) {
+        this.replacementCost3 = replacementCost3;
     }
 
-    public Double getGxcb4() {
-        return gxcb4;
+    public Double getReplacementCost4() {
+        return replacementCost4;
     }
 
-    public void setGxcb4(Double gxcb4) {
-        this.gxcb4 = gxcb4;
+    public void setReplacementCost4(Double replacementCost4) {
+        this.replacementCost4 = replacementCost4;
     }
 
-    public Double getYxwhcb1() {
-        return yxwhcb1;
+    public Double getMaintainCost1() {
+        return maintainCost1;
     }
 
-    public void setYxwhcb1(Double yxwhcb1) {
-        this.yxwhcb1 = yxwhcb1;
+    public void setMaintainCost1(Double maintainCost1) {
+        this.maintainCost1 = maintainCost1;
     }
 
-    public Double getYxwhcb2() {
-        return yxwhcb2;
+    public Double getMaintainCost2() {
+        return maintainCost2;
     }
 
-    public void setYxwhcb2(Double yxwhcb2) {
-        this.yxwhcb2 = yxwhcb2;
+    public void setMaintainCost2(Double maintainCost2) {
+        this.maintainCost2 = maintainCost2;
     }
 
-    public Double getYxwhcb3() {
-        return yxwhcb3;
+    public Double getMaintainCost3() {
+        return maintainCost3;
     }
 
-    public void setYxwhcb3(Double yxwhcb3) {
-        this.yxwhcb3 = yxwhcb3;
+    public void setMaintainCost3(Double maintainCost3) {
+        this.maintainCost3 = maintainCost3;
     }
 
-    public Double getYxwhcb4() {
-        return yxwhcb4;
+    public Double getMaintainCost4() {
+        return maintainCost4;
     }
 
-    public void setYxwhcb4(Double yxwhcb4) {
-        this.yxwhcb4 = yxwhcb4;
+    public void setMaintainCost4(Double maintainCost4) {
+        this.maintainCost4 = maintainCost4;
     }
 
     public String getOwner() {
@@ -299,45 +299,5 @@ public class Battery {
 
     public void setOwner(String owner) {
         this.owner = owner == null ? null : owner.trim();
-    }
-
-    public String toString1()
-    {
-        String ret="";
-        ret+=Double.toString(eddy)+'\n';
-        ret+=Double.toString(xhcfdxl)+'\n';
-        ret+=Double.toString(zdcdsl)+'\n';
-        ret+=Double.toString(zdcddl)+'\n';
-        ret+=Double.toString(zdfdsl)+'\n';
-        ret+=Double.toString(dcrl)+'\n';
-        ret+=Double.toString(life)+'\n';
-        ret+=Double.toString(qsmfd)+'\n';
-        ret+=Integer.toString(clgs)+'\n';
-        ret+=Integer.toString(type)+'\n';
-        return ret;
-
-    }
-
-    public String toString2()
-    {
-        String ret="";
-        ret+=Integer.toString(capacity1)+' ';
-        ret+=Integer.toString(capacity2)+' ';
-        ret+=Integer.toString(capacity3)+' ';
-        ret+=Integer.toString(capacity4)+'\n';
-        ret+=Double.toString(cjcb1)+' ';
-        ret+=Double.toString(cjcb2)+' ';
-        ret+=Double.toString(cjcb3)+' ';
-        ret+=Double.toString(cjcb4)+'\n';
-        ret+=Double.toString(gxcb1)+' ';
-        ret+=Double.toString(gxcb2)+' ';
-        ret+=Double.toString(gxcb3)+' ';
-        ret+=Double.toString(gxcb4)+'\n';
-        ret+=Double.toString(yxwhcb1)+' ';
-        ret+=Double.toString(yxwhcb2)+' ';
-        ret+=Double.toString(yxwhcb3)+' ';
-        ret+=Double.toString(yxwhcb4)+'\n';
-        return ret;
-
     }
 }

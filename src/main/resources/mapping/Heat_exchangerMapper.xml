@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.tju.scs.TinyNetBackend.mapper.Heat_exchangerMapper" >
+  <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Heat_exchanger" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ratedPower" property="ratedPower" jdbcType="DOUBLE" />
+    <result column="efficiency" property="efficiency" jdbcType="DOUBLE" />
+    <result column="lifeTime" property="lifeTime" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="INTEGER" />
+    <result column="numberOrCapacity2" property="numberOrCapacity2" jdbcType="INTEGER" />
+    <result column="numberOrCapacity3" property="numberOrCapacity3" jdbcType="INTEGER" />
+    <result column="numberOrCapacity4" property="numberOrCapacity4" jdbcType="INTEGER" />
+    <result column="capitalCurve1" property="capitalCurve1" jdbcType="DOUBLE" />
+    <result column="capitalCurve2" property="capitalCurve2" jdbcType="DOUBLE" />
+    <result column="capitalCurve3" property="capitalCurve3" jdbcType="DOUBLE" />
+    <result column="capitalCurve4" property="capitalCurve4" jdbcType="DOUBLE" />
+    <result column="replacementCost1" property="replacementCost1" jdbcType="DOUBLE" />
+    <result column="replacementCost2" property="replacementCost2" jdbcType="DOUBLE" />
+    <result column="replacementCost3" property="replacementCost3" jdbcType="DOUBLE" />
+    <result column="replacementCost4" property="replacementCost4" jdbcType="DOUBLE" />
+    <result column="maintainCost1" property="maintainCost1" jdbcType="DOUBLE" />
+    <result column="maintainCost2" property="maintainCost2" jdbcType="DOUBLE" />
+    <result column="maintainCost3" property="maintainCost3" jdbcType="DOUBLE" />
+    <result column="maintainCost4" property="maintainCost4" jdbcType="DOUBLE" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, ratedPower, efficiency, lifeTime, manufacturer, numberOrCapacity1, numberOrCapacity2, 
+    numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2, capitalCurve3, 
+    capitalCurve4, replacementCost1, replacementCost2, replacementCost3, replacementCost4, 
+    maintainCost1, maintainCost2, maintainCost3, maintainCost4, owner
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from heat_exchanger
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from heat_exchanger
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from heat_exchanger
+    where owner = #{username,jdbcType=VARCHAR}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="selectByOwner1" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from heat_exchanger
+    where owner = #{username,jdbcType=VARCHAR}
+    AND name REGEXP #{val}
+    LIMIT #{pi},#{ps}
+  </select>
+
+  <select id="countB" resultType="Integer">
+    select count(*) from heat_exchanger
+  </select>
+
+  <select id="countB1" resultType="Integer" parameterType="map">
+    select count(*) from heat_exchanger
+    where name REGEXP #{val}
+  </select>
+
+
+  <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_exchanger" >
+    insert into heat_exchanger (id, name, ratedPower, 
+      efficiency, lifeTime, manufacturer, 
+      numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, 
+      numberOrCapacity4, capitalCurve1, capitalCurve2, 
+      capitalCurve3, capitalCurve4, replacementCost1, 
+      replacementCost2, replacementCost3, replacementCost4, 
+      maintainCost1, maintainCost2, maintainCost3, 
+      maintainCost4, owner)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedPower,jdbcType=DOUBLE}, 
+      #{efficiency,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{numberOrCapacity1,jdbcType=INTEGER}, #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, 
+      #{numberOrCapacity4,jdbcType=INTEGER}, #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, 
+      #{capitalCurve3,jdbcType=DOUBLE}, #{capitalCurve4,jdbcType=DOUBLE}, #{replacementCost1,jdbcType=DOUBLE}, 
+      #{replacementCost2,jdbcType=DOUBLE}, #{replacementCost3,jdbcType=DOUBLE}, #{replacementCost4,jdbcType=DOUBLE}, 
+      #{maintainCost1,jdbcType=DOUBLE}, #{maintainCost2,jdbcType=DOUBLE}, #{maintainCost3,jdbcType=DOUBLE}, 
+      #{maintainCost4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_exchanger" >
+    insert into heat_exchanger
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ratedPower != null" >
+        ratedPower,
+      </if>
+      <if test="efficiency != null" >
+        efficiency,
+      </if>
+      <if test="lifeTime != null" >
+        lifeTime,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="numberOrCapacity1 != null" >
+        numberOrCapacity1,
+      </if>
+      <if test="numberOrCapacity2 != null" >
+        numberOrCapacity2,
+      </if>
+      <if test="numberOrCapacity3 != null" >
+        numberOrCapacity3,
+      </if>
+      <if test="numberOrCapacity4 != null" >
+        numberOrCapacity4,
+      </if>
+      <if test="capitalCurve1 != null" >
+        capitalCurve1,
+      </if>
+      <if test="capitalCurve2 != null" >
+        capitalCurve2,
+      </if>
+      <if test="capitalCurve3 != null" >
+        capitalCurve3,
+      </if>
+      <if test="capitalCurve4 != null" >
+        capitalCurve4,
+      </if>
+      <if test="replacementCost1 != null" >
+        replacementCost1,
+      </if>
+      <if test="replacementCost2 != null" >
+        replacementCost2,
+      </if>
+      <if test="replacementCost3 != null" >
+        replacementCost3,
+      </if>
+      <if test="replacementCost4 != null" >
+        replacementCost4,
+      </if>
+      <if test="maintainCost1 != null" >
+        maintainCost1,
+      </if>
+      <if test="maintainCost2 != null" >
+        maintainCost2,
+      </if>
+      <if test="maintainCost3 != null" >
+        maintainCost3,
+      </if>
+      <if test="maintainCost4 != null" >
+        maintainCost4,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedPower != null" >
+        #{ratedPower,jdbcType=DOUBLE},
+      </if>
+      <if test="efficiency != null" >
+        #{efficiency,jdbcType=DOUBLE},
+      </if>
+      <if test="lifeTime != null" >
+        #{lifeTime,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="numberOrCapacity1 != null" >
+        #{numberOrCapacity1,jdbcType=INTEGER},
+      </if>
+      <if test="numberOrCapacity2 != null" >
+        #{numberOrCapacity2,jdbcType=INTEGER},
+      </if>
+      <if test="numberOrCapacity3 != null" >
+        #{numberOrCapacity3,jdbcType=INTEGER},
+      </if>
+      <if test="numberOrCapacity4 != null" >
+        #{numberOrCapacity4,jdbcType=INTEGER},
+      </if>
+      <if test="capitalCurve1 != null" >
+        #{capitalCurve1,jdbcType=DOUBLE},
+      </if>
+      <if test="capitalCurve2 != null" >
+        #{capitalCurve2,jdbcType=DOUBLE},
+      </if>
+      <if test="capitalCurve3 != null" >
+        #{capitalCurve3,jdbcType=DOUBLE},
+      </if>
+      <if test="capitalCurve4 != null" >
+        #{capitalCurve4,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost1 != null" >
+        #{replacementCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost2 != null" >
+        #{replacementCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost3 != null" >
+        #{replacementCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost4 != null" >
+        #{replacementCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost1 != null" >
+        #{maintainCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost2 != null" >
+        #{maintainCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost3 != null" >
+        #{maintainCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost4 != null" >
+        #{maintainCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_exchanger" >
+    update heat_exchanger
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedPower != null" >
+        ratedPower = #{ratedPower,jdbcType=DOUBLE},
+      </if>
+      <if test="efficiency != null" >
+        efficiency = #{efficiency,jdbcType=DOUBLE},
+      </if>
+      <if test="lifeTime != null" >
+        lifeTime = #{lifeTime,jdbcType=DOUBLE},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="numberOrCapacity1 != null" >
+        numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
+      </if>
+      <if test="numberOrCapacity2 != null" >
+        numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},
+      </if>
+      <if test="numberOrCapacity3 != null" >
+        numberOrCapacity3 = #{numberOrCapacity3,jdbcType=INTEGER},
+      </if>
+      <if test="numberOrCapacity4 != null" >
+        numberOrCapacity4 = #{numberOrCapacity4,jdbcType=INTEGER},
+      </if>
+      <if test="capitalCurve1 != null" >
+        capitalCurve1 = #{capitalCurve1,jdbcType=DOUBLE},
+      </if>
+      <if test="capitalCurve2 != null" >
+        capitalCurve2 = #{capitalCurve2,jdbcType=DOUBLE},
+      </if>
+      <if test="capitalCurve3 != null" >
+        capitalCurve3 = #{capitalCurve3,jdbcType=DOUBLE},
+      </if>
+      <if test="capitalCurve4 != null" >
+        capitalCurve4 = #{capitalCurve4,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost1 != null" >
+        replacementCost1 = #{replacementCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost2 != null" >
+        replacementCost2 = #{replacementCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost3 != null" >
+        replacementCost3 = #{replacementCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="replacementCost4 != null" >
+        replacementCost4 = #{replacementCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost1 != null" >
+        maintainCost1 = #{maintainCost1,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost2 != null" >
+        maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost3 != null" >
+        maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
+      </if>
+      <if test="maintainCost4 != null" >
+        maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Heat_exchanger" >
+    update heat_exchanger
+    set name = #{name,jdbcType=VARCHAR},
+      ratedPower = #{ratedPower,jdbcType=DOUBLE},
+      efficiency = #{efficiency,jdbcType=DOUBLE},
+      lifeTime = #{lifeTime,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
+      numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},
+      numberOrCapacity3 = #{numberOrCapacity3,jdbcType=INTEGER},
+      numberOrCapacity4 = #{numberOrCapacity4,jdbcType=INTEGER},
+      capitalCurve1 = #{capitalCurve1,jdbcType=DOUBLE},
+      capitalCurve2 = #{capitalCurve2,jdbcType=DOUBLE},
+      capitalCurve3 = #{capitalCurve3,jdbcType=DOUBLE},
+      capitalCurve4 = #{capitalCurve4,jdbcType=DOUBLE},
+      replacementCost1 = #{replacementCost1,jdbcType=DOUBLE},
+      replacementCost2 = #{replacementCost2,jdbcType=DOUBLE},
+      replacementCost3 = #{replacementCost3,jdbcType=DOUBLE},
+      replacementCost4 = #{replacementCost4,jdbcType=DOUBLE},
+      maintainCost1 = #{maintainCost1,jdbcType=DOUBLE},
+      maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
+      maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
+      maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
+      owner = #{owner,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -4,40 +4,43 @@
   <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Photovoltaic" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="edrl" property="edrl" jdbcType="DOUBLE" />
-    <result column="jeys" property="jeys" jdbcType="DOUBLE" />
-    <result column="gfzltynxsl" property="gfzltynxsl" jdbcType="DOUBLE" />
-    <result column="gffdxl" property="gffdxl" jdbcType="DOUBLE" />
-    <result column="noctWd" property="noctwd" jdbcType="DOUBLE" />
-    <result column="wdxs" property="wdxs" jdbcType="DOUBLE" />
-    <result column="noctGz" property="noctgz" jdbcType="DOUBLE" />
-    <result column="gfbbzwd" property="gfbbzwd" jdbcType="DOUBLE" />
-    <result column="life" property="life" jdbcType="DOUBLE" />
-    <result column="stcWd" property="stcwd" jdbcType="DOUBLE" />
-    <result column="factory" property="factory" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="DOUBLE" />
-    <result column="capacity1" property="capacity1" jdbcType="INTEGER" />
-    <result column="capacity2" property="capacity2" jdbcType="INTEGER" />
-    <result column="capacity3" property="capacity3" jdbcType="INTEGER" />
-    <result column="capacity4" property="capacity4" jdbcType="INTEGER" />
-    <result column="cjcb1" property="cjcb1" jdbcType="DOUBLE" />
-    <result column="cjcb2" property="cjcb2" jdbcType="DOUBLE" />
-    <result column="cjcb3" property="cjcb3" jdbcType="DOUBLE" />
-    <result column="cjcb4" property="cjcb4" jdbcType="DOUBLE" />
-    <result column="gxcb1" property="gxcb1" jdbcType="DOUBLE" />
-    <result column="gxcb2" property="gxcb2" jdbcType="DOUBLE" />
-    <result column="gxcb3" property="gxcb3" jdbcType="DOUBLE" />
-    <result column="gxcb4" property="gxcb4" jdbcType="DOUBLE" />
-    <result column="yxwhcb1" property="yxwhcb1" jdbcType="DOUBLE" />
-    <result column="yxwhcb2" property="yxwhcb2" jdbcType="DOUBLE" />
-    <result column="yxwhcb3" property="yxwhcb3" jdbcType="DOUBLE" />
-    <result column="yxwhcb4" property="yxwhcb4" jdbcType="DOUBLE" />
+    <result column="deratingFactor" property="deratingFactor" jdbcType="DOUBLE" />
+    <result column="decayFactor" property="decayFactor" jdbcType="DOUBLE" />
+    <result column="efficiency" property="efficiency" jdbcType="DOUBLE" />
+    <result column="temperatureCoefficient" property="temperatureCoefficient" jdbcType="DOUBLE" />
+    <result column="nominalOperatingCellTemperature" property="nominalOperatingCellTemperature" jdbcType="DOUBLE" />
+    <result column="absorptivity" property="absorptivity" jdbcType="DOUBLE" />
+    <result column="batteryTemperInStc" property="batteryTemperInStc" jdbcType="DOUBLE" />
+    <result column="noctEnvirTemper" property="noctEnvirTemper" jdbcType="DOUBLE" />
+    <result column="noctRadiation" property="noctRadiation" jdbcType="DOUBLE" />
+    <result column="DAtype" property="DAtype" jdbcType="DOUBLE" />
+    <result column="lifeTime" property="lifeTime" jdbcType="DOUBLE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="INTEGER" />
+    <result column="numberOrCapacity2" property="numberOrCapacity2" jdbcType="INTEGER" />
+    <result column="numberOrCapacity3" property="numberOrCapacity3" jdbcType="INTEGER" />
+    <result column="numberOrCapacity4" property="numberOrCapacity4" jdbcType="INTEGER" />
+    <result column="capitalCurve1" property="capitalCurve1" jdbcType="DOUBLE" />
+    <result column="capitalCurve2" property="capitalCurve2" jdbcType="DOUBLE" />
+    <result column="capitalCurve3" property="capitalCurve3" jdbcType="DOUBLE" />
+    <result column="capitalCurve4" property="capitalCurve4" jdbcType="DOUBLE" />
+    <result column="replacementCost1" property="replacementCost1" jdbcType="DOUBLE" />
+    <result column="replacementCost2" property="replacementCost2" jdbcType="DOUBLE" />
+    <result column="replacementCost3" property="replacementCost3" jdbcType="DOUBLE" />
+    <result column="replacementCost4" property="replacementCost4" jdbcType="DOUBLE" />
+    <result column="maintainCost1" property="maintainCost1" jdbcType="DOUBLE" />
+    <result column="maintainCost2" property="maintainCost2" jdbcType="DOUBLE" />
+    <result column="maintainCost3" property="maintainCost3" jdbcType="DOUBLE" />
+    <result column="maintainCost4" property="maintainCost4" jdbcType="DOUBLE" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, edrl, jeys, gfzltynxsl, gffdxl, noctWd, wdxs, noctGz, gfbbzwd, life, stcWd, 
-    factory, type, capacity1, capacity2, capacity3, capacity4, cjcb1, cjcb2, cjcb3, cjcb4, 
-    gxcb1, gxcb2, gxcb3, gxcb4, yxwhcb1, yxwhcb2, yxwhcb3, yxwhcb4, owner
+    id, name, deratingFactor, decayFactor, efficiency, temperatureCoefficient, nominalOperatingCellTemperature, 
+    absorptivity, batteryTemperInStc, noctEnvirTemper, noctRadiation, DAtype, lifeTime, 
+    manufacturer, numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
+    capitalCurve1, capitalCurve2, capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, 
+    replacementCost3, replacementCost4, maintainCost1, maintainCost2, maintainCost3, 
+    maintainCost4, owner
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -45,6 +48,10 @@
     from photovoltaic
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from photovoltaic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
 
   <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
@@ -72,31 +79,30 @@
     where name REGEXP #{val}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from photovoltaic
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Photovoltaic" >
-    insert into photovoltaic (id, name, edrl, 
-      jeys, gfzltynxsl, gffdxl, 
-      noctWd, wdxs, noctGz, 
-      gfbbzwd, life, stcWd, 
-      factory, type, capacity1, 
-      capacity2, capacity3, capacity4, 
-      cjcb1, cjcb2, cjcb3, cjcb4, 
-      gxcb1, gxcb2, gxcb3, gxcb4, 
-      yxwhcb1, yxwhcb2, yxwhcb3, 
-      yxwhcb4, owner)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{edrl,jdbcType=DOUBLE}, 
-      #{jeys,jdbcType=DOUBLE}, #{gfzltynxsl,jdbcType=DOUBLE}, #{gffdxl,jdbcType=DOUBLE}, 
-      #{noctwd,jdbcType=DOUBLE}, #{wdxs,jdbcType=DOUBLE}, #{noctgz,jdbcType=DOUBLE}, 
-      #{gfbbzwd,jdbcType=DOUBLE}, #{life,jdbcType=DOUBLE}, #{stcwd,jdbcType=DOUBLE}, 
-      #{factory,jdbcType=VARCHAR}, #{type,jdbcType=DOUBLE}, #{capacity1,jdbcType=INTEGER}, 
-      #{capacity2,jdbcType=INTEGER}, #{capacity3,jdbcType=INTEGER}, #{capacity4,jdbcType=INTEGER}, 
-      #{cjcb1,jdbcType=DOUBLE}, #{cjcb2,jdbcType=DOUBLE}, #{cjcb3,jdbcType=DOUBLE}, #{cjcb4,jdbcType=DOUBLE}, 
-      #{gxcb1,jdbcType=DOUBLE}, #{gxcb2,jdbcType=DOUBLE}, #{gxcb3,jdbcType=DOUBLE}, #{gxcb4,jdbcType=DOUBLE}, 
-      #{yxwhcb1,jdbcType=DOUBLE}, #{yxwhcb2,jdbcType=DOUBLE}, #{yxwhcb3,jdbcType=DOUBLE}, 
-      #{yxwhcb4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
+    insert into photovoltaic (id, name, deratingFactor, 
+      decayFactor, efficiency, temperatureCoefficient, 
+      nominalOperatingCellTemperature, absorptivity, 
+      batteryTemperInStc, noctEnvirTemper, noctRadiation, 
+      DAtype, lifeTime, manufacturer, 
+      numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, 
+      numberOrCapacity4, capitalCurve1, capitalCurve2, 
+      capitalCurve3, capitalCurve4, replacementCost1, 
+      replacementCost2, replacementCost3, replacementCost4, 
+      maintainCost1, maintainCost2, maintainCost3, 
+      maintainCost4, owner)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{deratingFactor,jdbcType=DOUBLE}, 
+      #{decayFactor,jdbcType=DOUBLE}, #{efficiency,jdbcType=DOUBLE}, #{temperatureCoefficient,jdbcType=DOUBLE}, 
+      #{nominalOperatingCellTemperature,jdbcType=DOUBLE}, #{absorptivity,jdbcType=DOUBLE}, 
+      #{batteryTemperInStc,jdbcType=DOUBLE}, #{noctEnvirTemper,jdbcType=DOUBLE}, #{noctRadiation,jdbcType=DOUBLE}, 
+      #{DAtype,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{numberOrCapacity1,jdbcType=INTEGER}, #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, 
+      #{numberOrCapacity4,jdbcType=INTEGER}, #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, 
+      #{capitalCurve3,jdbcType=DOUBLE}, #{capitalCurve4,jdbcType=DOUBLE}, #{replacementCost1,jdbcType=DOUBLE}, 
+      #{replacementCost2,jdbcType=DOUBLE}, #{replacementCost3,jdbcType=DOUBLE}, #{replacementCost4,jdbcType=DOUBLE}, 
+      #{maintainCost1,jdbcType=DOUBLE}, #{maintainCost2,jdbcType=DOUBLE}, #{maintainCost3,jdbcType=DOUBLE}, 
+      #{maintainCost4,jdbcType=DOUBLE}, #{owner,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Photovoltaic" >
     insert into photovoltaic
@@ -107,89 +113,89 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="edrl != null" >
-        edrl,
+      <if test="deratingFactor != null" >
+        deratingFactor,
       </if>
-      <if test="jeys != null" >
-        jeys,
+      <if test="decayFactor != null" >
+        decayFactor,
       </if>
-      <if test="gfzltynxsl != null" >
-        gfzltynxsl,
+      <if test="efficiency != null" >
+        efficiency,
       </if>
-      <if test="gffdxl != null" >
-        gffdxl,
+      <if test="temperatureCoefficient != null" >
+        temperatureCoefficient,
       </if>
-      <if test="noctwd != null" >
-        noctWd,
+      <if test="nominalOperatingCellTemperature != null" >
+        nominalOperatingCellTemperature,
       </if>
-      <if test="wdxs != null" >
-        wdxs,
+      <if test="absorptivity != null" >
+        absorptivity,
       </if>
-      <if test="noctgz != null" >
-        noctGz,
+      <if test="batteryTemperInStc != null" >
+        batteryTemperInStc,
       </if>
-      <if test="gfbbzwd != null" >
-        gfbbzwd,
+      <if test="noctEnvirTemper != null" >
+        noctEnvirTemper,
       </if>
-      <if test="life != null" >
-        life,
+      <if test="noctRadiation != null" >
+        noctRadiation,
       </if>
-      <if test="stcwd != null" >
-        stcWd,
+      <if test="DAtype != null" >
+        DAtype,
       </if>
-      <if test="factory != null" >
-        factory,
+      <if test="lifeTime != null" >
+        lifeTime,
       </if>
-      <if test="type != null" >
-        type,
+      <if test="manufacturer != null" >
+        manufacturer,
       </if>
-      <if test="capacity1 != null" >
-        capacity1,
+      <if test="numberOrCapacity1 != null" >
+        numberOrCapacity1,
       </if>
-      <if test="capacity2 != null" >
-        capacity2,
+      <if test="numberOrCapacity2 != null" >
+        numberOrCapacity2,
       </if>
-      <if test="capacity3 != null" >
-        capacity3,
+      <if test="numberOrCapacity3 != null" >
+        numberOrCapacity3,
       </if>
-      <if test="capacity4 != null" >
-        capacity4,
+      <if test="numberOrCapacity4 != null" >
+        numberOrCapacity4,
       </if>
-      <if test="cjcb1 != null" >
-        cjcb1,
+      <if test="capitalCurve1 != null" >
+        capitalCurve1,
       </if>
-      <if test="cjcb2 != null" >
-        cjcb2,
+      <if test="capitalCurve2 != null" >
+        capitalCurve2,
       </if>
-      <if test="cjcb3 != null" >
-        cjcb3,
+      <if test="capitalCurve3 != null" >
+        capitalCurve3,
       </if>
-      <if test="cjcb4 != null" >
-        cjcb4,
+      <if test="capitalCurve4 != null" >
+        capitalCurve4,
       </if>
-      <if test="gxcb1 != null" >
-        gxcb1,
+      <if test="replacementCost1 != null" >
+        replacementCost1,
       </if>
-      <if test="gxcb2 != null" >
-        gxcb2,
+      <if test="replacementCost2 != null" >
+        replacementCost2,
       </if>
-      <if test="gxcb3 != null" >
-        gxcb3,
+      <if test="replacementCost3 != null" >
+        replacementCost3,
       </if>
-      <if test="gxcb4 != null" >
-        gxcb4,
+      <if test="replacementCost4 != null" >
+        replacementCost4,
       </if>
-      <if test="yxwhcb1 != null" >
-        yxwhcb1,
+      <if test="maintainCost1 != null" >
+        maintainCost1,
       </if>
-      <if test="yxwhcb2 != null" >
-        yxwhcb2,
+      <if test="maintainCost2 != null" >
+        maintainCost2,
       </if>
-      <if test="yxwhcb3 != null" >
-        yxwhcb3,
+      <if test="maintainCost3 != null" >
+        maintainCost3,
       </if>
-      <if test="yxwhcb4 != null" >
-        yxwhcb4,
+      <if test="maintainCost4 != null" >
+        maintainCost4,
       </if>
       <if test="owner != null" >
         owner,
@@ -202,89 +208,89 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="edrl != null" >
-        #{edrl,jdbcType=DOUBLE},
+      <if test="deratingFactor != null" >
+        #{deratingFactor,jdbcType=DOUBLE},
       </if>
-      <if test="jeys != null" >
-        #{jeys,jdbcType=DOUBLE},
+      <if test="decayFactor != null" >
+        #{decayFactor,jdbcType=DOUBLE},
       </if>
-      <if test="gfzltynxsl != null" >
-        #{gfzltynxsl,jdbcType=DOUBLE},
+      <if test="efficiency != null" >
+        #{efficiency,jdbcType=DOUBLE},
       </if>
-      <if test="gffdxl != null" >
-        #{gffdxl,jdbcType=DOUBLE},
+      <if test="temperatureCoefficient != null" >
+        #{temperatureCoefficient,jdbcType=DOUBLE},
       </if>
-      <if test="noctwd != null" >
-        #{noctwd,jdbcType=DOUBLE},
+      <if test="nominalOperatingCellTemperature != null" >
+        #{nominalOperatingCellTemperature,jdbcType=DOUBLE},
       </if>
-      <if test="wdxs != null" >
-        #{wdxs,jdbcType=DOUBLE},
+      <if test="absorptivity != null" >
+        #{absorptivity,jdbcType=DOUBLE},
       </if>
-      <if test="noctgz != null" >
-        #{noctgz,jdbcType=DOUBLE},
+      <if test="batteryTemperInStc != null" >
+        #{batteryTemperInStc,jdbcType=DOUBLE},
       </if>
-      <if test="gfbbzwd != null" >
-        #{gfbbzwd,jdbcType=DOUBLE},
+      <if test="noctEnvirTemper != null" >
+        #{noctEnvirTemper,jdbcType=DOUBLE},
       </if>
-      <if test="life != null" >
-        #{life,jdbcType=DOUBLE},
+      <if test="noctRadiation != null" >
+        #{noctRadiation,jdbcType=DOUBLE},
       </if>
-      <if test="stcwd != null" >
-        #{stcwd,jdbcType=DOUBLE},
+      <if test="DAtype != null" >
+        #{DAtype,jdbcType=DOUBLE},
       </if>
-      <if test="factory != null" >
-        #{factory,jdbcType=VARCHAR},
+      <if test="lifeTime != null" >
+        #{lifeTime,jdbcType=DOUBLE},
       </if>
-      <if test="type != null" >
-        #{type,jdbcType=DOUBLE},
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
       </if>
-      <if test="capacity1 != null" >
-        #{capacity1,jdbcType=INTEGER},
+      <if test="numberOrCapacity1 != null" >
+        #{numberOrCapacity1,jdbcType=INTEGER},
       </if>
-      <if test="capacity2 != null" >
-        #{capacity2,jdbcType=INTEGER},
+      <if test="numberOrCapacity2 != null" >
+        #{numberOrCapacity2,jdbcType=INTEGER},
       </if>
-      <if test="capacity3 != null" >
-        #{capacity3,jdbcType=INTEGER},
+      <if test="numberOrCapacity3 != null" >
+        #{numberOrCapacity3,jdbcType=INTEGER},
       </if>
-      <if test="capacity4 != null" >
-        #{capacity4,jdbcType=INTEGER},
+      <if test="numberOrCapacity4 != null" >
+        #{numberOrCapacity4,jdbcType=INTEGER},
       </if>
-      <if test="cjcb1 != null" >
-        #{cjcb1,jdbcType=DOUBLE},
+      <if test="capitalCurve1 != null" >
+        #{capitalCurve1,jdbcType=DOUBLE},
       </if>
-      <if test="cjcb2 != null" >
-        #{cjcb2,jdbcType=DOUBLE},
+      <if test="capitalCurve2 != null" >
+        #{capitalCurve2,jdbcType=DOUBLE},
       </if>
-      <if test="cjcb3 != null" >
-        #{cjcb3,jdbcType=DOUBLE},
+      <if test="capitalCurve3 != null" >
+        #{capitalCurve3,jdbcType=DOUBLE},
       </if>
-      <if test="cjcb4 != null" >
-        #{cjcb4,jdbcType=DOUBLE},
+      <if test="capitalCurve4 != null" >
+        #{capitalCurve4,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb1 != null" >
-        #{gxcb1,jdbcType=DOUBLE},
+      <if test="replacementCost1 != null" >
+        #{replacementCost1,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb2 != null" >
-        #{gxcb2,jdbcType=DOUBLE},
+      <if test="replacementCost2 != null" >
+        #{replacementCost2,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb3 != null" >
-        #{gxcb3,jdbcType=DOUBLE},
+      <if test="replacementCost3 != null" >
+        #{replacementCost3,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb4 != null" >
-        #{gxcb4,jdbcType=DOUBLE},
+      <if test="replacementCost4 != null" >
+        #{replacementCost4,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb1 != null" >
-        #{yxwhcb1,jdbcType=DOUBLE},
+      <if test="maintainCost1 != null" >
+        #{maintainCost1,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb2 != null" >
-        #{yxwhcb2,jdbcType=DOUBLE},
+      <if test="maintainCost2 != null" >
+        #{maintainCost2,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb3 != null" >
-        #{yxwhcb3,jdbcType=DOUBLE},
+      <if test="maintainCost3 != null" >
+        #{maintainCost3,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb4 != null" >
-        #{yxwhcb4,jdbcType=DOUBLE},
+      <if test="maintainCost4 != null" >
+        #{maintainCost4,jdbcType=DOUBLE},
       </if>
       <if test="owner != null" >
         #{owner,jdbcType=VARCHAR},
@@ -297,89 +303,89 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="edrl != null" >
-        edrl = #{edrl,jdbcType=DOUBLE},
+      <if test="deratingFactor != null" >
+        deratingFactor = #{deratingFactor,jdbcType=DOUBLE},
       </if>
-      <if test="jeys != null" >
-        jeys = #{jeys,jdbcType=DOUBLE},
+      <if test="decayFactor != null" >
+        decayFactor = #{decayFactor,jdbcType=DOUBLE},
       </if>
-      <if test="gfzltynxsl != null" >
-        gfzltynxsl = #{gfzltynxsl,jdbcType=DOUBLE},
+      <if test="efficiency != null" >
+        efficiency = #{efficiency,jdbcType=DOUBLE},
       </if>
-      <if test="gffdxl != null" >
-        gffdxl = #{gffdxl,jdbcType=DOUBLE},
+      <if test="temperatureCoefficient != null" >
+        temperatureCoefficient = #{temperatureCoefficient,jdbcType=DOUBLE},
       </if>
-      <if test="noctwd != null" >
-        noctWd = #{noctwd,jdbcType=DOUBLE},
+      <if test="nominalOperatingCellTemperature != null" >
+        nominalOperatingCellTemperature = #{nominalOperatingCellTemperature,jdbcType=DOUBLE},
       </if>
-      <if test="wdxs != null" >
-        wdxs = #{wdxs,jdbcType=DOUBLE},
+      <if test="absorptivity != null" >
+        absorptivity = #{absorptivity,jdbcType=DOUBLE},
       </if>
-      <if test="noctgz != null" >
-        noctGz = #{noctgz,jdbcType=DOUBLE},
+      <if test="batteryTemperInStc != null" >
+        batteryTemperInStc = #{batteryTemperInStc,jdbcType=DOUBLE},
       </if>
-      <if test="gfbbzwd != null" >
-        gfbbzwd = #{gfbbzwd,jdbcType=DOUBLE},
+      <if test="noctEnvirTemper != null" >
+        noctEnvirTemper = #{noctEnvirTemper,jdbcType=DOUBLE},
       </if>
-      <if test="life != null" >
-        life = #{life,jdbcType=DOUBLE},
+      <if test="noctRadiation != null" >
+        noctRadiation = #{noctRadiation,jdbcType=DOUBLE},
       </if>
-      <if test="stcwd != null" >
-        stcWd = #{stcwd,jdbcType=DOUBLE},
+      <if test="DAtype != null" >
+        DAtype = #{DAtype,jdbcType=DOUBLE},
       </if>
-      <if test="factory != null" >
-        factory = #{factory,jdbcType=VARCHAR},
+      <if test="lifeTime != null" >
+        lifeTime = #{lifeTime,jdbcType=DOUBLE},
       </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=DOUBLE},
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
       </if>
-      <if test="capacity1 != null" >
-        capacity1 = #{capacity1,jdbcType=INTEGER},
+      <if test="numberOrCapacity1 != null" >
+        numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
       </if>
-      <if test="capacity2 != null" >
-        capacity2 = #{capacity2,jdbcType=INTEGER},
+      <if test="numberOrCapacity2 != null" >
+        numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},
       </if>
-      <if test="capacity3 != null" >
-        capacity3 = #{capacity3,jdbcType=INTEGER},
+      <if test="numberOrCapacity3 != null" >
+        numberOrCapacity3 = #{numberOrCapacity3,jdbcType=INTEGER},
       </if>
-      <if test="capacity4 != null" >
-        capacity4 = #{capacity4,jdbcType=INTEGER},
+      <if test="numberOrCapacity4 != null" >
+        numberOrCapacity4 = #{numberOrCapacity4,jdbcType=INTEGER},
       </if>
-      <if test="cjcb1 != null" >
-        cjcb1 = #{cjcb1,jdbcType=DOUBLE},
+      <if test="capitalCurve1 != null" >
+        capitalCurve1 = #{capitalCurve1,jdbcType=DOUBLE},
       </if>
-      <if test="cjcb2 != null" >
-        cjcb2 = #{cjcb2,jdbcType=DOUBLE},
+      <if test="capitalCurve2 != null" >
+        capitalCurve2 = #{capitalCurve2,jdbcType=DOUBLE},
       </if>
-      <if test="cjcb3 != null" >
-        cjcb3 = #{cjcb3,jdbcType=DOUBLE},
+      <if test="capitalCurve3 != null" >
+        capitalCurve3 = #{capitalCurve3,jdbcType=DOUBLE},
       </if>
-      <if test="cjcb4 != null" >
-        cjcb4 = #{cjcb4,jdbcType=DOUBLE},
+      <if test="capitalCurve4 != null" >
+        capitalCurve4 = #{capitalCurve4,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb1 != null" >
-        gxcb1 = #{gxcb1,jdbcType=DOUBLE},
+      <if test="replacementCost1 != null" >
+        replacementCost1 = #{replacementCost1,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb2 != null" >
-        gxcb2 = #{gxcb2,jdbcType=DOUBLE},
+      <if test="replacementCost2 != null" >
+        replacementCost2 = #{replacementCost2,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb3 != null" >
-        gxcb3 = #{gxcb3,jdbcType=DOUBLE},
+      <if test="replacementCost3 != null" >
+        replacementCost3 = #{replacementCost3,jdbcType=DOUBLE},
       </if>
-      <if test="gxcb4 != null" >
-        gxcb4 = #{gxcb4,jdbcType=DOUBLE},
+      <if test="replacementCost4 != null" >
+        replacementCost4 = #{replacementCost4,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb1 != null" >
-        yxwhcb1 = #{yxwhcb1,jdbcType=DOUBLE},
+      <if test="maintainCost1 != null" >
+        maintainCost1 = #{maintainCost1,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb2 != null" >
-        yxwhcb2 = #{yxwhcb2,jdbcType=DOUBLE},
+      <if test="maintainCost2 != null" >
+        maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb3 != null" >
-        yxwhcb3 = #{yxwhcb3,jdbcType=DOUBLE},
+      <if test="maintainCost3 != null" >
+        maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
       </if>
-      <if test="yxwhcb4 != null" >
-        yxwhcb4 = #{yxwhcb4,jdbcType=DOUBLE},
+      <if test="maintainCost4 != null" >
+        maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
       </if>
       <if test="owner != null" >
         owner = #{owner,jdbcType=VARCHAR},
@@ -390,34 +396,34 @@
   <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Photovoltaic" >
     update photovoltaic
     set name = #{name,jdbcType=VARCHAR},
-      edrl = #{edrl,jdbcType=DOUBLE},
-      jeys = #{jeys,jdbcType=DOUBLE},
-      gfzltynxsl = #{gfzltynxsl,jdbcType=DOUBLE},
-      gffdxl = #{gffdxl,jdbcType=DOUBLE},
-      noctWd = #{noctwd,jdbcType=DOUBLE},
-      wdxs = #{wdxs,jdbcType=DOUBLE},
-      noctGz = #{noctgz,jdbcType=DOUBLE},
-      gfbbzwd = #{gfbbzwd,jdbcType=DOUBLE},
-      life = #{life,jdbcType=DOUBLE},
-      stcWd = #{stcwd,jdbcType=DOUBLE},
-      factory = #{factory,jdbcType=VARCHAR},
-      type = #{type,jdbcType=DOUBLE},
-      capacity1 = #{capacity1,jdbcType=INTEGER},
-      capacity2 = #{capacity2,jdbcType=INTEGER},
-      capacity3 = #{capacity3,jdbcType=INTEGER},
-      capacity4 = #{capacity4,jdbcType=INTEGER},
-      cjcb1 = #{cjcb1,jdbcType=DOUBLE},
-      cjcb2 = #{cjcb2,jdbcType=DOUBLE},
-      cjcb3 = #{cjcb3,jdbcType=DOUBLE},
-      cjcb4 = #{cjcb4,jdbcType=DOUBLE},
-      gxcb1 = #{gxcb1,jdbcType=DOUBLE},
-      gxcb2 = #{gxcb2,jdbcType=DOUBLE},
-      gxcb3 = #{gxcb3,jdbcType=DOUBLE},
-      gxcb4 = #{gxcb4,jdbcType=DOUBLE},
-      yxwhcb1 = #{yxwhcb1,jdbcType=DOUBLE},
-      yxwhcb2 = #{yxwhcb2,jdbcType=DOUBLE},
-      yxwhcb3 = #{yxwhcb3,jdbcType=DOUBLE},
-      yxwhcb4 = #{yxwhcb4,jdbcType=DOUBLE},
+      deratingFactor = #{deratingFactor,jdbcType=DOUBLE},
+      decayFactor = #{decayFactor,jdbcType=DOUBLE},
+      efficiency = #{efficiency,jdbcType=DOUBLE},
+      temperatureCoefficient = #{temperatureCoefficient,jdbcType=DOUBLE},
+      nominalOperatingCellTemperature = #{nominalOperatingCellTemperature,jdbcType=DOUBLE},
+      absorptivity = #{absorptivity,jdbcType=DOUBLE},
+      batteryTemperInStc = #{batteryTemperInStc,jdbcType=DOUBLE},
+      noctEnvirTemper = #{noctEnvirTemper,jdbcType=DOUBLE},
+      noctRadiation = #{noctRadiation,jdbcType=DOUBLE},
+      DAtype = #{DAtype,jdbcType=DOUBLE},
+      lifeTime = #{lifeTime,jdbcType=DOUBLE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
+      numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},
+      numberOrCapacity3 = #{numberOrCapacity3,jdbcType=INTEGER},
+      numberOrCapacity4 = #{numberOrCapacity4,jdbcType=INTEGER},
+      capitalCurve1 = #{capitalCurve1,jdbcType=DOUBLE},
+      capitalCurve2 = #{capitalCurve2,jdbcType=DOUBLE},
+      capitalCurve3 = #{capitalCurve3,jdbcType=DOUBLE},
+      capitalCurve4 = #{capitalCurve4,jdbcType=DOUBLE},
+      replacementCost1 = #{replacementCost1,jdbcType=DOUBLE},
+      replacementCost2 = #{replacementCost2,jdbcType=DOUBLE},
+      replacementCost3 = #{replacementCost3,jdbcType=DOUBLE},
+      replacementCost4 = #{replacementCost4,jdbcType=DOUBLE},
+      maintainCost1 = #{maintainCost1,jdbcType=DOUBLE},
+      maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
+      maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
+      maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
       owner = #{owner,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

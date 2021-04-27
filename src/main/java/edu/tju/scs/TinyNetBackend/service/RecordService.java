@@ -28,7 +28,7 @@ public class RecordService {
     @Autowired
     private BatteryMapper batteryMapper;
     @Autowired
-    private GeneratorMapper generatorMapper;
+    private PumpMapper generatorMapper;
 
     private boolean check(int id,String owner)
     {
@@ -52,7 +52,10 @@ public class RecordService {
 
         RecordList.add1(record,data,username);
         String new_token=TokenUtil.getToken(username);
-        return new ErrorReport(0,"success");
+
+        ResponseData response =new ResponseData();
+        response.addData("token",new_token);
+        return new ErrorReport(0,"success",response);
     }
 
     public ErrorReport update(String token,JSONObject record)
@@ -235,18 +238,6 @@ public class RecordService {
                     data.getJSONObject(key).put("string2",battery_ours.toString2());
                     break;
 
-                case "generator":
-                    Generator generator;
-                    if(data.getJSONObject(key).getInteger("id")!=null){
-                        generator= generatorMapper.selectByPrimaryKey(data.getJSONObject(key).getInteger("id"));
-                    }
-                    else{
-                        generator = generatorMapper.selectByOwner(owner,0,10).get(0);
-                    }
-                    Generator_ours generator_ours = new Generator_ours(generator);
-                    data.getJSONObject(key).put("string1",generator_ours.toString1());
-                    data.getJSONObject(key).put("string2",generator_ours.toString2());
-                    break;
             }
         }
 

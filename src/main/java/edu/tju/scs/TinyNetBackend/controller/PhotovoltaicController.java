@@ -2,9 +2,7 @@ package edu.tju.scs.TinyNetBackend.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import edu.tju.scs.TinyNetBackend.common.Annotaion.JWTAuth;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
-import edu.tju.scs.TinyNetBackend.service.JWTService;
 import edu.tju.scs.TinyNetBackend.service.PhotovoltaicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PhotovoltaicController {
+
 
     @Autowired
     protected PhotovoltaicService photovoltaicService;
@@ -62,4 +61,5 @@ public class PhotovoltaicController {
         ErrorReport result =  photovoltaicService.list(data.getString("token"),data.getInteger("pi"),data.getInteger("ps"),data.getString("val"));
         return result;
     }
+
 }

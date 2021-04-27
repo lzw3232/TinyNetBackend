@@ -4,36 +4,37 @@
   <resultMap id="BaseResultMap" type="edu.tju.scs.TinyNetBackend.model.po.Gas_turbine" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="ratedPower" property="ratedPower" jdbcType="DOUBLE" />
-    <result column="mLoadRate" property="mLoadRate" jdbcType="DOUBLE" />
-    <result column="gasTurbineEff" property="gasTurbineEff" jdbcType="DOUBLE" />
-    <result column="gasCogRatio" property="gasCogRatio" jdbcType="DOUBLE" />
-    <result column="lifetime" property="lifetime" jdbcType="DOUBLE" />
-    <result column="number1" property="number1" jdbcType="INTEGER" />
-    <result column="number2" property="number2" jdbcType="INTEGER" />
-    <result column="number3" property="number3" jdbcType="INTEGER" />
-    <result column="number4" property="number4" jdbcType="INTEGER" />
-    <result column="fBuildCost1" property="fBuildCost1" jdbcType="DOUBLE" />
-    <result column="fBuildCost2" property="fBuildCost2" jdbcType="DOUBLE" />
-    <result column="fBuildCost3" property="fBuildCost3" jdbcType="DOUBLE" />
-    <result column="fBuildCost4" property="fBuildCost4" jdbcType="DOUBLE" />
-    <result column="rBuildCost1" property="rBuildCost1" jdbcType="DOUBLE" />
-    <result column="rBuildCost2" property="rBuildCost2" jdbcType="DOUBLE" />
-    <result column="rBuildCost3" property="rBuildCost3" jdbcType="DOUBLE" />
-    <result column="rBuildCost4" property="rBuildCost4" jdbcType="DOUBLE" />
-    <result column="operCost1" property="operCost1" jdbcType="DOUBLE" />
-    <result column="operCost2" property="operCost2" jdbcType="DOUBLE" />
-    <result column="operCost3" property="operCost3" jdbcType="DOUBLE" />
-    <result column="operCost4" property="operCost4" jdbcType="DOUBLE" />
-    <result column="outPower" property="outPower" jdbcType="VARCHAR" />
-    <result column="fuelUse" property="fuelUse" jdbcType="VARCHAR" />
+    <result column="ratedCapacity" property="ratedCapacity" jdbcType="DOUBLE" />
+    <result column="minimumLoadRate" property="minimumLoadRate" jdbcType="DOUBLE" />
+    <result column="efficiency" property="efficiency" jdbcType="DOUBLE" />
+    <result column="smoke" property="smoke" jdbcType="DOUBLE" />
+    <result column="lifeTime" property="lifeTime" jdbcType="DOUBLE" />
+    <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="INTEGER" />
+    <result column="numberOrCapacity2" property="numberOrCapacity2" jdbcType="INTEGER" />
+    <result column="numberOrCapacity3" property="numberOrCapacity3" jdbcType="INTEGER" />
+    <result column="numberOrCapacity4" property="numberOrCapacity4" jdbcType="INTEGER" />
+    <result column="capitalCurve1" property="capitalCurve1" jdbcType="DOUBLE" />
+    <result column="capitalCurve2" property="capitalCurve2" jdbcType="DOUBLE" />
+    <result column="capitalCurve3" property="capitalCurve3" jdbcType="DOUBLE" />
+    <result column="capitalCurve4" property="capitalCurve4" jdbcType="DOUBLE" />
+    <result column="replacementCost1" property="replacementCost1" jdbcType="DOUBLE" />
+    <result column="replacementCost2" property="replacementCost2" jdbcType="DOUBLE" />
+    <result column="replacementCost3" property="replacementCost3" jdbcType="DOUBLE" />
+    <result column="replacementCost4" property="replacementCost4" jdbcType="DOUBLE" />
+    <result column="maintainCost1" property="maintainCost1" jdbcType="DOUBLE" />
+    <result column="maintainCost2" property="maintainCost2" jdbcType="DOUBLE" />
+    <result column="maintainCost3" property="maintainCost3" jdbcType="DOUBLE" />
+    <result column="maintainCost4" property="maintainCost4" jdbcType="DOUBLE" />
+    <result column="fGasPowe" property="fGasPowe" jdbcType="VARCHAR" />
+    <result column="gasConsumption" property="gasConsumption" jdbcType="VARCHAR" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, ratedPower, mLoadRate, gasTurbineEff, gasCogRatio, lifetime, number1, number2, 
-    number3, number4, fBuildCost1, fBuildCost2, fBuildCost3, fBuildCost4, rBuildCost1, 
-    rBuildCost2, rBuildCost3, rBuildCost4, operCost1, operCost2, operCost3, operCost4, 
-    outPower, fuelUse, owner
+    id, name, ratedCapacity, minimumLoadRate, efficiency, smoke, lifeTime, numberOrCapacity1, 
+    numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2, 
+    capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, replacementCost3, 
+    replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, fGasPowe, 
+    gasConsumption, owner
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -41,6 +42,10 @@
     from gas_turbine
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gas_turbine
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
 
   <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
@@ -67,29 +72,27 @@
     select count(*) from gas_turbine
     where name REGEXP #{val}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from gas_turbine
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+
+
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Gas_turbine" >
-    insert into gas_turbine (id, name, ratedPower, 
-      mLoadRate, gasTurbineEff, gasCogRatio, 
-      lifetime, number1, number2, 
-      number3, number4, fBuildCost1, 
-      fBuildCost2, fBuildCost3, fBuildCost4, 
-      rBuildCost1, rBuildCost2, rBuildCost3, 
-      rBuildCost4, operCost1, operCost2, 
-      operCost3, operCost4, outPower, 
-      fuelUse, owner)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedPower,jdbcType=DOUBLE}, 
-      #{mLoadRate,jdbcType=DOUBLE}, #{gasTurbineEff,jdbcType=DOUBLE}, #{gasCogRatio,jdbcType=DOUBLE}, 
-      #{lifetime,jdbcType=DOUBLE}, #{number1,jdbcType=INTEGER}, #{number2,jdbcType=INTEGER}, 
-      #{number3,jdbcType=INTEGER}, #{number4,jdbcType=INTEGER}, #{fBuildCost1,jdbcType=DOUBLE}, 
-      #{fBuildCost2,jdbcType=DOUBLE}, #{fBuildCost3,jdbcType=DOUBLE}, #{fBuildCost4,jdbcType=DOUBLE}, 
-      #{rBuildCost1,jdbcType=DOUBLE}, #{rBuildCost2,jdbcType=DOUBLE}, #{rBuildCost3,jdbcType=DOUBLE}, 
-      #{rBuildCost4,jdbcType=DOUBLE}, #{operCost1,jdbcType=DOUBLE}, #{operCost2,jdbcType=DOUBLE}, 
-      #{operCost3,jdbcType=DOUBLE}, #{operCost4,jdbcType=DOUBLE}, #{outPower,jdbcType=VARCHAR}, 
-      #{fuelUse,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR})
+    insert into gas_turbine (id, name, ratedCapacity, 
+      minimumLoadRate, efficiency, smoke, 
+      lifeTime, numberOrCapacity1, numberOrCapacity2, 
+      numberOrCapacity3, numberOrCapacity4, capitalCurve1, 
+      capitalCurve2, capitalCurve3, capitalCurve4, 
+      replacementCost1, replacementCost2, replacementCost3, 
+      replacementCost4, maintainCost1, maintainCost2, 
+      maintainCost3, maintainCost4, fGasPowe, 
+      gasConsumption, owner)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedCapacity,jdbcType=DOUBLE}, 
+      #{minimumLoadRate,jdbcType=DOUBLE}, #{efficiency,jdbcType=DOUBLE}, #{smoke,jdbcType=DOUBLE}, 
+      #{lifeTime,jdbcType=DOUBLE}, #{numberOrCapacity1,jdbcType=INTEGER}, #{numberOrCapacity2,jdbcType=INTEGER}, 
+      #{numberOrCapacity3,jdbcType=INTEGER}, #{numberOrCapacity4,jdbcType=INTEGER}, #{capitalCurve1,jdbcType=DOUBLE}, 
+      #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, #{capitalCurve4,jdbcType=DOUBLE}, 
+      #{replacementCost1,jdbcType=DOUBLE}, #{replacementCost2,jdbcType=DOUBLE}, #{replacementCost3,jdbcType=DOUBLE}, 
+      #{replacementCost4,jdbcType=DOUBLE}, #{maintainCost1,jdbcType=DOUBLE}, #{maintainCost2,jdbcType=DOUBLE}, 
+      #{maintainCost3,jdbcType=DOUBLE}, #{maintainCost4,jdbcType=DOUBLE}, #{fGasPowe,jdbcType=VARCHAR}, 
+      #{gasConsumption,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Gas_turbine" >
     insert into gas_turbine
@@ -100,74 +103,74 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="ratedPower != null" >
-        ratedPower,
+      <if test="ratedCapacity != null" >
+        ratedCapacity,
       </if>
-      <if test="mLoadRate != null" >
-        mLoadRate,
+      <if test="minimumLoadRate != null" >
+        minimumLoadRate,
       </if>
-      <if test="gasTurbineEff != null" >
-        gasTurbineEff,
+      <if test="efficiency != null" >
+        efficiency,
       </if>
-      <if test="gasCogRatio != null" >
-        gasCogRatio,
+      <if test="smoke != null" >
+        smoke,
       </if>
-      <if test="lifetime != null" >
-        lifetime,
+      <if test="lifeTime != null" >
+        lifeTime,
       </if>
-      <if test="number1 != null" >
-        number1,
+      <if test="numberOrCapacity1 != null" >
+        numberOrCapacity1,
       </if>
-      <if test="number2 != null" >
-        number2,
+      <if test="numberOrCapacity2 != null" >
+        numberOrCapacity2,
       </if>
-      <if test="number3 != null" >
-        number3,
+      <if test="numberOrCapacity3 != null" >
+        numberOrCapacity3,
       </if>
-      <if test="number4 != null" >
-        number4,
+      <if test="numberOrCapacity4 != null" >
+        numberOrCapacity4,
       </if>
-      <if test="fBuildCost1 != null" >
-        fBuildCost1,
+      <if test="capitalCurve1 != null" >
+        capitalCurve1,
       </if>
-      <if test="fBuildCost2 != null" >
-        fBuildCost2,
+      <if test="capitalCurve2 != null" >
+        capitalCurve2,
       </if>
-      <if test="fBuildCost3 != null" >
-        fBuildCost3,
+      <if test="capitalCurve3 != null" >
+        capitalCurve3,
       </if>
-      <if test="fBuildCost4 != null" >
-        fBuildCost4,
+      <if test="capitalCurve4 != null" >
+        capitalCurve4,
       </if>
-      <if test="rBuildCost1 != null" >
-        rBuildCost1,
+      <if test="replacementCost1 != null" >
+        replacementCost1,
       </if>
-      <if test="rBuildCost2 != null" >
-        rBuildCost2,
+      <if test="replacementCost2 != null" >
+        replacementCost2,
       </if>
-      <if test="rBuildCost3 != null" >
-        rBuildCost3,
+      <if test="replacementCost3 != null" >
+        replacementCost3,
       </if>
-      <if test="rBuildCost4 != null" >
-        rBuildCost4,
+      <if test="replacementCost4 != null" >
+        replacementCost4,
       </if>
-      <if test="operCost1 != null" >
-        operCost1,
+      <if test="maintainCost1 != null" >
+        maintainCost1,
       </if>
-      <if test="operCost2 != null" >
-        operCost2,
+      <if test="maintainCost2 != null" >
+        maintainCost2,
       </if>
-      <if test="operCost3 != null" >
-        operCost3,
+      <if test="maintainCost3 != null" >
+        maintainCost3,
       </if>
-      <if test="operCost4 != null" >
-        operCost4,
+      <if test="maintainCost4 != null" >
+        maintainCost4,
       </if>
-      <if test="outPower != null" >
-        outPower,
+      <if test="fGasPowe != null" >
+        fGasPowe,
       </if>
-      <if test="fuelUse != null" >
-        fuelUse,
+      <if test="gasConsumption != null" >
+        gasConsumption,
       </if>
       <if test="owner != null" >
         owner,
@@ -180,74 +183,74 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="ratedPower != null" >
-        #{ratedPower,jdbcType=DOUBLE},
+      <if test="ratedCapacity != null" >
+        #{ratedCapacity,jdbcType=DOUBLE},
       </if>
-      <if test="mLoadRate != null" >
-        #{mLoadRate,jdbcType=DOUBLE},
+      <if test="minimumLoadRate != null" >
+        #{minimumLoadRate,jdbcType=DOUBLE},
       </if>
-      <if test="gasTurbineEff != null" >
-        #{gasTurbineEff,jdbcType=DOUBLE},
+      <if test="efficiency != null" >
+        #{efficiency,jdbcType=DOUBLE},
       </if>
-      <if test="gasCogRatio != null" >
-        #{gasCogRatio,jdbcType=DOUBLE},
+      <if test="smoke != null" >
+        #{smoke,jdbcType=DOUBLE},
       </if>
-      <if test="lifetime != null" >
-        #{lifetime,jdbcType=DOUBLE},
+      <if test="lifeTime != null" >
+        #{lifeTime,jdbcType=DOUBLE},
       </if>
-      <if test="number1 != null" >
-        #{number1,jdbcType=INTEGER},
+      <if test="numberOrCapacity1 != null" >
+        #{numberOrCapacity1,jdbcType=INTEGER},
       </if>
-      <if test="number2 != null" >
-        #{number2,jdbcType=INTEGER},
+      <if test="numberOrCapacity2 != null" >
+        #{numberOrCapacity2,jdbcType=INTEGER},
       </if>
-      <if test="number3 != null" >
-        #{number3,jdbcType=INTEGER},
+      <if test="numberOrCapacity3 != null" >
+        #{numberOrCapacity3,jdbcType=INTEGER},
       </if>
-      <if test="number4 != null" >
-        #{number4,jdbcType=INTEGER},
+      <if test="numberOrCapacity4 != null" >
+        #{numberOrCapacity4,jdbcType=INTEGER},
       </if>
-      <if test="fBuildCost1 != null" >
-        #{fBuildCost1,jdbcType=DOUBLE},
+      <if test="capitalCurve1 != null" >
+        #{capitalCurve1,jdbcType=DOUBLE},
       </if>
-      <if test="fBuildCost2 != null" >
-        #{fBuildCost2,jdbcType=DOUBLE},
+      <if test="capitalCurve2 != null" >
+        #{capitalCurve2,jdbcType=DOUBLE},
       </if>
-      <if test="fBuildCost3 != null" >
-        #{fBuildCost3,jdbcType=DOUBLE},
+      <if test="capitalCurve3 != null" >
+        #{capitalCurve3,jdbcType=DOUBLE},
       </if>
-      <if test="fBuildCost4 != null" >
-        #{fBuildCost4,jdbcType=DOUBLE},
+      <if test="capitalCurve4 != null" >
+        #{capitalCurve4,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost1 != null" >
-        #{rBuildCost1,jdbcType=DOUBLE},
+      <if test="replacementCost1 != null" >
+        #{replacementCost1,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost2 != null" >
-        #{rBuildCost2,jdbcType=DOUBLE},
+      <if test="replacementCost2 != null" >
+        #{replacementCost2,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost3 != null" >
-        #{rBuildCost3,jdbcType=DOUBLE},
+      <if test="replacementCost3 != null" >
+        #{replacementCost3,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost4 != null" >
-        #{rBuildCost4,jdbcType=DOUBLE},
+      <if test="replacementCost4 != null" >
+        #{replacementCost4,jdbcType=DOUBLE},
       </if>
-      <if test="operCost1 != null" >
-        #{operCost1,jdbcType=DOUBLE},
+      <if test="maintainCost1 != null" >
+        #{maintainCost1,jdbcType=DOUBLE},
       </if>
-      <if test="operCost2 != null" >
-        #{operCost2,jdbcType=DOUBLE},
+      <if test="maintainCost2 != null" >
+        #{maintainCost2,jdbcType=DOUBLE},
       </if>
-      <if test="operCost3 != null" >
-        #{operCost3,jdbcType=DOUBLE},
+      <if test="maintainCost3 != null" >
+        #{maintainCost3,jdbcType=DOUBLE},
       </if>
-      <if test="operCost4 != null" >
-        #{operCost4,jdbcType=DOUBLE},
+      <if test="maintainCost4 != null" >
+        #{maintainCost4,jdbcType=DOUBLE},
       </if>
-      <if test="outPower != null" >
-        #{outPower,jdbcType=VARCHAR},
+      <if test="fGasPowe != null" >
+        #{fGasPowe,jdbcType=VARCHAR},
       </if>
-      <if test="fuelUse != null" >
-        #{fuelUse,jdbcType=VARCHAR},
+      <if test="gasConsumption != null" >
+        #{gasConsumption,jdbcType=VARCHAR},
       </if>
       <if test="owner != null" >
         #{owner,jdbcType=VARCHAR},
@@ -260,74 +263,74 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="ratedPower != null" >
-        ratedPower = #{ratedPower,jdbcType=DOUBLE},
+      <if test="ratedCapacity != null" >
+        ratedCapacity = #{ratedCapacity,jdbcType=DOUBLE},
       </if>
-      <if test="mLoadRate != null" >
-        mLoadRate = #{mLoadRate,jdbcType=DOUBLE},
+      <if test="minimumLoadRate != null" >
+        minimumLoadRate = #{minimumLoadRate,jdbcType=DOUBLE},
       </if>
-      <if test="gasTurbineEff != null" >
-        gasTurbineEff = #{gasTurbineEff,jdbcType=DOUBLE},
+      <if test="efficiency != null" >
+        efficiency = #{efficiency,jdbcType=DOUBLE},
       </if>
-      <if test="gasCogRatio != null" >
-        gasCogRatio = #{gasCogRatio,jdbcType=DOUBLE},
+      <if test="smoke != null" >
+        smoke = #{smoke,jdbcType=DOUBLE},
       </if>
-      <if test="lifetime != null" >
-        lifetime = #{lifetime,jdbcType=DOUBLE},
+      <if test="lifeTime != null" >
+        lifeTime = #{lifeTime,jdbcType=DOUBLE},
       </if>
-      <if test="number1 != null" >
-        number1 = #{number1,jdbcType=INTEGER},
+      <if test="numberOrCapacity1 != null" >
+        numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
       </if>
-      <if test="number2 != null" >
-        number2 = #{number2,jdbcType=INTEGER},
+      <if test="numberOrCapacity2 != null" >
+        numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},
       </if>
-      <if test="number3 != null" >
-        number3 = #{number3,jdbcType=INTEGER},
+      <if test="numberOrCapacity3 != null" >
+        numberOrCapacity3 = #{numberOrCapacity3,jdbcType=INTEGER},
       </if>
-      <if test="number4 != null" >
-        number4 = #{number4,jdbcType=INTEGER},
+      <if test="numberOrCapacity4 != null" >
+        numberOrCapacity4 = #{numberOrCapacity4,jdbcType=INTEGER},
       </if>
-      <if test="fBuildCost1 != null" >
-        fBuildCost1 = #{fBuildCost1,jdbcType=DOUBLE},
+      <if test="capitalCurve1 != null" >
+        capitalCurve1 = #{capitalCurve1,jdbcType=DOUBLE},
       </if>
-      <if test="fBuildCost2 != null" >
-        fBuildCost2 = #{fBuildCost2,jdbcType=DOUBLE},
+      <if test="capitalCurve2 != null" >
+        capitalCurve2 = #{capitalCurve2,jdbcType=DOUBLE},
       </if>
-      <if test="fBuildCost3 != null" >
-        fBuildCost3 = #{fBuildCost3,jdbcType=DOUBLE},
+      <if test="capitalCurve3 != null" >
+        capitalCurve3 = #{capitalCurve3,jdbcType=DOUBLE},
       </if>
-      <if test="fBuildCost4 != null" >
-        fBuildCost4 = #{fBuildCost4,jdbcType=DOUBLE},
+      <if test="capitalCurve4 != null" >
+        capitalCurve4 = #{capitalCurve4,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost1 != null" >
-        rBuildCost1 = #{rBuildCost1,jdbcType=DOUBLE},
+      <if test="replacementCost1 != null" >
+        replacementCost1 = #{replacementCost1,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost2 != null" >
-        rBuildCost2 = #{rBuildCost2,jdbcType=DOUBLE},
+      <if test="replacementCost2 != null" >
+        replacementCost2 = #{replacementCost2,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost3 != null" >
-        rBuildCost3 = #{rBuildCost3,jdbcType=DOUBLE},
+      <if test="replacementCost3 != null" >
+        replacementCost3 = #{replacementCost3,jdbcType=DOUBLE},
       </if>
-      <if test="rBuildCost4 != null" >
-        rBuildCost4 = #{rBuildCost4,jdbcType=DOUBLE},
+      <if test="replacementCost4 != null" >
+        replacementCost4 = #{replacementCost4,jdbcType=DOUBLE},
       </if>
-      <if test="operCost1 != null" >
-        operCost1 = #{operCost1,jdbcType=DOUBLE},
+      <if test="maintainCost1 != null" >
+        maintainCost1 = #{maintainCost1,jdbcType=DOUBLE},
       </if>
-      <if test="operCost2 != null" >
-        operCost2 = #{operCost2,jdbcType=DOUBLE},
+      <if test="maintainCost2 != null" >
+        maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
       </if>
-      <if test="operCost3 != null" >
-        operCost3 = #{operCost3,jdbcType=DOUBLE},
+      <if test="maintainCost3 != null" >
+        maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
       </if>
-      <if test="operCost4 != null" >
-        operCost4 = #{operCost4,jdbcType=DOUBLE},
+      <if test="maintainCost4 != null" >
+        maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
       </if>
-      <if test="outPower != null" >
-        outPower = #{outPower,jdbcType=VARCHAR},
+      <if test="fGasPowe != null" >
+        fGasPowe = #{fGasPowe,jdbcType=VARCHAR},
       </if>
-      <if test="fuelUse != null" >
-        fuelUse = #{fuelUse,jdbcType=VARCHAR},
+      <if test="gasConsumption != null" >
+        gasConsumption = #{gasConsumption,jdbcType=VARCHAR},
       </if>
       <if test="owner != null" >
         owner = #{owner,jdbcType=VARCHAR},
@@ -338,29 +341,29 @@
   <update id="updateByPrimaryKey" parameterType="edu.tju.scs.TinyNetBackend.model.po.Gas_turbine" >
     update gas_turbine
     set name = #{name,jdbcType=VARCHAR},
-      ratedPower = #{ratedPower,jdbcType=DOUBLE},
-      mLoadRate = #{mLoadRate,jdbcType=DOUBLE},
-      gasTurbineEff = #{gasTurbineEff,jdbcType=DOUBLE},
-      gasCogRatio = #{gasCogRatio,jdbcType=DOUBLE},
-      lifetime = #{lifetime,jdbcType=DOUBLE},
-      number1 = #{number1,jdbcType=INTEGER},
-      number2 = #{number2,jdbcType=INTEGER},
-      number3 = #{number3,jdbcType=INTEGER},
-      number4 = #{number4,jdbcType=INTEGER},
-      fBuildCost1 = #{fBuildCost1,jdbcType=DOUBLE},
-      fBuildCost2 = #{fBuildCost2,jdbcType=DOUBLE},
-      fBuildCost3 = #{fBuildCost3,jdbcType=DOUBLE},
-      fBuildCost4 = #{fBuildCost4,jdbcType=DOUBLE},
-      rBuildCost1 = #{rBuildCost1,jdbcType=DOUBLE},
-      rBuildCost2 = #{rBuildCost2,jdbcType=DOUBLE},
-      rBuildCost3 = #{rBuildCost3,jdbcType=DOUBLE},
-      rBuildCost4 = #{rBuildCost4,jdbcType=DOUBLE},
-      operCost1 = #{operCost1,jdbcType=DOUBLE},
-      operCost2 = #{operCost2,jdbcType=DOUBLE},
-      operCost3 = #{operCost3,jdbcType=DOUBLE},
-      operCost4 = #{operCost4,jdbcType=DOUBLE},
-      outPower = #{outPower,jdbcType=VARCHAR},
-      fuelUse = #{fuelUse,jdbcType=VARCHAR},
+      ratedCapacity = #{ratedCapacity,jdbcType=DOUBLE},
+      minimumLoadRate = #{minimumLoadRate,jdbcType=DOUBLE},
+      efficiency = #{efficiency,jdbcType=DOUBLE},
+      smoke = #{smoke,jdbcType=DOUBLE},
+      lifeTime = #{lifeTime,jdbcType=DOUBLE},
+      numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
+      numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},
+      numberOrCapacity3 = #{numberOrCapacity3,jdbcType=INTEGER},
+      numberOrCapacity4 = #{numberOrCapacity4,jdbcType=INTEGER},
+      capitalCurve1 = #{capitalCurve1,jdbcType=DOUBLE},
+      capitalCurve2 = #{capitalCurve2,jdbcType=DOUBLE},
+      capitalCurve3 = #{capitalCurve3,jdbcType=DOUBLE},
+      capitalCurve4 = #{capitalCurve4,jdbcType=DOUBLE},
+      replacementCost1 = #{replacementCost1,jdbcType=DOUBLE},
+      replacementCost2 = #{replacementCost2,jdbcType=DOUBLE},
+      replacementCost3 = #{replacementCost3,jdbcType=DOUBLE},
+      replacementCost4 = #{replacementCost4,jdbcType=DOUBLE},
+      maintainCost1 = #{maintainCost1,jdbcType=DOUBLE},
+      maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
+      maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
+      maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
+      fGasPowe = #{fGasPowe,jdbcType=VARCHAR},
+      gasConsumption = #{gasConsumption,jdbcType=VARCHAR},
       owner = #{owner,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

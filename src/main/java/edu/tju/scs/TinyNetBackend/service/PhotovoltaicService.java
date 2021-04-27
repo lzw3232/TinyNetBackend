@@ -6,12 +6,15 @@ import edu.tju.scs.TinyNetBackend.mapper.PhotovoltaicMapper;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
 import edu.tju.scs.TinyNetBackend.model.dto.ResponseData;
 import edu.tju.scs.TinyNetBackend.model.po.Photovoltaic;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Controller
+
+@Slf4j
+@Service
 public class PhotovoltaicService {
 
     @Autowired
@@ -32,7 +35,7 @@ public class PhotovoltaicService {
         String username = TokenUtil.getAudience(token);
         photovoltaic.put("owner",username);
         photovoltaic.remove("id");
-        Photovoltaic photovoltaic1 = JSONObject.toJavaObject(photovoltaic,Photovoltaic.class);
+        Photovoltaic photovoltaic1 = JSONObject.toJavaObject(photovoltaic, Photovoltaic.class);
 
         photovoltaicMapper.insert(photovoltaic1);
 
@@ -125,4 +128,9 @@ public class PhotovoltaicService {
         return new ErrorReport(0,"success",response);
 
     }
+    public ErrorReport lzw()
+    {
+        return new ErrorReport(0,"success");
+    }
+
 }

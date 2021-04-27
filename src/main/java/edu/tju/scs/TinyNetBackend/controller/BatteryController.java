@@ -2,16 +2,11 @@ package edu.tju.scs.TinyNetBackend.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import edu.tju.scs.TinyNetBackend.common.Annotaion.JWTAuth;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
-import edu.tju.scs.TinyNetBackend.model.po.Battery;
 import edu.tju.scs.TinyNetBackend.service.BatteryService;
-import edu.tju.scs.TinyNetBackend.service.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class BatteryController {

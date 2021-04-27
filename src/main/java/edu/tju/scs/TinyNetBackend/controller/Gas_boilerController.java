@@ -2,10 +2,8 @@ package edu.tju.scs.TinyNetBackend.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import edu.tju.scs.TinyNetBackend.common.Annotaion.JWTAuth;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
 import edu.tju.scs.TinyNetBackend.service.Gas_boilerService;
-import edu.tju.scs.TinyNetBackend.service.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
