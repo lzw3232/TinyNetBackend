@@ -8,7 +8,7 @@
     <result column="hubHeight" property="hubHeight" jdbcType="DOUBLE" />
     <result column="lifeTime" property="lifeTime" jdbcType="DOUBLE" />
     <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
-    <result column="DAtype" property="DAtype" jdbcType="INTEGER" />
+    <result column="dAtype" property="dAtype" jdbcType="INTEGER" />
     <result column="decayFactor" property="decayFactor" jdbcType="DOUBLE" />
     <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="INTEGER" />
     <result column="numberOrCapacity2" property="numberOrCapacity2" jdbcType="INTEGER" />
@@ -29,7 +29,7 @@
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, ratedPower, hubHeight, lifeTime, manufacturer, DAtype, decayFactor, numberOrCapacity1, 
+    id, name, ratedPower, hubHeight, lifeTime, manufacturer, dAtype, decayFactor, numberOrCapacity1, 
     numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2, 
     capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, replacementCost3, 
     replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, owner
@@ -44,7 +44,6 @@
     delete from wind_turbine
     where id = #{id,jdbcType=INTEGER}
   </delete>
-
   <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
@@ -71,11 +70,10 @@
     where name REGEXP #{val}
   </select>
 
-
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Wind_turbine" >
     insert into wind_turbine (id, name, ratedPower, 
       hubHeight, lifeTime, manufacturer, 
-      DAtype, decayFactor, numberOrCapacity1, 
+      dAtype, decayFactor, numberOrCapacity1, 
       numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
       capitalCurve1, capitalCurve2, capitalCurve3, 
       capitalCurve4, replacementCost1, replacementCost2, 
@@ -84,7 +82,7 @@
       owner)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedPower,jdbcType=DOUBLE}, 
       #{hubHeight,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, 
-      #{DAtype,jdbcType=INTEGER}, #{decayFactor,jdbcType=DOUBLE}, #{numberOrCapacity1,jdbcType=INTEGER}, 
+      #{dAtype,jdbcType=INTEGER}, #{decayFactor,jdbcType=DOUBLE}, #{numberOrCapacity1,jdbcType=INTEGER}, 
       #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, #{numberOrCapacity4,jdbcType=INTEGER}, 
       #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, 
       #{capitalCurve4,jdbcType=DOUBLE}, #{replacementCost1,jdbcType=DOUBLE}, #{replacementCost2,jdbcType=DOUBLE}, 
@@ -113,8 +111,8 @@
       <if test="manufacturer != null" >
         manufacturer,
       </if>
-      <if test="DAtype != null" >
-        DAtype,
+      <if test="dAtype != null" >
+        dAtype,
       </if>
       <if test="decayFactor != null" >
         decayFactor,
@@ -190,8 +188,8 @@
       <if test="manufacturer != null" >
         #{manufacturer,jdbcType=VARCHAR},
       </if>
-      <if test="DAtype != null" >
-        #{DAtype,jdbcType=INTEGER},
+      <if test="dAtype != null" >
+        #{dAtype,jdbcType=INTEGER},
       </if>
       <if test="decayFactor != null" >
         #{decayFactor,jdbcType=DOUBLE},
@@ -267,8 +265,8 @@
       <if test="manufacturer != null" >
         manufacturer = #{manufacturer,jdbcType=VARCHAR},
       </if>
-      <if test="DAtype != null" >
-        DAtype = #{DAtype,jdbcType=INTEGER},
+      <if test="dAtype != null" >
+        dAtype = #{dAtype,jdbcType=INTEGER},
       </if>
       <if test="decayFactor != null" >
         decayFactor = #{decayFactor,jdbcType=DOUBLE},
@@ -334,7 +332,7 @@
       hubHeight = #{hubHeight,jdbcType=DOUBLE},
       lifeTime = #{lifeTime,jdbcType=DOUBLE},
       manufacturer = #{manufacturer,jdbcType=VARCHAR},
-      DAtype = #{DAtype,jdbcType=INTEGER},
+      dAtype = #{dAtype,jdbcType=INTEGER},
       decayFactor = #{decayFactor,jdbcType=DOUBLE},
       numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
       numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},

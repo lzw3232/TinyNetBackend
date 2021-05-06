@@ -128,9 +128,5 @@ public class AbschilleService {
         return new ErrorReport(0,"success",response);
 
     }
-    public ErrorReport lzw()
-    {
-        return new ErrorReport(0,"success");
-    }
 
 }

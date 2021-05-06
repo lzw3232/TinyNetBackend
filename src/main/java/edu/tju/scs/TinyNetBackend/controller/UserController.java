@@ -41,4 +41,13 @@ public class UserController {
 
         return result;
     }
+
+
+    @RequestMapping(value = "/lzw", method = RequestMethod.POST)
+    @ResponseBody
+    public ErrorReport lzw(){
+        ErrorReport result = userService.lzw();
+
+        return result;
+    }
 }

@@ -21,7 +21,7 @@ public class Battery {
 
     private Double lifeTimeThroughput;
 
-    private Integer DAtype;
+    private Integer dAtype;
 
     private Integer numberofBattery;
 
@@ -141,12 +141,12 @@ public class Battery {
         this.lifeTimeThroughput = lifeTimeThroughput;
     }
 
-    public Integer getDAtype() {
-        return DAtype;
+    public Integer getdAtype() {
+        return dAtype;
     }
 
-    public void setDAtype(Integer DAtype) {
-        this.DAtype = DAtype;
+    public void setdAtype(Integer dAtype) {
+        this.dAtype = dAtype;
     }
 
     public Integer getNumberofBattery() {

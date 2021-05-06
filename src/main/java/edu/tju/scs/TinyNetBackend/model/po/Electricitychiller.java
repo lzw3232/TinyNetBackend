@@ -7,7 +7,7 @@ public class Electricitychiller {
 
     private Double ratedPower;
 
-    private Double COP;
+    private Double cop;
 
     private Double powerFactor;
 
@@ -73,12 +73,12 @@ public class Electricitychiller {
         this.ratedPower = ratedPower;
     }
 
-    public Double getCOP() {
-        return COP;
+    public Double getCop() {
+        return cop;
     }
 
-    public void setCOP(Double COP) {
-        this.COP = COP;
+    public void setCop(Double cop) {
+        this.cop = cop;
     }
 
     public Double getPowerFactor() {

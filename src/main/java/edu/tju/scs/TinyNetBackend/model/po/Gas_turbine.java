@@ -47,7 +47,7 @@ public class Gas_turbine {
 
     private Double maintainCost4;
 
-    private String fGasPowe;
+    private String fGasPower;
 
     private String gasConsumption;
 
@@ -237,12 +237,12 @@ public class Gas_turbine {
         this.maintainCost4 = maintainCost4;
     }
 
-    public String getfGasPowe() {
-        return fGasPowe;
+    public String getFGasPower() {
+        return fGasPower;
     }
 
-    public void setfGasPowe(String fGasPowe) {
-        this.fGasPowe = fGasPowe == null ? null : fGasPowe.trim();
+    public void setFGasPower(String fGasPower) {
+        this.fGasPower = fGasPower == null ? null : fGasPower.trim();
     }
 
     public String getGasConsumption() {

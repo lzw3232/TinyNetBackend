@@ -6,8 +6,8 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="ratedHeatPower" property="ratedHeatPower" jdbcType="DOUBLE" />
     <result column="ratedCoolPower" property="ratedCoolPower" jdbcType="DOUBLE" />
-    <result column="CopHeat" property="copHeat" jdbcType="DOUBLE" />
-    <result column="CopCool" property="copCool" jdbcType="DOUBLE" />
+    <result column="copHeat" property="copHeat" jdbcType="DOUBLE" />
+    <result column="copCool" property="copCool" jdbcType="DOUBLE" />
     <result column="lifeTime" property="lifeTime" jdbcType="DOUBLE" />
     <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
     <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="INTEGER" />
@@ -29,7 +29,7 @@
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, ratedHeatPower, ratedCoolPower, CopHeat, CopCool, lifeTime, manufacturer, 
+    id, name, ratedHeatPower, ratedCoolPower, copHeat, copCool, lifeTime, manufacturer, 
     numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, 
     capitalCurve2, capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, 
     replacementCost3, replacementCost4, maintainCost1, maintainCost2, maintainCost3, 
@@ -45,9 +45,6 @@
     delete from abschille
     where id = #{id,jdbcType=INTEGER}
   </delete>
-
-
-
   <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
@@ -73,11 +70,9 @@
     select count(*) from abschille
     where name REGEXP #{val}
   </select>
-
-
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Abschille" >
     insert into abschille (id, name, ratedHeatPower, 
-      ratedCoolPower, CopHeat, CopCool, 
+      ratedCoolPower, copHeat, copCool, 
       lifeTime, manufacturer, numberOrCapacity1, 
       numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
       capitalCurve1, capitalCurve2, capitalCurve3, 
@@ -111,10 +106,10 @@
         ratedCoolPower,
       </if>
       <if test="copHeat != null" >
-        CopHeat,
+        copHeat,
       </if>
       <if test="copCool != null" >
-        CopCool,
+        copCool,
       </if>
       <if test="lifeTime != null" >
         lifeTime,
@@ -265,10 +260,10 @@
         ratedCoolPower = #{ratedCoolPower,jdbcType=DOUBLE},
       </if>
       <if test="copHeat != null" >
-        CopHeat = #{copHeat,jdbcType=DOUBLE},
+        copHeat = #{copHeat,jdbcType=DOUBLE},
       </if>
       <if test="copCool != null" >
-        CopCool = #{copCool,jdbcType=DOUBLE},
+        copCool = #{copCool,jdbcType=DOUBLE},
       </if>
       <if test="lifeTime != null" >
         lifeTime = #{lifeTime,jdbcType=DOUBLE},
@@ -335,8 +330,8 @@
     set name = #{name,jdbcType=VARCHAR},
       ratedHeatPower = #{ratedHeatPower,jdbcType=DOUBLE},
       ratedCoolPower = #{ratedCoolPower,jdbcType=DOUBLE},
-      CopHeat = #{copHeat,jdbcType=DOUBLE},
-      CopCool = #{copCool,jdbcType=DOUBLE},
+      copHeat = #{copHeat,jdbcType=DOUBLE},
+      copCool = #{copCool,jdbcType=DOUBLE},
       lifeTime = #{lifeTime,jdbcType=DOUBLE},
       manufacturer = #{manufacturer,jdbcType=VARCHAR},
       numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},

@@ -12,7 +12,7 @@
     <result column="maximumCapacity" property="maximumCapacity" jdbcType="DOUBLE" />
     <result column="floatLife" property="floatLife" jdbcType="DOUBLE" />
     <result column="lifeTimeThroughput" property="lifeTimeThroughput" jdbcType="DOUBLE" />
-    <result column="DAtype" property="DAtype" jdbcType="INTEGER" />
+    <result column="dAtype" property="dAtype" jdbcType="INTEGER" />
     <result column="numberofBattery" property="numberofBattery" jdbcType="INTEGER" />
     <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
     <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="INTEGER" />
@@ -35,7 +35,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, ratedVoltage, roundTridEfficiency, maximumChargeRate, maximumChargeCurrent, 
-    constRate, maximumCapacity, floatLife, lifeTimeThroughput, DAtype, numberofBattery, 
+    constRate, maximumCapacity, floatLife, lifeTimeThroughput, dAtype, numberofBattery, 
     manufacturer, numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
     capitalCurve1, capitalCurve2, capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, 
     replacementCost3, replacementCost4, maintainCost1, maintainCost2, maintainCost3, 
@@ -83,7 +83,7 @@
     insert into battery (id, name, ratedVoltage, 
       roundTridEfficiency, maximumChargeRate, maximumChargeCurrent, 
       constRate, maximumCapacity, floatLife, 
-      lifeTimeThroughput, DAtype, numberofBattery, 
+      lifeTimeThroughput, dAtype, numberofBattery, 
       manufacturer, numberOrCapacity1, numberOrCapacity2, 
       numberOrCapacity3, numberOrCapacity4, capitalCurve1, 
       capitalCurve2, capitalCurve3, capitalCurve4, 
@@ -94,7 +94,7 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedVoltage,jdbcType=DOUBLE}, 
       #{roundTridEfficiency,jdbcType=DOUBLE}, #{maximumChargeRate,jdbcType=DOUBLE}, #{maximumChargeCurrent,jdbcType=DOUBLE}, 
       #{constRate,jdbcType=DOUBLE}, #{maximumCapacity,jdbcType=DOUBLE}, #{floatLife,jdbcType=DOUBLE}, 
-      #{lifeTimeThroughput,jdbcType=DOUBLE}, #{DAtype,jdbcType=INTEGER}, #{numberofBattery,jdbcType=INTEGER}, 
+      #{lifeTimeThroughput,jdbcType=DOUBLE}, #{dAtype,jdbcType=INTEGER}, #{numberofBattery,jdbcType=INTEGER}, 
       #{manufacturer,jdbcType=VARCHAR}, #{numberOrCapacity1,jdbcType=INTEGER}, #{numberOrCapacity2,jdbcType=INTEGER}, 
       #{numberOrCapacity3,jdbcType=INTEGER}, #{numberOrCapacity4,jdbcType=INTEGER}, #{capitalCurve1,jdbcType=DOUBLE}, 
       #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, #{capitalCurve4,jdbcType=DOUBLE}, 
@@ -136,8 +136,8 @@
       <if test="lifeTimeThroughput != null" >
         lifeTimeThroughput,
       </if>
-      <if test="DAtype != null" >
-        DAtype,
+      <if test="dAtype != null" >
+        dAtype,
       </if>
       <if test="numberofBattery != null" >
         numberofBattery,
@@ -228,8 +228,8 @@
       <if test="lifeTimeThroughput != null" >
         #{lifeTimeThroughput,jdbcType=DOUBLE},
       </if>
-      <if test="DAtype != null" >
-        #{DAtype,jdbcType=INTEGER},
+      <if test="dAtype != null" >
+        #{dAtype,jdbcType=INTEGER},
       </if>
       <if test="numberofBattery != null" >
         #{numberofBattery,jdbcType=INTEGER},
@@ -320,8 +320,8 @@
       <if test="lifeTimeThroughput != null" >
         lifeTimeThroughput = #{lifeTimeThroughput,jdbcType=DOUBLE},
       </if>
-      <if test="DAtype != null" >
-        DAtype = #{DAtype,jdbcType=INTEGER},
+      <if test="dAtype != null" >
+        dAtype = #{dAtype,jdbcType=INTEGER},
       </if>
       <if test="numberofBattery != null" >
         numberofBattery = #{numberofBattery,jdbcType=INTEGER},
@@ -394,7 +394,7 @@
       maximumCapacity = #{maximumCapacity,jdbcType=DOUBLE},
       floatLife = #{floatLife,jdbcType=DOUBLE},
       lifeTimeThroughput = #{lifeTimeThroughput,jdbcType=DOUBLE},
-      DAtype = #{DAtype,jdbcType=INTEGER},
+      dAtype = #{dAtype,jdbcType=INTEGER},
       numberofBattery = #{numberofBattery,jdbcType=INTEGER},
       manufacturer = #{manufacturer,jdbcType=VARCHAR},
       numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},

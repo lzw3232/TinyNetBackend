@@ -25,7 +25,7 @@
     <result column="maintainCost2" property="maintainCost2" jdbcType="DOUBLE" />
     <result column="maintainCost3" property="maintainCost3" jdbcType="DOUBLE" />
     <result column="maintainCost4" property="maintainCost4" jdbcType="DOUBLE" />
-    <result column="fGasPowe" property="fGasPowe" jdbcType="VARCHAR" />
+    <result column="fGasPower" property="fGasPower" jdbcType="VARCHAR" />
     <result column="gasConsumption" property="gasConsumption" jdbcType="VARCHAR" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
@@ -33,7 +33,7 @@
     id, name, ratedCapacity, minimumLoadRate, efficiency, smoke, lifeTime, numberOrCapacity1, 
     numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2, 
     capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, replacementCost3, 
-    replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, fGasPowe, 
+    replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, fGasPower, 
     gasConsumption, owner
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -82,7 +82,7 @@
       capitalCurve2, capitalCurve3, capitalCurve4, 
       replacementCost1, replacementCost2, replacementCost3, 
       replacementCost4, maintainCost1, maintainCost2, 
-      maintainCost3, maintainCost4, fGasPowe, 
+      maintainCost3, maintainCost4, fGasPower, 
       gasConsumption, owner)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedCapacity,jdbcType=DOUBLE}, 
       #{minimumLoadRate,jdbcType=DOUBLE}, #{efficiency,jdbcType=DOUBLE}, #{smoke,jdbcType=DOUBLE}, 
@@ -91,7 +91,7 @@
       #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, #{capitalCurve4,jdbcType=DOUBLE}, 
       #{replacementCost1,jdbcType=DOUBLE}, #{replacementCost2,jdbcType=DOUBLE}, #{replacementCost3,jdbcType=DOUBLE}, 
       #{replacementCost4,jdbcType=DOUBLE}, #{maintainCost1,jdbcType=DOUBLE}, #{maintainCost2,jdbcType=DOUBLE}, 
-      #{maintainCost3,jdbcType=DOUBLE}, #{maintainCost4,jdbcType=DOUBLE}, #{fGasPowe,jdbcType=VARCHAR}, 
+      #{maintainCost3,jdbcType=DOUBLE}, #{maintainCost4,jdbcType=DOUBLE}, #{fGasPower,jdbcType=VARCHAR}, 
       #{gasConsumption,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Gas_turbine" >
@@ -166,8 +166,8 @@
       <if test="maintainCost4 != null" >
         maintainCost4,
       </if>
-      <if test="fGasPowe != null" >
-        fGasPowe,
+      <if test="fGasPower != null" >
+        fGasPower,
       </if>
       <if test="gasConsumption != null" >
         gasConsumption,
@@ -246,8 +246,8 @@
       <if test="maintainCost4 != null" >
         #{maintainCost4,jdbcType=DOUBLE},
       </if>
-      <if test="fGasPowe != null" >
-        #{fGasPowe,jdbcType=VARCHAR},
+      <if test="fGasPower != null" >
+        #{fGasPower,jdbcType=VARCHAR},
       </if>
       <if test="gasConsumption != null" >
         #{gasConsumption,jdbcType=VARCHAR},
@@ -326,8 +326,8 @@
       <if test="maintainCost4 != null" >
         maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
       </if>
-      <if test="fGasPowe != null" >
-        fGasPowe = #{fGasPowe,jdbcType=VARCHAR},
+      <if test="fGasPower != null" >
+        fGasPower = #{fGasPower,jdbcType=VARCHAR},
       </if>
       <if test="gasConsumption != null" >
         gasConsumption = #{gasConsumption,jdbcType=VARCHAR},
@@ -362,7 +362,7 @@
       maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
       maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
       maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
-      fGasPowe = #{fGasPowe,jdbcType=VARCHAR},
+      fGasPower = #{fGasPower,jdbcType=VARCHAR},
       gasConsumption = #{gasConsumption,jdbcType=VARCHAR},
       owner = #{owner,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

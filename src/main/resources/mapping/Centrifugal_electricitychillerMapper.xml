@@ -5,8 +5,8 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="ratedPower" property="ratedPower" jdbcType="DOUBLE" />
-    <result column="PowerFactor" property="powerFactor" jdbcType="DOUBLE" />
-    <result column="COP" property="COP" jdbcType="DOUBLE" />
+    <result column="powerFactor" property="powerFactor" jdbcType="DOUBLE" />
+    <result column="cop" property="cop" jdbcType="DOUBLE" />
     <result column="lifeTime" property="lifeTime" jdbcType="DOUBLE" />
     <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
     <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="DOUBLE" />
@@ -28,7 +28,7 @@
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, ratedPower, PowerFactor, COP, lifeTime, manufacturer, numberOrCapacity1, 
+    id, name, ratedPower, powerFactor, cop, lifeTime, manufacturer, numberOrCapacity1, 
     numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2, 
     capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, replacementCost3, 
     replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, owner
@@ -72,7 +72,7 @@
 
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Centrifugal_electricitychiller" >
     insert into centrifugal_electricitychiller (id, name, ratedPower, 
-      PowerFactor, COP, lifeTime, 
+      powerFactor, cop, lifeTime, 
       manufacturer, numberOrCapacity1, numberOrCapacity2, 
       numberOrCapacity3, numberOrCapacity4, capitalCurve1, 
       capitalCurve2, capitalCurve3, capitalCurve4, 
@@ -81,7 +81,7 @@
       maintainCost3, maintainCost4, owner
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedPower,jdbcType=DOUBLE}, 
-      #{powerFactor,jdbcType=DOUBLE}, #{COP,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, 
+      #{powerFactor,jdbcType=DOUBLE}, #{cop,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, 
       #{manufacturer,jdbcType=VARCHAR}, #{numberOrCapacity1,jdbcType=DOUBLE}, #{numberOrCapacity2,jdbcType=DOUBLE}, 
       #{numberOrCapacity3,jdbcType=DOUBLE}, #{numberOrCapacity4,jdbcType=DOUBLE}, #{capitalCurve1,jdbcType=DOUBLE}, 
       #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, #{capitalCurve4,jdbcType=DOUBLE}, 
@@ -103,10 +103,10 @@
         ratedPower,
       </if>
       <if test="powerFactor != null" >
-        PowerFactor,
+        powerFactor,
       </if>
-      <if test="COP != null" >
-        COP,
+      <if test="cop != null" >
+        cop,
       </if>
       <if test="lifeTime != null" >
         lifeTime,
@@ -179,8 +179,8 @@
       <if test="powerFactor != null" >
         #{powerFactor,jdbcType=DOUBLE},
       </if>
-      <if test="COP != null" >
-        #{COP,jdbcType=DOUBLE},
+      <if test="cop != null" >
+        #{cop,jdbcType=DOUBLE},
       </if>
       <if test="lifeTime != null" >
         #{lifeTime,jdbcType=DOUBLE},
@@ -251,10 +251,10 @@
         ratedPower = #{ratedPower,jdbcType=DOUBLE},
       </if>
       <if test="powerFactor != null" >
-        PowerFactor = #{powerFactor,jdbcType=DOUBLE},
+        powerFactor = #{powerFactor,jdbcType=DOUBLE},
       </if>
-      <if test="COP != null" >
-        COP = #{COP,jdbcType=DOUBLE},
+      <if test="cop != null" >
+        cop = #{cop,jdbcType=DOUBLE},
       </if>
       <if test="lifeTime != null" >
         lifeTime = #{lifeTime,jdbcType=DOUBLE},
@@ -320,8 +320,8 @@
     update centrifugal_electricitychiller
     set name = #{name,jdbcType=VARCHAR},
       ratedPower = #{ratedPower,jdbcType=DOUBLE},
-      PowerFactor = #{powerFactor,jdbcType=DOUBLE},
-      COP = #{COP,jdbcType=DOUBLE},
+      powerFactor = #{powerFactor,jdbcType=DOUBLE},
+      cop = #{cop,jdbcType=DOUBLE},
       lifeTime = #{lifeTime,jdbcType=DOUBLE},
       manufacturer = #{manufacturer,jdbcType=VARCHAR},
       numberOrCapacity1 = #{numberOrCapacity1,jdbcType=DOUBLE},

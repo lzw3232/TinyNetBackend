@@ -20,25 +20,25 @@ public class Elec_airconditionController {
     protected Elec_airconditionService elec_airconditionService;
 
 
-    @RequestMapping(value = "/tinyNet/device/elec_aircondition/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/tinyNet/device/elecaircondition/add",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport add(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = elec_airconditionService.add(data.getJSONObject("elec_aircondition"),data.getString("token"));
+        ErrorReport result = elec_airconditionService.add(data.getJSONObject("elecaircondition"),data.getString("token"));
         return result;
     }
 
 
-    @RequestMapping(value = "/tinyNet/device/elec_aircondition/update",method = RequestMethod.POST)
+    @RequestMapping(value = "/tinyNet/device/elecaircondition/update",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport update(@RequestBody(required=false) JSONObject data)
     {
-        ErrorReport result = elec_airconditionService.update(data.getJSONObject("elec_aircondition"),data.getString("token"));
+        ErrorReport result = elec_airconditionService.update(data.getJSONObject("elecaircondition"),data.getString("token"));
         return result;
     }
 
 
-    @RequestMapping(value = "/tinyNet/device/elec_aircondition/select",method = RequestMethod.POST)
+    @RequestMapping(value = "/tinyNet/device/elecaircondition/select",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport select(@RequestBody(required=false) JSONObject data)
     {
@@ -47,7 +47,7 @@ public class Elec_airconditionController {
     }
 
 
-    @RequestMapping(value = "/tinyNet/device/elec_aircondition/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/tinyNet/device/elecaircondition/delete",method = RequestMethod.POST)
     @ResponseBody
     public ErrorReport delete(@RequestBody(required=false) JSONObject data)
     {
@@ -56,7 +56,7 @@ public class Elec_airconditionController {
     }
 
 
-    @RequestMapping(value = "/tinyNet/device/elec_aircondition/list",method = RequestMethod.POST)
+    @RequestMapping(value = "/tinyNet/device/elecaircondition/list",method = RequestMethod.POST)
     @ResponseBody
     @JsonProperty("ErrorReport")
     public ErrorReport list(@RequestBody(required=false) JSONObject data){

@@ -13,7 +13,7 @@ public class Wind_turbine {
 
     private String manufacturer;
 
-    private Integer DAtype;
+    private Integer dAtype;
 
     private Double decayFactor;
 
@@ -99,12 +99,12 @@ public class Wind_turbine {
         this.manufacturer = manufacturer == null ? null : manufacturer.trim();
     }
 
-    public Integer getDAtype() {
-        return DAtype;
+    public Integer getdAtype() {
+        return dAtype;
     }
 
-    public void setDAtype(Integer DAtype) {
-        this.DAtype = DAtype;
+    public void setdAtype(Integer dAtype) {
+        this.dAtype = dAtype;
     }
 
     public Double getDecayFactor() {

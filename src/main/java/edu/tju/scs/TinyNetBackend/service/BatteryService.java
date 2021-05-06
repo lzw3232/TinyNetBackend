@@ -1,5 +1,6 @@
 package edu.tju.scs.TinyNetBackend.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import edu.tju.scs.TinyNetBackend.common.utils.TokenUtil;
 import edu.tju.scs.TinyNetBackend.mapper.BatteryMapper;
@@ -124,6 +125,7 @@ public class BatteryService {
             response.addData("total",total);
         }
         response.addData("list",batterylist);
+        System.out.println(JSON.toJSONString(batterylist.get(0)));
 
         return new ErrorReport(0,"success",response);
 

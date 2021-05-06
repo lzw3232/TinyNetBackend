@@ -24,4 +24,5 @@ public interface Elec_boilerMapper {
 
     List<Elec_boiler> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);
     List<Elec_boiler> selectByOwner1(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps,@Param("val") String val);
+
 }

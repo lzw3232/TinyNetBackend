@@ -26,7 +26,7 @@
     <result column="maintainCost3" property="maintainCost3" jdbcType="DOUBLE" />
     <result column="maintainCost4" property="maintainCost4" jdbcType="DOUBLE" />
     <result column="fInternalGasPower" property="fInternalGasPower" jdbcType="VARCHAR" />
-    <result column="InternalgasConsumption" property="internalgasConsumption" jdbcType="VARCHAR" />
+    <result column="internalgasConsumption" property="internalgasConsumption" jdbcType="VARCHAR" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -34,7 +34,7 @@
     numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2, 
     capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, replacementCost3, 
     replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, fInternalGasPower, 
-    InternalgasConsumption, owner
+    internalgasConsumption, owner
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -83,7 +83,7 @@
       replacementCost1, replacementCost2, replacementCost3, 
       replacementCost4, maintainCost1, maintainCost2, 
       maintainCost3, maintainCost4, fInternalGasPower, 
-      InternalgasConsumption, owner)
+      internalgasConsumption, owner)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedCapacity,jdbcType=DOUBLE}, 
       #{minimumLoadRate,jdbcType=DOUBLE}, #{water,jdbcType=DOUBLE}, #{smoke,jdbcType=DOUBLE}, 
       #{lifeTime,jdbcType=DOUBLE}, #{numberOrCapacity1,jdbcType=INTEGER}, #{numberOrCapacity2,jdbcType=INTEGER}, 
@@ -170,7 +170,7 @@
         fInternalGasPower,
       </if>
       <if test="internalgasConsumption != null" >
-        InternalgasConsumption,
+        internalgasConsumption,
       </if>
       <if test="owner != null" >
         owner,
@@ -330,7 +330,7 @@
         fInternalGasPower = #{fInternalGasPower,jdbcType=VARCHAR},
       </if>
       <if test="internalgasConsumption != null" >
-        InternalgasConsumption = #{internalgasConsumption,jdbcType=VARCHAR},
+        internalgasConsumption = #{internalgasConsumption,jdbcType=VARCHAR},
       </if>
       <if test="owner != null" >
         owner = #{owner,jdbcType=VARCHAR},
@@ -363,7 +363,7 @@
       maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
       maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
       fInternalGasPower = #{fInternalGasPower,jdbcType=VARCHAR},
-      InternalgasConsumption = #{internalgasConsumption,jdbcType=VARCHAR},
+      internalgasConsumption = #{internalgasConsumption,jdbcType=VARCHAR},
       owner = #{owner,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

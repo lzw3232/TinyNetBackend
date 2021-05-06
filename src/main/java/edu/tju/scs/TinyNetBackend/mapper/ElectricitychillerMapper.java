@@ -18,10 +18,10 @@ public interface ElectricitychillerMapper {
 
     int updateByPrimaryKeySelective(Electricitychiller record);
 
-    int updateByPrimaryKey(Electricitychiller record);
-    Integer countB();
+    int updateByPrimaryKey(Electricitychiller record);    Integer countB();
     Integer countB1(@Param("val") String val);
 
     List<Electricitychiller> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);
     List<Electricitychiller> selectByOwner1(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps,@Param("val") String val);
+
 }

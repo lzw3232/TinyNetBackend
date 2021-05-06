@@ -7,7 +7,7 @@ public class Elec_boiler {
 
     private Double ratedPower;
 
-    private Double COP;
+    private Double cop;
 
     private Double lifeTime;
 
@@ -71,12 +71,12 @@ public class Elec_boiler {
         this.ratedPower = ratedPower;
     }
 
-    public Double getCOP() {
-        return COP;
+    public Double getCop() {
+        return cop;
     }
 
-    public void setCOP(Double COP) {
-        this.COP = COP;
+    public void setCop(Double cop) {
+        this.cop = cop;
     }
 
     public Double getLifeTime() {

@@ -5,6 +5,7 @@ package edu.tju.scs.TinyNetBackend.service;
 import edu.tju.scs.TinyNetBackend.common.utils.TokenUtil;
 import edu.tju.scs.TinyNetBackend.mapper.UserMapper;
 import edu.tju.scs.TinyNetBackend.model.dto.ErrorReport;
+import edu.tju.scs.TinyNetBackend.model.dto.ResponseData;
 import edu.tju.scs.TinyNetBackend.model.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -103,6 +104,15 @@ public class UserService {
         else{
             return new ErrorReport(6, "not admin");
         }
+    }
+
+
+    public ErrorReport lzw()
+    {
+        ResponseData response =new ResponseData();
+
+        response.addData("List_dsd","ds");
+        return new ErrorReport(0,"success",response);
     }
 
 }
