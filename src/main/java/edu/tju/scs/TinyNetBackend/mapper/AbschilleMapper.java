@@ -18,7 +18,8 @@ public interface AbschilleMapper {
 
     int updateByPrimaryKeySelective(Abschille record);
 
-    int updateByPrimaryKey(Abschille record);    Integer countB();
+    int updateByPrimaryKey(Abschille record);
+    Integer countB();
     Integer countB1(@Param("val") String val);
 
     List<Abschille> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);

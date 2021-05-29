@@ -77,7 +77,6 @@ public class Gas_turbineService {
         }
 
         Gas_turbine gas_turbine =gas_turbineMapper.selectByPrimaryKey(id);
-
         if(gas_turbine!=null){
             response.addData("data",gas_turbine);
             return new ErrorReport(0,"success",response);

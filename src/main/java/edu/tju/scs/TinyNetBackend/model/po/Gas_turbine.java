@@ -1,5 +1,7 @@
 package edu.tju.scs.TinyNetBackend.model.po;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Gas_turbine {
     private Integer id;
 
@@ -46,7 +48,7 @@ public class Gas_turbine {
     private Double maintainCost3;
 
     private Double maintainCost4;
-
+    @JsonProperty
     private String fGasPower;
 
     private String gasConsumption;

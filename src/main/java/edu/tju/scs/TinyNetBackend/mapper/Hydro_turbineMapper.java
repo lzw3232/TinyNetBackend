@@ -1,5 +1,6 @@
 package edu.tju.scs.TinyNetBackend.mapper;
 
+import edu.tju.scs.TinyNetBackend.model.po.Abschille;
 import edu.tju.scs.TinyNetBackend.model.po.Hydro_turbine;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,4 +25,5 @@ public interface Hydro_turbineMapper {
 
     List<Hydro_turbine> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);
     List<Hydro_turbine> selectByOwner1(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps,@Param("val") String val);
+
 }

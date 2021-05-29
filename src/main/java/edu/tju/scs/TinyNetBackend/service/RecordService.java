@@ -20,15 +20,57 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 import java.util.List;
 
+import java.lang.reflect.*;
+
 @Service
 public class RecordService {
 
     @Autowired
     private RecordMapper recordMapper;
     @Autowired
+    protected AbschilleMapper abschilleMapper;
+    @Autowired
     private BatteryMapper batteryMapper;
     @Autowired
-    private PumpMapper generatorMapper;
+    protected Centrifugal_electricitychillerMapper centrifugal_electricitychillerMapper;
+    @Autowired
+    protected Cool_storageMapper cool_storageMapper;
+    @Autowired
+    protected DieselMapper dieselMapper;
+    @Autowired
+    protected Elec_airconditionMapper elec_airconditionMapper;
+    @Autowired
+    protected Elec_boilerMapper elec_boilerMapper;
+    @Autowired
+    protected ElectricitychillerMapper electricitychillerMapper;
+    @Autowired
+    protected Gas_abschilleMapper gas_abschilleMapper;
+    @Autowired
+    protected Gas_boilerMapper gas_boilerMapper;
+    @Autowired
+    protected Gas_steam_boilerMapper gas_steam_boilerMapper;
+    @Autowired
+    protected Gas_turbineMapper gas_turbineMapper;
+    @Autowired
+    protected Heat_exchangerMapper heat_exchangerMapper;
+    @Autowired
+    protected Heat_storageMapper heat_storageMapper;
+    @Autowired
+    protected Hydro_turbineMapper hydro_turbineMapper;
+    @Autowired
+    protected Internal_gas_turbineMapper internal_gas_turbineMapper;
+    @Autowired
+    protected Nuclear_powerMapper nuclear_powerMapper;
+    @Autowired
+    protected PhotovoltaicMapper photovoltaicMapper;
+    @Autowired
+    protected PumpMapper pumpMapper;
+    @Autowired
+    protected Screw_electricitychillerMapper screw_electricitychillerMapper;
+    @Autowired
+    protected Waste_heat_boilerMapper waste_heat_boilerMapper;
+    @Autowired
+    protected Wind_turbineMapper wind_turbineMapper;
 
     private boolean check(int id,String owner)
     {
@@ -44,10 +86,16 @@ public class RecordService {
         String username = TokenUtil.getAudience(token);
         Record record =new Record();
         record.setOwner(username);
+        System.out.println(data);
         record.setName(data.getString("name"));
         record.setState(0);
         JSONObject devices = data.getJSONObject("deviceData");
-        devices = getDevices(devices,username);
+        try{
+            devices = getDevices(devices,username);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
         data.put("deviceData",devices);
 
         RecordList.add1(record,data,username);
@@ -220,26 +268,332 @@ public class RecordService {
         return new ErrorReport(0,"success",response);
     }
 
-    private JSONObject getDevices(JSONObject data,String owner){
+    private JSONObject getDevices(JSONObject data,String owner) throws Exception{
         Iterator<String> it = data.keySet().iterator();
         while (it.hasNext()) {
             String key = it.next();
-            switch (key){
-                case "battery":
-                    Battery battery;
-                    if(data.getJSONObject(key).getInteger("id")!=null){
-                        battery= batteryMapper.selectByPrimaryKey(data.getJSONObject(key).getInteger("id"));
+            Field[] fields;
+            JSONObject s;
+            switch (key) {
+                case "abschille":
+                    Abschille abschille;
+                    abschille =  abschilleMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","溴化锂空调");
+                    fields = abschille.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(abschille).toString());
                     }
-                    else{
-                        battery = batteryMapper.selectByOwner(owner,0,10).get(0);
-                    }
-                    Battery_ours battery_ours = new Battery_ours(battery);
-                    data.getJSONObject(key).put("string1",battery_ours.toString1());
-                    data.getJSONObject(key).put("string2",battery_ours.toString2());
+                    data.getJSONObject(key).put("id", s);
                     break;
-
+                case "battery":
+                    Battery battery = batteryMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","电池");
+                    fields = battery.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(battery).toString());
+                    }
+                    s.put("currentSOC",data.getJSONObject(key).getString("currentSOC"));
+                    s.put("maximumSOC",data.getJSONObject(key).getString("maximumSOC"));
+                    s.put("minimumSOC",data.getJSONObject(key).getString("minimumSOC"));
+                    s.put("convEfficiency",data.getJSONObject(key).getString("convEfficiency"));
+                    s.put("invEfficiency",data.getJSONObject(key).getString("invEfficiency"));
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "centrifugal_electricitychiller":
+                    Centrifugal_electricitychiller centrifugal_electricitychiller = centrifugal_electricitychillerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","电池冷机");
+                    fields = centrifugal_electricitychiller.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(centrifugal_electricitychiller).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "cool_storage":
+                    Cool_storage cool_storage = cool_storageMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","蓄冰装置");
+                    fields = cool_storage.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(cool_storage).toString());
+                    }
+                    s.put("currentSOC",data.getJSONObject(key).getString("currentSOC"));
+                    s.put("maximumSOC",data.getJSONObject(key).getString("maximumSOC"));
+                    s.put("minimumSOC",data.getJSONObject(key).getString("minimumSOC"));
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "diesel":
+                    Diesel diesel = dieselMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","柴油机");
+                    fields = diesel.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name" || f.getName() == "type")
+                            continue;
+                        if (f.getName() == "fDieselPower" || f.getName() == "fuelConsumption") {
+                            data.getJSONObject(key).put(f.getName(),f.get(diesel).toString());
+                            continue;
+                        }
+                        s.put(f.getName(),f.get(diesel).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "elecaircondition":
+                    Elec_aircondition elecaircondition = elec_airconditionMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","双工况制冷机");
+                    fields = elecaircondition.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(elecaircondition).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "elec_boiler":
+                    Elec_boiler elec_boiler = elec_boilerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","电锅炉");
+                    fields = elec_boiler.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(elec_boiler).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "electricitychiller":
+                    Electricitychiller electricitychiller = electricitychillerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","涡旋式电制冷机");
+                    fields = electricitychiller.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(electricitychiller).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "gas_abschille":
+                    Gas_abschille gas_abschille = gas_abschilleMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","直燃型溴化锂空调");
+                    fields = gas_abschille.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(gas_abschille).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "gas_boiler":
+                    Gas_boiler gas_boiler = gas_boilerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","燃气锅炉");
+                    fields = gas_boiler.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(gas_boiler).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "gas_steam_boiler":
+                    Gas_steam_boiler gas_steam_boiler = gas_steam_boilerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","燃气蒸汽锅炉");
+                    fields = gas_steam_boiler.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(gas_steam_boiler).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "gas_turbine":
+                    Gas_turbine gas_turbine = gas_turbineMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","燃气轮机");
+                    fields = gas_turbine.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        if (f.getName() == "fGasPower" || f.getName() == "gasConsumption") {
+                            data.getJSONObject(key).put(f.getName(), f.get(gas_turbine).toString());
+                            continue;
+                        }
+                        s.put(f.getName(),f.get(gas_turbine).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "heat_exchanger":
+                    Heat_exchanger heat_exchanger = heat_exchangerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","板式换热器");
+                    fields = heat_exchanger.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(heat_exchanger).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "heat_storage":
+                    Heat_storage heat_storage = heat_storageMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","蓄热装置");
+                    fields = heat_storage.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(heat_storage).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "hydro_turbine":
+                    Hydro_turbine hydro_turbine = hydro_turbineMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","水轮机");
+                    fields = hydro_turbine.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(hydro_turbine).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "internal_gas_turbine":
+                    Internal_gas_turbine internal_gas_turbine = internal_gas_turbineMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","燃气内燃机");
+                    fields = internal_gas_turbine.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        if (f.getName() == "fInternalGasPower" || f.getName() == "internalgasConsumption") {
+                            data.getJSONObject(key).put(f.getName(), f.get(internal_gas_turbine).toString());
+                            continue;
+                        }
+                        s.put(f.getName(),f.get(internal_gas_turbine).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "nuclear_power":
+                    Nuclear_power nuclear_power = nuclear_powerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","核电机组");
+                    fields = nuclear_power.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(nuclear_power).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "photovoltaic":
+                    Photovoltaic photovoltaic = photovoltaicMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","光伏");
+                    fields = photovoltaic.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(photovoltaic).toString());
+                    }
+                    s.put("slope",data.getJSONObject(key).getString("slope"));
+                    s.put("azimuth",data.getJSONObject(key).getString("azimuth"));
+                    s.put("groundReflectance",data.getJSONObject(key).getString("groundReflectance"));
+                    s.put("transmissivity",data.getJSONObject(key).getString("transmissivity"));
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "pump":
+                    Pump pump = pumpMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","热泵");
+                    fields = pump.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(pump).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "screw_electricitychiller":
+                    Screw_electricitychiller screw_electricitychiller = screw_electricitychillerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","螺杆式电制冷机");
+                    fields = screw_electricitychiller.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(screw_electricitychiller).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "waste_heat_boiler":
+                    Waste_heat_boiler waste_heat_boiler = waste_heat_boilerMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","余热锅炉");
+                    fields = waste_heat_boiler.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        s.put(f.getName(),f.get(waste_heat_boiler).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
+                case "wind_turbine":
+                    Wind_turbine wind_turbine = wind_turbineMapper.selectByOwner(owner, 0, 10).get(0);
+                    s = new JSONObject(true);
+                    s.put("name","风机");
+                    fields = wind_turbine.getClass().getDeclaredFields();
+                    for (int i = 0; i < fields.length; i++) {
+                        Field f = fields[i];
+                        f.setAccessible(true);
+                        if (f.getName() == "id" || f.getName() == "owner" || f.getName() == "name") continue;
+                        if (f.getName() == "fPower" || f.getName() == "fWindSpeed") {
+                            data.getJSONObject(key).put(f.getName(), f.get(wind_turbine).toString());
+                            continue;
+                        }
+                        s.put(f.getName(),f.get(wind_turbine).toString());
+                    }
+                    data.getJSONObject(key).put("id", s);
+                    break;
             }
         }
+        System.out.println(data);
 
         return data;
     }

@@ -51,6 +51,10 @@ public class Wind_turbine {
 
     private String owner;
 
+    private String fWindSpeed;
+
+    private String fPower;
+
     public Integer getId() {
         return id;
     }
@@ -249,5 +253,21 @@ public class Wind_turbine {
 
     public void setOwner(String owner) {
         this.owner = owner == null ? null : owner.trim();
+    }
+
+    public String getfWindSpeed() {
+        return fWindSpeed;
+    }
+
+    public void setfWindSpeed(String fWindSpeed) {
+        this.fWindSpeed = fWindSpeed == null ? null : fWindSpeed.trim();
+    }
+
+    public String getfPower() {
+        return fPower;
+    }
+
+    public void setfPower(String fPower) {
+        this.fPower = fPower == null ? null : fPower.trim();
     }
 }

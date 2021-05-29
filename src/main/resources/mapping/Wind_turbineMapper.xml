@@ -27,15 +27,18 @@
     <result column="maintainCost3" property="maintainCost3" jdbcType="DOUBLE" />
     <result column="maintainCost4" property="maintainCost4" jdbcType="DOUBLE" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
+    <result column="fWindSpeed" property="fWindSpeed" jdbcType="VARCHAR" />
+    <result column="fPower" property="fPower" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, ratedPower, hubHeight, lifeTime, manufacturer, dAtype, decayFactor, numberOrCapacity1, 
-    numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2, 
-    capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, replacementCost3, 
-    replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, owner
+    id, name, ratedPower, hubHeight, lifeTime, manufacturer, dAtype, decayFactor, numberOrCapacity1,
+    numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, capitalCurve1, capitalCurve2,
+    capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, replacementCost3,
+    replacementCost4, maintainCost1, maintainCost2, maintainCost3, maintainCost4, owner,
+    fWindSpeed, fPower
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from wind_turbine
     where id = #{id,jdbcType=INTEGER}
@@ -71,24 +74,26 @@
   </select>
 
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Wind_turbine" >
-    insert into wind_turbine (id, name, ratedPower, 
-      hubHeight, lifeTime, manufacturer, 
-      dAtype, decayFactor, numberOrCapacity1, 
-      numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
-      capitalCurve1, capitalCurve2, capitalCurve3, 
-      capitalCurve4, replacementCost1, replacementCost2, 
-      replacementCost3, replacementCost4, maintainCost1, 
-      maintainCost2, maintainCost3, maintainCost4, 
-      owner)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedPower,jdbcType=DOUBLE}, 
-      #{hubHeight,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, 
-      #{dAtype,jdbcType=INTEGER}, #{decayFactor,jdbcType=DOUBLE}, #{numberOrCapacity1,jdbcType=INTEGER}, 
-      #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, #{numberOrCapacity4,jdbcType=INTEGER}, 
-      #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, 
-      #{capitalCurve4,jdbcType=DOUBLE}, #{replacementCost1,jdbcType=DOUBLE}, #{replacementCost2,jdbcType=DOUBLE}, 
-      #{replacementCost3,jdbcType=DOUBLE}, #{replacementCost4,jdbcType=DOUBLE}, #{maintainCost1,jdbcType=DOUBLE}, 
-      #{maintainCost2,jdbcType=DOUBLE}, #{maintainCost3,jdbcType=DOUBLE}, #{maintainCost4,jdbcType=DOUBLE}, 
-      #{owner,jdbcType=VARCHAR})
+    insert into wind_turbine (id, name, ratedPower,
+      hubHeight, lifeTime, manufacturer,
+      dAtype, decayFactor, numberOrCapacity1,
+      numberOrCapacity2, numberOrCapacity3, numberOrCapacity4,
+      capitalCurve1, capitalCurve2, capitalCurve3,
+      capitalCurve4, replacementCost1, replacementCost2,
+      replacementCost3, replacementCost4, maintainCost1,
+      maintainCost2, maintainCost3, maintainCost4,
+      owner, fWindSpeed, fPower
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedPower,jdbcType=DOUBLE},
+      #{hubHeight,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR},
+      #{dAtype,jdbcType=INTEGER}, #{decayFactor,jdbcType=DOUBLE}, #{numberOrCapacity1,jdbcType=INTEGER},
+      #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, #{numberOrCapacity4,jdbcType=INTEGER},
+      #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE},
+      #{capitalCurve4,jdbcType=DOUBLE}, #{replacementCost1,jdbcType=DOUBLE}, #{replacementCost2,jdbcType=DOUBLE},
+      #{replacementCost3,jdbcType=DOUBLE}, #{replacementCost4,jdbcType=DOUBLE}, #{maintainCost1,jdbcType=DOUBLE},
+      #{maintainCost2,jdbcType=DOUBLE}, #{maintainCost3,jdbcType=DOUBLE}, #{maintainCost4,jdbcType=DOUBLE},
+      #{owner,jdbcType=VARCHAR}, #{fWindSpeed,jdbcType=VARCHAR}, #{fPower,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Wind_turbine" >
     insert into wind_turbine
@@ -168,6 +173,12 @@
       <if test="owner != null" >
         owner,
       </if>
+      <if test="fWindSpeed != null" >
+        fWindSpeed,
+      </if>
+      <if test="fPower != null" >
+        fPower,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -244,6 +255,12 @@
       </if>
       <if test="owner != null" >
         #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="fWindSpeed != null" >
+        #{fWindSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="fPower != null" >
+        #{fPower,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -322,6 +339,12 @@
       <if test="owner != null" >
         owner = #{owner,jdbcType=VARCHAR},
       </if>
+      <if test="fWindSpeed != null" >
+        fWindSpeed = #{fWindSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="fPower != null" >
+        fPower = #{fPower,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -350,7 +373,9 @@
       maintainCost2 = #{maintainCost2,jdbcType=DOUBLE},
       maintainCost3 = #{maintainCost3,jdbcType=DOUBLE},
       maintainCost4 = #{maintainCost4,jdbcType=DOUBLE},
-      owner = #{owner,jdbcType=VARCHAR}
+      owner = #{owner,jdbcType=VARCHAR},
+      fWindSpeed = #{fWindSpeed,jdbcType=VARCHAR},
+      fPower = #{fPower,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

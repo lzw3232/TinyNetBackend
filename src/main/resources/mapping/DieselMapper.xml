@@ -16,7 +16,6 @@
     <result column="percentofNO" property="percentofNO" jdbcType="DOUBLE" />
     <result column="percentofSO2" property="percentofSO2" jdbcType="DOUBLE" />
     <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="fuelPrice" property="fuelPrice" jdbcType="INTEGER" />
     <result column="numberOrCapacity1" property="numberOrCapacity1" jdbcType="INTEGER" />
     <result column="numberOrCapacity2" property="numberOrCapacity2" jdbcType="INTEGER" />
     <result column="numberOrCapacity3" property="numberOrCapacity3" jdbcType="INTEGER" />
@@ -40,7 +39,7 @@
   <sql id="Base_Column_List" >
     id, name, ratedCapacity, minimumLoadRate, minimumRunningTime, lifeTime, manufacturer, 
     percentofCO2, percentofCO, percentofUnburned, percentofMatter, percentofNO, percentofSO2, 
-    type, fuelPrice, numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
+    type, numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
     capitalCurve1, capitalCurve2, capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, 
     replacementCost3, replacementCost4, maintainCost1, maintainCost2, maintainCost3, 
     maintainCost4, fDieselPower, fuelConsumption, owner
@@ -55,7 +54,6 @@
     delete from diesel
     where id = #{id,jdbcType=INTEGER}
   </delete>
-
   <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
@@ -81,33 +79,31 @@
     select count(*) from diesel
     where name REGEXP #{val}
   </select>
-
-
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Diesel" >
     insert into diesel (id, name, ratedCapacity, 
       minimumLoadRate, minimumRunningTime, lifeTime, 
       manufacturer, percentofCO2, percentofCO, 
       percentofUnburned, percentofMatter, percentofNO, 
-      percentofSO2, type, fuelPrice, 
-      numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, 
-      numberOrCapacity4, capitalCurve1, capitalCurve2, 
-      capitalCurve3, capitalCurve4, replacementCost1, 
-      replacementCost2, replacementCost3, replacementCost4, 
-      maintainCost1, maintainCost2, maintainCost3, 
-      maintainCost4, fDieselPower, fuelConsumption, 
-      owner)
+      percentofSO2, type, numberOrCapacity1, 
+      numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
+      capitalCurve1, capitalCurve2, capitalCurve3, 
+      capitalCurve4, replacementCost1, replacementCost2, 
+      replacementCost3, replacementCost4, maintainCost1, 
+      maintainCost2, maintainCost3, maintainCost4, 
+      fDieselPower, fuelConsumption, owner
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ratedCapacity,jdbcType=DOUBLE}, 
       #{minimumLoadRate,jdbcType=DOUBLE}, #{minimumRunningTime,jdbcType=DOUBLE}, #{lifeTime,jdbcType=DOUBLE}, 
       #{manufacturer,jdbcType=VARCHAR}, #{percentofCO2,jdbcType=DOUBLE}, #{percentofCO,jdbcType=DOUBLE}, 
       #{percentofUnburned,jdbcType=DOUBLE}, #{percentofMatter,jdbcType=DOUBLE}, #{percentofNO,jdbcType=DOUBLE}, 
-      #{percentofSO2,jdbcType=DOUBLE}, #{type,jdbcType=VARCHAR}, #{fuelPrice,jdbcType=INTEGER}, 
-      #{numberOrCapacity1,jdbcType=INTEGER}, #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, 
-      #{numberOrCapacity4,jdbcType=INTEGER}, #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, 
-      #{capitalCurve3,jdbcType=DOUBLE}, #{capitalCurve4,jdbcType=DOUBLE}, #{replacementCost1,jdbcType=DOUBLE}, 
-      #{replacementCost2,jdbcType=DOUBLE}, #{replacementCost3,jdbcType=DOUBLE}, #{replacementCost4,jdbcType=DOUBLE}, 
-      #{maintainCost1,jdbcType=DOUBLE}, #{maintainCost2,jdbcType=DOUBLE}, #{maintainCost3,jdbcType=DOUBLE}, 
-      #{maintainCost4,jdbcType=DOUBLE}, #{fDieselPower,jdbcType=VARCHAR}, #{fuelConsumption,jdbcType=VARCHAR}, 
-      #{owner,jdbcType=VARCHAR})
+      #{percentofSO2,jdbcType=DOUBLE}, #{type,jdbcType=VARCHAR}, #{numberOrCapacity1,jdbcType=INTEGER}, 
+      #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, #{numberOrCapacity4,jdbcType=INTEGER}, 
+      #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, 
+      #{capitalCurve4,jdbcType=DOUBLE}, #{replacementCost1,jdbcType=DOUBLE}, #{replacementCost2,jdbcType=DOUBLE}, 
+      #{replacementCost3,jdbcType=DOUBLE}, #{replacementCost4,jdbcType=DOUBLE}, #{maintainCost1,jdbcType=DOUBLE}, 
+      #{maintainCost2,jdbcType=DOUBLE}, #{maintainCost3,jdbcType=DOUBLE}, #{maintainCost4,jdbcType=DOUBLE}, 
+      #{fDieselPower,jdbcType=VARCHAR}, #{fuelConsumption,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.tju.scs.TinyNetBackend.model.po.Diesel" >
     insert into diesel
@@ -153,9 +149,6 @@
       </if>
       <if test="type != null" >
         type,
-      </if>
-      <if test="fuelPrice != null" >
-        fuelPrice,
       </if>
       <if test="numberOrCapacity1 != null" >
         numberOrCapacity1,
@@ -258,9 +251,6 @@
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
       </if>
-      <if test="fuelPrice != null" >
-        #{fuelPrice,jdbcType=INTEGER},
-      </if>
       <if test="numberOrCapacity1 != null" >
         #{numberOrCapacity1,jdbcType=INTEGER},
       </if>
@@ -362,9 +352,6 @@
       <if test="type != null" >
         type = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="fuelPrice != null" >
-        fuelPrice = #{fuelPrice,jdbcType=INTEGER},
-      </if>
       <if test="numberOrCapacity1 != null" >
         numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
       </if>
@@ -440,7 +427,6 @@
       percentofNO = #{percentofNO,jdbcType=DOUBLE},
       percentofSO2 = #{percentofSO2,jdbcType=DOUBLE},
       type = #{type,jdbcType=VARCHAR},
-      fuelPrice = #{fuelPrice,jdbcType=INTEGER},
       numberOrCapacity1 = #{numberOrCapacity1,jdbcType=INTEGER},
       numberOrCapacity2 = #{numberOrCapacity2,jdbcType=INTEGER},
       numberOrCapacity3 = #{numberOrCapacity3,jdbcType=INTEGER},

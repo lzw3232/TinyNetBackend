@@ -6,7 +6,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="netWaterhead" property="netWaterhead" jdbcType="DOUBLE" />
     <result column="ratedPower" property="ratedPower" jdbcType="DOUBLE" />
-    <result column="HTefficiency" property="HTefficiency" jdbcType="DOUBLE" />
+    <result column="hTefficiency" property="hTefficiency" jdbcType="DOUBLE" />
     <result column="generatorefficiency" property="generatorefficiency" jdbcType="DOUBLE" />
     <result column="lifeTime" property="lifeTime" jdbcType="DOUBLE" />
     <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
@@ -29,7 +29,7 @@
     <result column="owner" property="owner" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, netWaterhead, ratedPower, HTefficiency, generatorefficiency, lifeTime, 
+    id, name, netWaterhead, ratedPower, hTefficiency, generatorefficiency, lifeTime, 
     manufacturer, numberOrCapacity1, numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
     capitalCurve1, capitalCurve2, capitalCurve3, capitalCurve4, replacementCost1, replacementCost2, 
     replacementCost3, replacementCost4, maintainCost1, maintainCost2, maintainCost3, 
@@ -45,7 +45,6 @@
     delete from hydro_turbine
     where id = #{id,jdbcType=INTEGER}
   </delete>
-
   <select id="selectByOwner" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
@@ -71,11 +70,9 @@
     select count(*) from hydro_turbine
     where name REGEXP #{val}
   </select>
-
-
   <insert id="insert" parameterType="edu.tju.scs.TinyNetBackend.model.po.Hydro_turbine" >
     insert into hydro_turbine (id, name, netWaterhead, 
-      ratedPower, HTefficiency, generatorefficiency, 
+      ratedPower, hTefficiency, generatorefficiency, 
       lifeTime, manufacturer, numberOrCapacity1, 
       numberOrCapacity2, numberOrCapacity3, numberOrCapacity4, 
       capitalCurve1, capitalCurve2, capitalCurve3, 
@@ -84,7 +81,7 @@
       maintainCost2, maintainCost3, maintainCost4, 
       owner)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{netWaterhead,jdbcType=DOUBLE}, 
-      #{ratedPower,jdbcType=DOUBLE}, #{HTefficiency,jdbcType=DOUBLE}, #{generatorefficiency,jdbcType=DOUBLE}, 
+      #{ratedPower,jdbcType=DOUBLE}, #{hTefficiency,jdbcType=DOUBLE}, #{generatorefficiency,jdbcType=DOUBLE}, 
       #{lifeTime,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, #{numberOrCapacity1,jdbcType=INTEGER}, 
       #{numberOrCapacity2,jdbcType=INTEGER}, #{numberOrCapacity3,jdbcType=INTEGER}, #{numberOrCapacity4,jdbcType=INTEGER}, 
       #{capitalCurve1,jdbcType=DOUBLE}, #{capitalCurve2,jdbcType=DOUBLE}, #{capitalCurve3,jdbcType=DOUBLE}, 
@@ -108,8 +105,8 @@
       <if test="ratedPower != null" >
         ratedPower,
       </if>
-      <if test="HTefficiency != null" >
-        HTefficiency,
+      <if test="hTefficiency != null" >
+        hTefficiency,
       </if>
       <if test="generatorefficiency != null" >
         generatorefficiency,
@@ -185,8 +182,8 @@
       <if test="ratedPower != null" >
         #{ratedPower,jdbcType=DOUBLE},
       </if>
-      <if test="HTefficiency != null" >
-        #{HTefficiency,jdbcType=DOUBLE},
+      <if test="hTefficiency != null" >
+        #{hTefficiency,jdbcType=DOUBLE},
       </if>
       <if test="generatorefficiency != null" >
         #{generatorefficiency,jdbcType=DOUBLE},
@@ -262,8 +259,8 @@
       <if test="ratedPower != null" >
         ratedPower = #{ratedPower,jdbcType=DOUBLE},
       </if>
-      <if test="HTefficiency != null" >
-        HTefficiency = #{HTefficiency,jdbcType=DOUBLE},
+      <if test="hTefficiency != null" >
+        hTefficiency = #{hTefficiency,jdbcType=DOUBLE},
       </if>
       <if test="generatorefficiency != null" >
         generatorefficiency = #{generatorefficiency,jdbcType=DOUBLE},
@@ -333,7 +330,7 @@
     set name = #{name,jdbcType=VARCHAR},
       netWaterhead = #{netWaterhead,jdbcType=DOUBLE},
       ratedPower = #{ratedPower,jdbcType=DOUBLE},
-      HTefficiency = #{HTefficiency,jdbcType=DOUBLE},
+      hTefficiency = #{hTefficiency,jdbcType=DOUBLE},
       generatorefficiency = #{generatorefficiency,jdbcType=DOUBLE},
       lifeTime = #{lifeTime,jdbcType=DOUBLE},
       manufacturer = #{manufacturer,jdbcType=VARCHAR},

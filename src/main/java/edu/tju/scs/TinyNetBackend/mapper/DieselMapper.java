@@ -24,4 +24,5 @@ public interface DieselMapper {
 
     List<Diesel> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);
     List<Diesel> selectByOwner1(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps,@Param("val") String val);
+
 }

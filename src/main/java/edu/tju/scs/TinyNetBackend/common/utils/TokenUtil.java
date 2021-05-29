@@ -18,7 +18,7 @@ import org.apache.commons.lang3.time.DateUtils;
 @Slf4j
 public class TokenUtil {
 
-    private final static int DURATION_TIME = 2;
+    private final static int DURATION_TIME = 1000;
 
     private final static String secret ="lzw";
     public static String getToken(String aud) {

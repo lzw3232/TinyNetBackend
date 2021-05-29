@@ -9,7 +9,7 @@ public class Hydro_turbine {
 
     private Double ratedPower;
 
-    private Double HTefficiency;
+    private Double hTefficiency;
 
     private Double generatorefficiency;
 
@@ -83,12 +83,12 @@ public class Hydro_turbine {
         this.ratedPower = ratedPower;
     }
 
-    public Double getHTefficiency() {
-        return HTefficiency;
+    public Double gethTefficiency() {
+        return hTefficiency;
     }
 
-    public void setHTefficiency(Double HTefficiency) {
-        this.HTefficiency = HTefficiency;
+    public void sethTefficiency(Double hTefficiency) {
+        this.hTefficiency = hTefficiency;
     }
 
     public Double getGeneratorefficiency() {

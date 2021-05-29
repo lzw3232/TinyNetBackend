@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 06/05/2021 23:37:19
+ Date: 28/05/2021 17:48:05
 */
 
 SET NAMES utf8mb4;
@@ -48,7 +48,12 @@ CREATE TABLE `abschille`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of abschille
+-- ----------------------------
+INSERT INTO `abschille` VALUES (1, '1', 0, 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for all_type
@@ -59,6 +64,11 @@ CREATE TABLE `all_type`  (
   `detail` varchar(3000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`table_name`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of all_type
+-- ----------------------------
+INSERT INTO `all_type` VALUES ('battery', 'name(型号名称,string)|eddy(额定电压(V),double)|xhcfdxl(循环充放电效率(%),double)|zdcdsl(最大充电速率,double)|zdcddl(最大充电电流(A),double)|zdfdsl(最大放电速率,double)|dcrl(电池容量(Ah),double)|life(寿命（年）,double)|qsmfd(全寿命放电量(kWh),double)|clgs(串联个数,int)|factory(制造商,string)|type(类型,int)|capacity1(个数1,int)|capacity2(个数2,int)|capacity3(个数3,int)|capacity4(个数4,int)|cjcb1(初建成本1（元）,double)|cjcb2(初建成本2（元）,double)|cjcb3(初建成本3（元）,double)|cjcb4(初建成本4（元）,double)|gxcb1(更新成本1（元）,double)|gxcb2(更新成本2（元）,double)|gxcb3(更新成本3（元）,double)|gxcb4(更新成本4（元）,double)|yxwhcb1(运行维护成本1（元/年）,double)|yxwhcb2(运行维护成本2（元/年）,double)|yxwhcb3(运行维护成本3（元/年）,double)|yxwhcb4(运行维护成本4（元/年）,double)');
 
 -- ----------------------------
 -- Table structure for battery
@@ -96,7 +106,25 @@ CREATE TABLE `battery`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of battery
+-- ----------------------------
+INSERT INTO `battery` VALUES (3, '3', 0, 2, 0, 2, 0, 2, 0, 2, 0, 1, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (4, '4', 0, 2, 0, 2, 0, 2, 0, 2, 0, 4, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (5, '5', 0, 1, 0, 1, 0, 1, 0, 1, 0, 5, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (6, 'lzw', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 5, 1, 100, 10000, 34, 1, 10000, 1000000, 2, 1, 10000, 1000000, 1, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (7, '6', 0, 32, 0, 32, 0, 32, 0, 32, 0, 6, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (8, '7', 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (9, '8', 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (21, '电池2号', 1, 1.1, 1.1, 1.1, 1.1, 200, 10, 1.1, 1, 0, '1', 0, 1, 100, 10000, 0, 200, 20000, 2000000, 0, 160, 16000, 1600000, 0, 0, 0, 0, 'lzw');
+INSERT INTO `battery` VALUES (22, '2', 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (23, 'lzw3232', 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (24, '333', 0, 0, 0, 0, 0, 0, 0, 0, 0, 333, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (25, '666', 0, 0, 0, 0, 0, 0, 0, 0, 0, 666, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (27, 'lpf', 1, 1, 1, 1, 2, 3, 4, 5, 6, 0, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `battery` VALUES (28, '222', 0, 0, 0, 0, 0, 0, 0, 0, 0, 222, '0', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for centrifugal_electricitychiller
@@ -128,7 +156,12 @@ CREATE TABLE `centrifugal_electricitychiller`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of centrifugal_electricitychiller
+-- ----------------------------
+INSERT INTO `centrifugal_electricitychiller` VALUES (1, '1', 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for cool_storage
@@ -162,7 +195,13 @@ CREATE TABLE `cool_storage`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cool_storage
+-- ----------------------------
+INSERT INTO `cool_storage` VALUES (1, '1', 0, 0, 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `cool_storage` VALUES (2, '1', 0, 2, 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for diesel
@@ -204,7 +243,12 @@ CREATE TABLE `diesel`  (
   `fuelConsumption` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of diesel
+-- ----------------------------
+INSERT INTO `diesel` VALUES (7, '1', 0, 0, 0, 0, '1', 0, 0, 0, 0, 0, 0, '0', 3, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '1,2,3,', '2,3,4,', 'lzw');
 
 -- ----------------------------
 -- Table structure for elec_aircondition
@@ -239,7 +283,12 @@ CREATE TABLE `elec_aircondition`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of elec_aircondition
+-- ----------------------------
+INSERT INTO `elec_aircondition` VALUES (1, '1', 0, 0, 0, 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for elec_boiler
@@ -270,7 +319,12 @@ CREATE TABLE `elec_boiler`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of elec_boiler
+-- ----------------------------
+INSERT INTO `elec_boiler` VALUES (1, '1', 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for electricitychiller
@@ -302,7 +356,12 @@ CREATE TABLE `electricitychiller`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of electricitychiller
+-- ----------------------------
+INSERT INTO `electricitychiller` VALUES (1, '1', 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for gas_abschille
@@ -335,7 +394,12 @@ CREATE TABLE `gas_abschille`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of gas_abschille
+-- ----------------------------
+INSERT INTO `gas_abschille` VALUES (1, '1', 0, 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for gas_boiler
@@ -366,7 +430,13 @@ CREATE TABLE `gas_boiler`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of gas_boiler
+-- ----------------------------
+INSERT INTO `gas_boiler` VALUES (2, '', 0, 0, 0, '一一亿元', 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 0, 0, 0, 'lzw');
+INSERT INTO `gas_boiler` VALUES (3, '1', 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for gas_steam_boiler
@@ -397,7 +467,12 @@ CREATE TABLE `gas_steam_boiler`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of gas_steam_boiler
+-- ----------------------------
+INSERT INTO `gas_steam_boiler` VALUES (1, '1', 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for gas_turbine
@@ -431,7 +506,16 @@ CREATE TABLE `gas_turbine`  (
   `gasConsumption` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of gas_turbine
+-- ----------------------------
+INSERT INTO `gas_turbine` VALUES (3, '11', 0, 20, 0, 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '10', '10', 'lzw');
+INSERT INTO `gas_turbine` VALUES (4, '2', 1, 1, 1, 1, 1, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '10', '10', 'lzw');
+INSERT INTO `gas_turbine` VALUES (5, '1', 0, 0, 0, 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '10', '20', 'lzw');
+INSERT INTO `gas_turbine` VALUES (6, '1', 0, 0, 0, 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '1,', '1,', 'lzw');
+INSERT INTO `gas_turbine` VALUES (7, '6', 0, 0, 0, 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '2,', '4,', 'lzw');
 
 -- ----------------------------
 -- Table structure for heat_exchanger
@@ -462,7 +546,12 @@ CREATE TABLE `heat_exchanger`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of heat_exchanger
+-- ----------------------------
+INSERT INTO `heat_exchanger` VALUES (1, '1', 0, 0, 0, '1', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'lzw');
 
 -- ----------------------------
 -- Table structure for heat_storage
@@ -496,7 +585,13 @@ CREATE TABLE `heat_storage`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of heat_storage
+-- ----------------------------
+INSERT INTO `heat_storage` VALUES (1, '1', 0, 0, 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `heat_storage` VALUES (2, '2', 0, 0, 0, 0, 0, 0, '2', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for hydro_turbine
@@ -507,7 +602,7 @@ CREATE TABLE `hydro_turbine`  (
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `netWaterhead` double NOT NULL,
   `ratedPower` double NOT NULL,
-  `HTefficiency` double NOT NULL,
+  `hTefficiency` double NOT NULL,
   `generatorefficiency` double NOT NULL,
   `lifeTime` double NOT NULL,
   `manufacturer` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -529,7 +624,14 @@ CREATE TABLE `hydro_turbine`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of hydro_turbine
+-- ----------------------------
+INSERT INTO `hydro_turbine` VALUES (1, '1', 1, 1, 1, 1, 1, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `hydro_turbine` VALUES (2, '2', 0, 0, 0, 0, 0, '2', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `hydro_turbine` VALUES (5, '3', 0, 0, 0, 0, 0, '3', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for internal_gas_turbine
@@ -560,10 +662,16 @@ CREATE TABLE `internal_gas_turbine`  (
   `maintainCost3` double NOT NULL,
   `maintainCost4` double NOT NULL,
   `fInternalGasPower` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `internalgasConsumption` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `InternalgasConsumption` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of internal_gas_turbine
+-- ----------------------------
+INSERT INTO `internal_gas_turbine` VALUES (1, '1', 0, 0, 0, 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '10', '20', 'lzw');
+INSERT INTO `internal_gas_turbine` VALUES (2, '2', 0, 0, 0, 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '2,', '3,', 'lzw');
 
 -- ----------------------------
 -- Table structure for nuclear_power
@@ -598,7 +706,12 @@ CREATE TABLE `nuclear_power`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of nuclear_power
+-- ----------------------------
+INSERT INTO `nuclear_power` VALUES (1, '1', 0, 0, 0, 0, 0, 0, 0, '1', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'lzw');
 
 -- ----------------------------
 -- Table structure for photovoltaic
@@ -616,7 +729,7 @@ CREATE TABLE `photovoltaic`  (
   `batteryTemperInStc` double NOT NULL,
   `noctEnvirTemper` double NOT NULL,
   `noctRadiation` double NOT NULL,
-  `DAtype` double NOT NULL,
+  `dAtype` double NOT NULL,
   `lifeTime` double NOT NULL,
   `manufacturer` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `numberOrCapacity1` int NOT NULL,
@@ -637,7 +750,14 @@ CREATE TABLE `photovoltaic`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of photovoltaic
+-- ----------------------------
+INSERT INTO `photovoltaic` VALUES (1, '1', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `photovoltaic` VALUES (2, '2', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, '2', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
+INSERT INTO `photovoltaic` VALUES (4, '3', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '3', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for pump
@@ -672,7 +792,12 @@ CREATE TABLE `pump`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pump
+-- ----------------------------
+INSERT INTO `pump` VALUES (1, '1', 0, 0, '1', 0, 0, 0, 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for record
@@ -689,6 +814,10 @@ CREATE TABLE `record`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Records of record
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for screw_electricitychiller
 -- ----------------------------
 DROP TABLE IF EXISTS `screw_electricitychiller`;
@@ -697,7 +826,7 @@ CREATE TABLE `screw_electricitychiller`  (
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ratedPower` double NOT NULL,
   `powerFactor` double NOT NULL,
-  `COP` double NOT NULL,
+  `cop` double NOT NULL,
   `lifeTime` double NOT NULL,
   `manufacturer` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `numberOrCapacity1` double NOT NULL,
@@ -718,7 +847,12 @@ CREATE TABLE `screw_electricitychiller`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of screw_electricitychiller
+-- ----------------------------
+INSERT INTO `screw_electricitychiller` VALUES (1, '1', 0, 0, 0, 0, '1', 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 'lzw');
 
 -- ----------------------------
 -- Table structure for user
@@ -730,6 +864,23 @@ CREATE TABLE `user`  (
   `type` int NULL DEFAULT 0,
   PRIMARY KEY (`username`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '$2a$10$Hk0Qq9OzH3ZlTcf60pKvBuSX5M4FX4cztuh6VzfN54zjOj8PhZqbS', 0);
+INSERT INTO `user` VALUES ('2', '$2a$10$KmbjY9H.b6lzuM59MKKRR.aALkm4mEJmAKIq0fcl6tWoXUoZr0fkq', 0);
+INSERT INTO `user` VALUES ('3', '$2a$10$E/Zf9phySR1X/FrVxNSruOjEalxLIt1dggWznklhU.t4.m9oJ0cSC', 0);
+INSERT INTO `user` VALUES ('4', '$2a$10$B54VZXAwmF7UjA5z7Hskc.kkEPfQrgeJ2QlJbvu6B6Sq/FB7ZQo82', 0);
+INSERT INTO `user` VALUES ('admin', '$2a$10$PWlQ47z1DU81oikNIclDUOnwhW0BJwwlNc.RUEXgn48RtlSsU.IQ6', 0);
+INSERT INTO `user` VALUES ('admin1', '$2a$10$ryGSx54Kxd5cdDnkXH4zH.uhpFiEiaNW8yUxmYgiYWCrQtE6dv.RK', 0);
+INSERT INTO `user` VALUES ('lee', '$2a$10$9uI5SrQJBJrLQUXBCtmPveSNOTNiQh5pWGbPboC5eAcOCa0m8Cu8q', 0);
+INSERT INTO `user` VALUES ('leee1', '$2a$10$8XeWeABGz.7Zip.WiDT3..5kOA6GhurbczlJ67fv/YpEGuDcPWbvu', 0);
+INSERT INTO `user` VALUES ('leee2', '$2a$10$sRvQkeIZ6.YnL2coZ1HLEOscMgqa5Uqgz1ftqSdM9NZw5/9n5oFsK', 0);
+INSERT INTO `user` VALUES ('lzw', '$2a$10$pzLmd/fIZjzHBXFCDRyKW.HcWOdRoUVVtWn2pFnRAvSukRU1XMkc.', 0);
+INSERT INTO `user` VALUES ('shiro', '123456', 0);
+INSERT INTO `user` VALUES ('test', '$2a$10$K2n5vansoEGaICBWRMUbV.r2dd8wglil/fxgfbiBWQ1lg2icF18ia', 1);
+INSERT INTO `user` VALUES ('tinynet1', '$2a$10$h5CJYJEnmAHfgb1OdDH7k.acNF9FOCg2qwLQ3rderqA7y2pK6R/5S', 0);
 
 -- ----------------------------
 -- Table structure for waste_heat_boiler
@@ -760,7 +911,12 @@ CREATE TABLE `waste_heat_boiler`  (
   `maintainCost4` double NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of waste_heat_boiler
+-- ----------------------------
+INSERT INTO `waste_heat_boiler` VALUES (1, '1', 0, 0, 0, '1', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'lzw');
 
 -- ----------------------------
 -- Table structure for wind_turbine
@@ -791,8 +947,17 @@ CREATE TABLE `wind_turbine`  (
   `maintainCost2` double NOT NULL,
   `maintainCost3` double NOT NULL,
   `maintainCost4` double NOT NULL,
+  `fWindSpeed` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fPower` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `owner` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of wind_turbine
+-- ----------------------------
+INSERT INTO `wind_turbine` VALUES (1, '1', 0, 0, 0, '1', 1, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '1,2,3,', '1,2,3,', 'lzw');
+INSERT INTO `wind_turbine` VALUES (2, '2', 0, 0, 0, '1', 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '1,2,3,', '1,2,3,', 'lzw');
+INSERT INTO `wind_turbine` VALUES (5, '3', 0, 0, 0, '3', 0, 0, 0, 1, 100, 10000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, 0, 1, 10000, 1000000, '1,2,3,', '1,2,3,', 'lzw');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -29,8 +29,6 @@ public class Diesel {
 
     private String type;
 
-    private Integer fuelPrice;
-
     private Integer numberOrCapacity1;
 
     private Integer numberOrCapacity2;
@@ -179,14 +177,6 @@ public class Diesel {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
-    }
-
-    public Integer getFuelPrice() {
-        return fuelPrice;
-    }
-
-    public void setFuelPrice(Integer fuelPrice) {
-        this.fuelPrice = fuelPrice;
     }
 
     public Integer getNumberOrCapacity1() {

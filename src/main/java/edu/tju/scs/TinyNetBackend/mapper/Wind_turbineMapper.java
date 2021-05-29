@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 @Mapper
 public interface Wind_turbineMapper {
     int deleteByPrimaryKey(Integer id);
@@ -23,5 +24,4 @@ public interface Wind_turbineMapper {
 
     List<Wind_turbine> selectByOwner(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps);
     List<Wind_turbine> selectByOwner1(@Param("username")String username, @Param("pi") Integer pi, @Param("ps")Integer ps,@Param("val") String val);
-
 }
